@@ -4,6 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "update": "node scripts/update_warrants.mjs"
+    "update": "node scripts/build_malaysia_stock_dashboard.mjs && node scripts/update_warrants.mjs",
+    "update:dashboard": "node scripts/build_malaysia_stock_dashboard.mjs",
+    "update:warrants": "node scripts/update_warrants.mjs"
   }
 }

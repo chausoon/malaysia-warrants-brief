@@ -602,7 +602,186 @@
         overflow: visible;
       }
     }
-  </style>
+  
+
+    .market-overview,
+    .leaderboard {
+      margin: 18px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 14px;
+      margin: 24px 0 12px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+    }
+
+    .section-head p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .market-cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .market-card {
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .market-card .label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .market-card .price {
+      display: block;
+      margin-top: 8px;
+      font-size: 24px;
+      font-weight: 850;
+      letter-spacing: 0;
+    }
+
+    .market-card .move {
+      display: inline-flex;
+      margin-top: 6px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .move.up,
+    .market-card.up .move {
+      background: var(--green-soft);
+      color: var(--green);
+    }
+
+    .move.down,
+    .market-card.down .move {
+      background: var(--rose-soft);
+      color: var(--rose);
+    }
+
+    .move.flat,
+    .market-card.flat .move {
+      background: #eef2f7;
+      color: var(--muted);
+    }
+
+    .leaderboard-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .board {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .board h3 {
+      margin: 0;
+      padding: 12px 14px;
+      color: #fff;
+      font-size: 14px;
+      letter-spacing: 0;
+    }
+
+    .board.active h3 {
+      background: var(--blue);
+    }
+
+    .board.gainers h3 {
+      background: var(--green);
+    }
+
+    .board.losers h3 {
+      background: var(--rose);
+    }
+
+    .leader-row {
+      display: grid;
+      grid-template-columns: 28px minmax(0, 1fr) auto;
+      gap: 8px;
+      align-items: center;
+      padding: 10px 12px;
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+    }
+
+    .leader-row .rank {
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .leader-row .name {
+      min-width: 0;
+      font-weight: 850;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .leader-row .meta {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .leader-row .right {
+      text-align: right;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .leader-row .volume {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 980px) {
+      .market-cards,
+      .leaderboard-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .section-head {
+        display: block;
+      }
+
+      .market-cards,
+      .leaderboard-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+</style>
 </head>
 <body>
   <main>
@@ -612,14 +791,14 @@
         <h1>CIMB / Macquarie 认股权证筛选</h1>
         <p class="subtitle">只看 Call Warrants、相关资产为股票、价内、距离到期超过 30 天。数据取自 MalaysiaWarrants 当前筛选器。</p>
       </div>
-      <div class="date-pill">筛选日期：2026-05-12</div>
+      <div class="date-pill">筛选日期：2026-05-13</div>
     </section>
 
     <section class="stats" aria-label="Summary">
       <div class="stat"><span>行使价符合</span><strong>0</strong></div>
       <div class="stat"><span>买入价符合</span><strong>24</strong></div>
       <div class="stat"><span>发行商</span><strong>2</strong></div>
-      <div class="stat"><span>最短剩余天数</span><strong>47</strong></div>
+      <div class="stat"><span>最短剩余天数</span><strong>46</strong></div>
     </section>
 
     <section class="brief-grid" aria-label="简报重点">
@@ -633,7 +812,7 @@
       </div>
       <div class="brief-card orange">
         <strong>到期日安全垫</strong>
-        <p>此列表中最接近到期的权证仍有 47 天，高于要求的 30 天门槛。</p>
+        <p>此列表中最接近到期的权证仍有 46 天，高于要求的 30 天门槛。</p>
       </div>
     </section>
 
@@ -648,7 +827,7 @@
 
     <section class="notice">
       <strong>行使价 RM0.10-RM0.15：</strong>
-      没有找到符合条件的 CIMB 或 Macquarie Call Warrants。条件为相关资产是股票、价内、到期日在 2026-06-11 之后。
+      没有找到符合条件的 CIMB 或 Macquarie Call Warrants。条件为相关资产是股票、价内、到期日在 2026-06-12 之后。
     </section>
 
     <div class="table-tools">

@@ -1,814 +1,1672 @@
 <!doctype html>
-<html lang="zh-Hans">
+<html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>马来西亚认股权证筛选简报</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Malaysia Stock Dashboard</title>
   <style>
     :root {
-      color-scheme: light;
-      --ink: #16212f;
-      --muted: #617083;
-      --line: #d9e2ec;
-      --bg: #f5f7fa;
-      --panel: #ffffff;
-      --teal: #0f766e;
-      --teal-soft: #e7f5f2;
-      --blue: #1d4ed8;
-      --blue-soft: #eaf1ff;
-      --amber: #b7791f;
-      --amber-soft: #fff7e6;
-      --rose: #be123c;
-      --rose-soft: #fff1f3;
-      --purple: #7c3aed;
-      --purple-soft: #f3edff;
-      --green: #15803d;
-      --green-soft: #ecfdf3;
-      --orange: #ea580c;
-      --orange-soft: #fff3e8;
-      --shadow: 0 14px 35px rgba(15, 23, 42, 0.08);
+      --bg: #1f2430;
+      --panel: #242b38;
+      --panel2: #1b202b;
+      --line: #445063;
+      --text: #dce3ef;
+      --muted: #9faabd;
+      --blue: #4db2ff;
+      --green: #00c76f;
+      --red: #ff4d5d;
+      --yellow: #ffd33d;
+      --orange: #ff9f1c;
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      background:
-        linear-gradient(135deg, rgba(15, 118, 110, 0.12), transparent 34%),
-        linear-gradient(225deg, rgba(29, 78, 216, 0.12), transparent 30%),
-        var(--bg);
-      color: var(--ink);
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      line-height: 1.45;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 13px;
+      letter-spacing: 0;
     }
-
-    main {
-      max-width: 1320px;
-      margin: 0 auto;
-      padding: 18px 18px 32px;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 18px;
-      align-items: end;
-      padding: 28px;
-      overflow: hidden;
-      position: relative;
-      background:
-        linear-gradient(120deg, rgba(15, 118, 110, 0.96), rgba(29, 78, 216, 0.92) 56%, rgba(124, 58, 237, 0.9));
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      border-radius: 8px;
-      box-shadow: var(--shadow);
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .topbar {
+      height: 39px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 26px 0 32px;
+      background: #4a5264;
+      border-top: 8px solid #202634;
       color: #fff;
     }
-
-    .hero:after {
-      content: "";
-      position: absolute;
-      inset: auto -70px -120px auto;
-      width: 340px;
-      height: 340px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.14);
-      pointer-events: none;
-    }
-
-    h1 {
-      margin: 0 0 8px;
-      font-size: clamp(24px, 3vw, 34px);
-      line-height: 1.15;
-      letter-spacing: 0;
-    }
-
-    h2 {
-      margin: 28px 0 12px;
-      font-size: 18px;
-      letter-spacing: 0;
-    }
-
-    .subtitle,
-    .source,
-    .fineprint {
-      color: var(--muted);
+    .nav { display: flex; gap: 19px; align-items: center; font-weight: 700; }
+    .nav b:first-child { background: rgba(255,255,255,.12); padding: 11px 10px; margin-left: -10px; }
+    .toolbar { display: flex; gap: 14px; align-items: center; font-size: 12px; }
+    .pill { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); border-radius: 999px; padding: 4px 9px; color: var(--muted); background: var(--panel2); }
+    main { padding: 16px 32px 28px; max-width: 1500px; margin: 0 auto; }
+    .headline {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      min-height: 38px; padding: 0 10px;
+      background: var(--panel2); border: 1px solid var(--line); border-radius: 5px;
       font-size: 14px;
     }
-
-    .subtitle {
-      max-width: 820px;
-      margin: 0;
-      color: rgba(255, 255, 255, 0.84);
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      margin-bottom: 12px;
-      padding: 5px 10px;
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.14);
-      color: #fff;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .date-pill {
-      display: inline-flex;
+    .headline b { color: #fff; }
+    .export-toolbar {
+      display: flex;
+      flex-wrap: wrap;
       align-items: center;
-      justify-content: center;
-      min-height: 40px;
-      padding: 8px 12px;
-      border: 1px solid rgba(255, 255, 255, 0.38);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.16);
+      gap: 8px;
+      margin-top: 10px;
+      padding: 8px 10px;
+      background: var(--panel2);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+    }
+    .export-toolbar button {
+      appearance: none;
+      border: 1px solid #536176;
+      background: #2a3343;
       color: #fff;
-      font-size: 13px;
+      border-radius: 5px;
+      padding: 7px 10px;
+      font: inherit;
       font-weight: 700;
-      white-space: nowrap;
-      position: relative;
-      z-index: 1;
+      cursor: pointer;
     }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      margin: 18px 0;
-    }
-
-    .stat {
-      position: relative;
-      overflow: hidden;
-      padding: 16px;
+    .export-toolbar button:hover { border-color: var(--blue); color: var(--blue); }
+    .export-status { color: var(--muted); font-size: 11px; margin-left: 4px; }
+    .grid4 { display: grid; grid-template-columns: repeat(4, minmax(250px, 1fr)); gap: 16px; margin-top: 16px; }
+    .market-card, .panel, .ticker-table, .sector-card, .news-card, .recommend-block {
       background: var(--panel);
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: 6px;
+      box-shadow: 0 10px 22px rgba(0,0,0,.16);
     }
-
-    .stat:before {
-      content: "";
-      position: absolute;
-      inset: 0 auto 0 0;
-      width: 5px;
-      background: var(--teal);
+    .market-card { height: 185px; padding: 9px 10px 7px; position: relative; }
+    .market-title { display: flex; align-items: baseline; justify-content: space-between; padding: 0 2px 4px; }
+    .market-title h2 { margin: 0; color: #abb5c8; font-size: 18px; }
+    .market-title span { color: var(--muted); font-size: 11px; }
+    .market-title strong { font-size: 13px; }
+    canvas { width: 100%; display: block; }
+    .klci-chart { height: 138px; }
+    .sentiment-fallback {
+      height: 138px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+      padding: 10px 6px 4px;
     }
-
-    .stat:nth-child(2):before {
-      background: var(--blue);
+    .sentiment-meter {
+      height: 10px;
+      border-radius: 999px;
+      background: #111722;
+      overflow: hidden;
+      border: 1px solid #323b4c;
     }
-
-    .stat:nth-child(3):before {
-      background: var(--purple);
+    .sentiment-meter-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ff4d5d 0%, #ffd33d 50%, #00c76f 100%);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.12);
     }
-
-    .stat:nth-child(4):before {
-      background: var(--orange);
-    }
-
-    .stat span {
-      display: block;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    .stat strong {
-      display: block;
-      margin-top: 6px;
-      font-size: 24px;
-      letter-spacing: 0;
-    }
-
-    .brief-grid {
+    .sentiment-facts {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      margin: 18px 0;
+      gap: 8px;
     }
-
-    .brief-card {
-      min-height: 104px;
-      padding: 14px;
-      border-radius: 8px;
-      border: 1px solid var(--line);
-      background: var(--panel);
-      box-shadow: var(--shadow);
+    .sentiment-facts div {
+      border: 1px solid #384457;
+      border-radius: 6px;
+      background: #202734;
+      padding: 8px;
     }
-
-    .brief-card strong {
+    .sentiment-facts small {
       display: block;
-      margin-bottom: 8px;
-      font-size: 15px;
-    }
-
-    .brief-card p {
-      margin: 0;
       color: var(--muted);
+      font-size: 10px;
+      margin-bottom: 4px;
+    }
+    .sentiment-facts b {
+      display: block;
+      color: #fff;
       font-size: 14px;
     }
-
-    .brief-card.green {
-      background: linear-gradient(180deg, var(--green-soft), #fff);
-      border-color: #bbf7d0;
-    }
-
-    .brief-card.blue {
-      background: linear-gradient(180deg, var(--blue-soft), #fff);
-      border-color: #bfdbfe;
-    }
-
-    .brief-card.orange {
-      background: linear-gradient(180deg, var(--orange-soft), #fff);
-      border-color: #fed7aa;
-    }
-
-    .filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 18px 0;
-    }
-
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      min-height: 30px;
-      padding: 5px 10px;
-      border-radius: 999px;
-      background: #fff;
-      border: 1px solid var(--line);
-      color: #334155;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .chip:nth-child(1),
-    .chip:nth-child(4) {
-      background: var(--teal-soft);
-      border-color: #b7dfd8;
-      color: #0b5f59;
-    }
-
-    .chip:nth-child(2),
-    .chip:nth-child(6) {
-      background: var(--blue-soft);
-      border-color: #c7d2fe;
-      color: #17357a;
-    }
-
-    .chip:nth-child(3),
-    .chip:nth-child(5) {
-      background: var(--purple-soft);
-      border-color: #ddd6fe;
-      color: #5b21b6;
-    }
-
-    .notice {
-      margin: 18px 0;
-      padding: 15px 16px;
-      background: var(--rose-soft);
-      border: 1px solid #fecdd3;
-      border-left: 5px solid var(--rose);
-      border-radius: 8px;
-    }
-
-    .notice strong {
-      color: var(--rose);
-    }
-
-    .table-tools {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: center;
-      margin: 26px 0 10px;
-      padding: 15px 16px;
-      border: 1px solid #bfdbfe;
-      border-radius: 8px;
-      background: linear-gradient(90deg, #eff6ff, #f8fafc);
-    }
-
-    .table-tools h2 {
+    .sentiment-fallback p {
       margin: 0;
-    }
-
-    .table-count {
-      display: inline-flex;
-      align-items: center;
-      min-height: 30px;
-      padding: 5px 10px;
-      border-radius: 999px;
-      background: var(--blue);
-      color: #fff;
-      font-size: 13px;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    .table-wrap {
-      overflow: visible;
-      max-height: none;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      box-shadow: var(--shadow);
-    }
-
-    table {
-      width: 100%;
-      min-width: 0;
-      table-layout: fixed;
-      border-collapse: separate;
-      border-spacing: 0;
+      color: var(--muted);
       font-size: 11px;
+      line-height: 1.35;
     }
-
-    th,
-    td {
-      padding: 7px 5px;
-      border-bottom: 1px solid var(--line);
-      text-align: center;
-      vertical-align: middle;
-      white-space: nowrap;
-      overflow-wrap: normal;
-    }
-
-    th {
-      position: sticky;
-      top: 0;
-      z-index: 2;
-      background: #eaf1ff;
-      color: #172554;
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.035em;
-    }
-
-    .group-row th {
-      top: 0;
-      padding: 8px 10px;
-      border-bottom: 1px solid #bfdbfe;
-      color: #fff;
-      text-align: center;
-      font-size: 12px;
-    }
-
-    .group-general {
-      background: #0f766e;
-    }
-
-    .group-market {
-      background: #1d4ed8;
-    }
-
-    .group-warrant {
-      background: #7c3aed;
-    }
-
-    .column-row th {
-      top: 34px;
-      background: #eff6ff;
-      border-bottom-color: #bfdbfe;
-      text-align: center;
-      white-space: normal;
-      line-height: 1.2;
-      overflow-wrap: normal;
-    }
-
-    .sort-row th {
-      top: 88px;
-      padding: 6px 5px;
-      background: #f8fafc;
-      border-bottom-color: #e5e7eb;
-      text-align: center;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .sort-row th:hover,
-    .sort-row th.active {
-      background: #e7f5f2;
-    }
-
-    .sort-icons {
-      display: inline-flex;
-      gap: 10px;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .tri {
-      width: 0;
-      height: 0;
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
-      cursor: pointer;
-    }
-
-    .tri.down {
-      border-top: 6px solid #ef1d1d;
-    }
-
-    .tri.up {
-      border-bottom: 6px solid #15803d;
-    }
-
-    tbody tr:nth-child(even) {
-      background: #f8fbff;
-    }
-
-    tbody tr:hover {
-      background: #eef7ff;
-    }
-
-    tr:last-child td {
-      border-bottom: 0;
-    }
-
-    td.num,
-    th.num {
-      text-align: right;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .warrant {
-      font-weight: 800;
-      color: #1d4ed8;
-      text-align: left;
-    }
-
-    td.warrant {
-      white-space: nowrap;
-      font-size: 10px;
-    }
-
-    .issuer,
-    .itm {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 58px;
-      padding: 3px 7px;
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 800;
-    }
-
-    .issuer.cimb {
-      background: var(--amber-soft);
-      color: var(--amber);
-    }
-
-    .issuer.macq {
-      background: var(--blue-soft);
-      color: var(--blue);
-    }
-
-    .itm {
-      background: var(--teal-soft);
-      color: var(--teal);
-    }
-
-    .bid {
-      color: var(--green);
-      font-weight: 800;
-    }
-
-    .ask {
-      color: var(--rose);
-      font-weight: 800;
-    }
-
-    .premium {
-      color: var(--purple);
-      font-weight: 800;
-    }
-
-    .change {
-      font-weight: 800;
-    }
-
-    .change.up {
-      color: #2ca24d;
-    }
-
-    .change.down {
-      color: #dc2626;
-    }
-
-    .change.flat {
-      color: #334155;
-    }
-
-    .legend {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px 16px;
-      justify-content: center;
-      margin: 0 0 14px;
-      padding: 10px;
-      background: #f8fafc;
-      border: 1px solid var(--line);
-      border-top: 0;
-      border-radius: 0 0 8px 8px;
-      color: #334155;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .source {
-      margin-top: 16px;
-    }
-
-    .fineprint {
-      margin: 10px 0 0;
-    }
-
-    a {
-      color: #075985;
-      font-weight: 700;
-    }
-
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
-    @media (max-width: 760px) {
-      main {
-        padding: 18px 12px 32px;
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-        padding: 18px;
-      }
-
-      .date-pill {
-        width: fit-content;
-      }
-
-      .stats {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .brief-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .table-tools {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .table-wrap {
-        max-height: none;
-      }
-    }
-
+    .breadth-row { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 54px; align-items: center; margin: 28px 26px 12px; }
+    .breadth-card { border: 1px solid var(--line); background: var(--panel2); border-radius: 6px; padding: 10px 8px; min-height: 50px; }
+    .bar { height: 6px; display: flex; overflow: hidden; border-radius: 99px; margin-top: 7px; background: #111722; }
+    .bar i:first-child { background: var(--green); }
+    .bar i:last-child { background: var(--red); }
+    .breadth-card small { color: var(--muted); display: block; }
+    .breadth-card b { display: flex; justify-content: space-between; gap: 10px; }
+    .content-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(340px, .8fr); gap: 14px; margin-top: 10px; align-items: start; }
+    .tables-grid { display: grid; grid-template-columns: repeat(2, minmax(235px, 1fr)); gap: 8px; min-width: 0; }
+    .ticker-table { overflow: hidden; min-width: 0; }
+    .table-head { display: flex; justify-content: space-between; padding: 9px 10px 3px; color: var(--blue); font-weight: 700; }
+    table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+    th { color: #c4ccd9; text-align: right; font-weight: 600; padding: 4px 8px; border-bottom: 1px solid #323b4c; }
+    th:first-child, td:first-child { text-align: left; }
+    th, td { overflow: hidden; text-overflow: ellipsis; }
+    th:first-child, td:first-child { width: 38%; }
+    th:nth-child(2), td:nth-child(2) { width: 17%; }
+    th:nth-child(3), td:nth-child(3) { width: 19%; }
+    th:nth-child(4), td:nth-child(4) { width: 26%; }
+    td { padding: 3px 7px; border-bottom: 1px solid rgba(68,80,99,.38); text-align: right; font-weight: 700; white-space: nowrap; font-size: 12px; }
+    td span { display: block; color: var(--muted); font-size: 10px; max-width: 100%; overflow: hidden; text-overflow: ellipsis; font-weight: 400; }
+    .right-stack { display: grid; gap: 10px; }
+    .panel { padding: 10px; }
+    .panel h2, .panel h3 { margin: 0 0 9px; color: #c7d1e2; font-size: 14px; }
+    .heatmap { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px, 1fr)); gap: 4px; min-height: 265px; align-content: start; }
+    .heat-sector { min-height: 116px; display: flex; flex-direction: column; border: 1px solid rgba(0,0,0,.45); background: #19212d; overflow: hidden; }
+    .heat-sector header { display: flex; justify-content: space-between; gap: 8px; padding: 4px 6px 2px; background: rgba(255,255,255,.08); color: #fff; font-size: 10px; line-height: 1.1; text-transform: uppercase; }
+    .heat-sector header b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .heat-sub { color: var(--muted); font-size: 9px; padding: 2px 6px 4px; white-space: normal; line-height: 1.2; }
+    .heat-sector-body { display: flex; flex: 1; flex-wrap: wrap; gap: 2px; padding: 2px; align-content: stretch; }
+    .heat-tile { min-height: 34px; flex-grow: 1; border: 1px solid rgba(0,0,0,.35); padding: 4px; display: flex; flex-direction: column; justify-content: center; text-align: center; color: #fff; text-shadow: 0 1px 1px rgba(0,0,0,.25); }
+    .heat-tile b { font-size: 12px; }
+    .heat-tile span { font-size: 10px; }
+    .heat-legend { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 9px; color: var(--muted); font-size: 10px; align-items: center; }
+    .heat-legend span { display: inline-flex; align-items: center; gap: 5px; }
+    .heat-legend i { width: 16px; height: 10px; border: 1px solid rgba(255,255,255,.18); border-radius: 2px; display: inline-block; }
+    .market-context { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: 12px; margin-top: 12px; }
+    .market-context ul { margin: 0; padding-left: 18px; color: #d8dfeb; line-height: 1.62; }
+    .news-lines { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .news-line { border: 1px solid #384457; border-radius: 6px; padding: 9px; background: #202734; min-width: 0; }
+    .news-line div { display: flex; justify-content: space-between; gap: 8px; color: var(--muted); font-size: 10px; }
+    .news-line h3 { margin: 6px 0; font-size: 12px; line-height: 1.28; }
+    .news-line p { margin: 0; color: #d2d9e6; line-height: 1.45; font-size: 11px; }
+    .sector-grid { display: grid; grid-template-columns: repeat(5, minmax(155px, 1fr)); gap: 9px; margin-top: 10px; }
+    .sector-card { padding: 9px; }
+    .sector-title { display: flex; justify-content: space-between; gap: 8px; }
+    .sector-title b { color: #fff; }
+    .sector-title span { display: block; color: var(--muted); font-size: 10px; margin-top: 2px; }
+    .sector-title strong { text-align: right; white-space: nowrap; }
+    .sector-title strong small { display: block; color: var(--muted); font-size: 9px; font-weight: 600; margin-bottom: 2px; }
+    .spark { height: 62px; margin: 5px 0; }
+    .sector-meta { display: flex; justify-content: space-between; color: var(--muted); font-size: 10px; gap: 8px; }
+    .recommendations { display: grid; grid-template-columns: repeat(5, minmax(230px, 1fr)); gap: 9px; margin-top: 10px; }
+    .recommend-block { overflow: hidden; }
+    .recommend-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px; border-bottom: 1px solid #323b4c; }
+    .recommend-head b { color: #fff; }
+    .recommend-head span { display: block; color: var(--muted); font-size: 10px; margin-top: 2px; }
+    .recommend-block th, .recommend-block td { font-size: 10px; padding: 4px 5px; }
+    .news-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 10px; }
+    .news-card { padding: 11px; min-height: 190px; }
+    .news-card div { display: flex; justify-content: space-between; color: var(--muted); font-size: 11px; }
+    .news-card h3 { margin: 8px 0; font-size: 14px; line-height: 1.25; }
+    .news-card p { color: #d2d9e6; line-height: 1.55; margin: 0; }
+    .news-card footer { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+    .news-card footer b { color: #061016; background: var(--yellow); padding: 2px 6px; border-radius: 3px; font-size: 10px; }
+    .source-line { margin-top: 12px; color: var(--muted); font-size: 11px; line-height: 1.5; }
+    .data-notes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 10px; }
+    .data-note { border: 1px solid #384457; border-radius: 6px; background: #202734; padding: 9px 10px; color: #cbd4e2; font-size: 11px; line-height: 1.45; }
+    .data-note b { color: #fff; }
+    .up { color: var(--green) !important; }
+    .down { color: var(--red) !important; }
+    .flat { color: var(--muted) !important; }
+    .yellow { color: var(--yellow); }
     @media print {
-      body {
-        background: #fff;
-      }
-
-      main {
-        max-width: none;
-        padding: 0;
-      }
-
-      .hero,
-      .stat,
-      .table-wrap {
-        box-shadow: none;
-      }
-
-      .table-wrap {
-        max-height: none;
-        overflow: visible;
-      }
+      .export-toolbar { display: none; }
+      body { background: #1f2430; }
+    }
+    @media (max-width: 1180px) {
+      .grid4, .sector-grid, .recommendations, .news-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .breadth-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 14px 0; }
+      .content-grid, .market-context, .news-lines, .data-notes { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 680px) {
+      main { padding: 10px; }
+      .topbar { padding: 0 10px; overflow: auto; }
+      .grid4, .sector-grid, .recommendations, .news-grid, .tables-grid { grid-template-columns: 1fr; }
+      .nav { gap: 12px; }
+      .toolbar { display: none; }
     }
   </style>
 </head>
 <body>
+  <div class="topbar">
+    <div class="nav"><b>Dashboard</b><a href="warrants_filtered.html">Warrants</a><b>News</b><b>Screener</b><b>Charts</b><b>Maps</b><b>Portfolio</b><b>Calendar</b></div>
+    <div class="toolbar"><span>Thu, May 14, 2026, 12:24 AM GMT+8</span><span class="pill">Theme</span><b>Malaysia</b></div>
+  </div>
   <main>
-    <section class="hero">
-      <div>
-        <span class="eyebrow">结构性认股权证简报</span>
-        <h1>CIMB / Macquarie 认股权证筛选</h1>
-        <p class="subtitle">只看 Call Warrants、相关资产为股票、价内、距离到期超过 30 天。数据取自 MalaysiaWarrants 当前筛选器。</p>
+    <section class="headline">
+      <div><span class="yellow">✦</span> Today, 12:24 AM <b>FBM KLCI 走高 5.25 点至 1,750.56</b>，市场焦点：手套股、AI/芯片、油价与权重股获利回吐。</div>
+      <span><b class="up">+0.30%</b></span>
+    </section>
+
+    <section class="export-toolbar" aria-label="Export tools">
+      <button type="button" id="exportPngBtn">导出截图 PNG</button>
+      <button type="button" id="exportReportBtn">导出报告 HTML</button>
+      <span class="export-status" id="exportStatus">PNG 会要求选择当前页面/窗口；手动导出不会影响每日自动更新。</span>
+    </section>
+
+    <section class="grid4">
+      <article class="market-card">
+        <div class="market-title"><h2>FBM KLCI</h2><span>30D daily OHLC · 2026-05-12</span><strong class="up">1,750.56 +0.30%</strong></div>
+        <canvas class="klci-chart" id="klciChart"></canvas>
+      </article>
+      <article class="market-card">
+        <div class="market-title"><h2>Daily Candle</h2><span>8am-5pm · from daily OHLC</span><strong>1,748.45 / 1,750.56</strong></div>
+        <canvas class="klci-chart" id="dailyCandleChart"></canvas>
+      </article>
+      <article class="market-card">
+        <div class="market-title"><h2>Volume</h2><span>30 trading days</span><strong>188.43M</strong></div>
+        <canvas class="klci-chart" id="volumeChart"></canvas>
+      </article>
+      <article class="market-card">
+        <div class="market-title"><h2>Sentiment</h2><span>TradingView latest breadth</span><strong class="up">51.9% Bull</strong></div>
+        <div class="sentiment-fallback">
+          <div class="sentiment-meter">
+            <div class="sentiment-meter-fill" style="width:51.9%"></div>
+          </div>
+          <div class="sentiment-facts">
+            <div><small>上涨</small><b class="up">328</b></div>
+            <div><small>下跌</small><b class="down">304</b></div>
+            <div><small>状态</small><b class="up">偏多</b></div>
+          </div>
+          <p>目前只有最新 breadth 快照，没有足够历史点可画趋势。</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="data-notes">
+      
+      <div class="data-note"><b>Volume 数据说明：</b>Volume 图为 Yahoo Finance `^KLSE` 最近 30 个交易日量能；周六、周日不包含在图内。若最新一日显示 0，通常表示指数成交量字段未更新或该源未提供。</div>
+      <div class="data-note"><b>Sector 1D 数据说明：</b>Sector 分组使用 Bursa Malaysia sector classification 大类名称；右上角数字是该板块成分股按市值加权后的当天涨跌幅。小线图是用成分股涨跌、成交额与市场宽度生成的 1D 快速走势视图，不是逐笔/逐分钟行情。</div>
+    </section>
+
+    <section class="market-context">
+      <div class="panel">
+        <h2>FBM KLCI 大市走势与交易解读</h2>
+        <ul><li>FBM KLCI 最新收在 1,750.56，日变动 5.25 点（+0.30%），近 30 个交易日累计 +3.56%。</li><li>区间高低为 1,768.46 / 1,673.14；当前站上 20 日均线 1,723.13，短线趋势仍需观察量能能否配合。</li><li>市场宽度偏正面，涨股 328 多于跌股 304；成交活跃集中在 科技，显示资金在主题股与权重股之间轮动。</li><li>新闻面显示：区域 AI 风险偏好提供支撑，但油价、地缘政治与权重股获利回吐压抑尾盘，整体情绪属于“指数偏弱、题材仍活跃”。</li></ul>
       </div>
-      <div class="date-pill">筛选日期：2026-05-12</div>
-    </section>
-
-    <section class="stats" aria-label="Summary">
-      <div class="stat"><span>行使价符合</span><strong>0</strong></div>
-      <div class="stat"><span>买入价符合</span><strong>24</strong></div>
-      <div class="stat"><span>发行商</span><strong>2</strong></div>
-      <div class="stat"><span>最短剩余天数</span><strong>47</strong></div>
-    </section>
-
-    <section class="brief-grid" aria-label="简报重点">
-      <div class="brief-card green">
-        <strong>短名单更容易看</strong>
-        <p>若把 RM0.10-RM0.15 解读为买入价，筛选后剩下 24 个权证，全部目前处于价内。</p>
-      </div>
-      <div class="brief-card blue">
-        <strong>发行商分布</strong>
-        <p>符合条件的名单中 CIMB 有 16 个，Macquarie 有 8 个。</p>
-      </div>
-      <div class="brief-card orange">
-        <strong>到期日安全垫</strong>
-        <p>此列表中最接近到期的权证仍有 47 天，高于要求的 30 天门槛。</p>
+      <div class="panel">
+        <h2>大市新闻与情绪</h2>
+        <div class="news-lines"><article class="news-line">
+        <div><b>The Star</b><time>2026-05-11</time></div>
+        <h3><a href="https://www.thestar.com.my/business/business-news/2026/05/11/late-selling-drags-bursa-malaysia-lower-as-regional-markets-hit-fresh-highs" target="_blank" rel="noopener">Late selling drags Bursa Malaysia lower as regional markets hit fresh highs</a></h3>
+        <p>收盘前卖压令 FBM KLCI 转跌 2.75 点至 1,745.31；区域市场偏强，但本地银行、运输等权重股出现获利回吐。手套股与部分 AI/芯片题材仍维持活跃。</p>
+      </article><article class="news-line">
+        <div><b>Bernama</b><time>2026-05-11</time></div>
+        <h3><a href="https://bernama.com/en/news.php?id=2555646" target="_blank" rel="noopener">Late Selling Pushes Bursa Malaysia Into Negative Territory At Close</a></h3>
+        <p>Bernama 报道指出，FBM KLCI 从上周五的 1,748.06 回落至 1,745.31，整体市场宽度仍小幅偏正面，涨股略多于跌股。</p>
+      </article><article class="news-line">
+        <div><b>BusinessToday</b><time>2026-05-11</time></div>
+        <h3><a href="https://www.businesstoday.com.my/2026/05/11/positive-start-for-bursa-as-investors-track-oil-and-geopolitics/" target="_blank" rel="noopener">Positive Start For Bursa As Investors Track Oil And Geopolitics</a></h3>
+        <p>早盘曾因区域情绪、马币走稳和油价走势受到关注而开高；能源价格与地缘政治仍是盘中风险偏好变化的主轴。</p>
+      </article><article class="news-line">
+        <div><b>BusinessToday</b><time>2026-05-10</time></div>
+        <h3><a href="https://www.businesstoday.com.my/2026/05/10/market-recap-bursa-malaysia-extends-weekly-gains-on-blue-chip-rally/" target="_blank" rel="noopener">Market Recap: Bursa Malaysia Extends Weekly Gains On Blue-Chip Rally</a></h3>
+        <p>上周 FBM KLCI 连续第二周上涨，蓝筹买盘、区域风险偏好改善与 BNM 维持 OPR 不变为大市提供支撑。</p>
+      </article></div>
       </div>
     </section>
 
-    <section class="filters" aria-label="Applied filters">
-      <span class="chip">CIMB + Macquarie</span>
-      <span class="chip">Call Warrants</span>
-      <span class="chip">相关资产：股票</span>
-      <span class="chip">价内</span>
-      <span class="chip">到期 &gt; 30 天</span>
-      <span class="chip">买入价 RM0.10-RM0.15</span>
+    <section class="breadth-row">
+      <div class="breadth-card"><small>Advancing / Declining</small><b><span class="up">328</span><span class="down">304</span></b><div class="bar"><i style="width:34.526315789473685%"></i><i style="width:32%"></i></div></div>
+      <div class="breadth-card"><small>30D KLCI</small><b><span class="up">+3.56%</span><span>1,690.36</span></b><div class="bar"><i style="width:64.24550362381349%"></i><i style="width:35.75449637618651%"></i></div></div>
+      <div class="breadth-card"><small>Top Sector Turnover</small><b><span>科技</span><span>RM 612.04M</span></b><div class="bar"><i style="width:64%"></i><i style="width:36%"></i></div></div>
+      <div class="breadth-card"><small>Active Counters</small><b><span>950</span><span>stocks</span></b><div class="bar"><i style="width:58%"></i><i style="width:42%"></i></div></div>
+      <div class="breadth-card"><small>News Tone</small><b><span class="yellow">Mixed</span><span>rotation</span></b><div class="bar"><i style="width:52%"></i><i style="width:48%"></i></div></div>
     </section>
 
-    <section class="notice">
-      <strong>行使价 RM0.10-RM0.15：</strong>
-      没有找到符合条件的 CIMB 或 Macquarie Call Warrants。条件为相关资产是股票、价内、到期日在 2026-06-11 之后。
+    <section class="content-grid">
+      <div class="tables-grid">
+        <div class="ticker-table"><div class="table-head"><span>Top Volume</span><span>Daily</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>Volume</th></tr></thead><tbody><tr>
+        <td><b>GIIB</b><span>GIIB Holdings Bhd</span></td>
+        <td>0.270</td>
+        <td class="up">+31.71%</td>
+        <td>129.29M</td>
+      </tr><tr>
+        <td><b>WCT</b><span>WCT Holdings Bhd.</span></td>
+        <td>0.515</td>
+        <td class="up">+7.29%</td>
+        <td>94.44M</td>
+      </tr><tr>
+        <td><b>ASTRO</b><span>Astro Malaysia Holdings Bhd.</span></td>
+        <td>0.055</td>
+        <td class="down">-8.33%</td>
+        <td>90.33M</td>
+      </tr><tr>
+        <td><b>UEMS</b><span>UEM Sunrise Bhd.</span></td>
+        <td>0.665</td>
+        <td class="up">+4.72%</td>
+        <td>76.73M</td>
+      </tr><tr>
+        <td><b>ZETRIX</b><span>Zetrix AI Bhd</span></td>
+        <td>0.835</td>
+        <td class="up">+1.21%</td>
+        <td>74.10M</td>
+      </tr><tr>
+        <td><b>SMRT</b><span>SMRT Holdings Berhad</span></td>
+        <td>0.270</td>
+        <td class="down">-1.82%</td>
+        <td>67.37M</td>
+      </tr><tr>
+        <td><b>GENETEC</b><span>Genetec Technology Bhd.</span></td>
+        <td>0.355</td>
+        <td class="down">-1.39%</td>
+        <td>61.03M</td>
+      </tr><tr>
+        <td><b>KRONO</b><span>Kronologi Asia Bhd.</span></td>
+        <td>0.145</td>
+        <td class="up">+11.54%</td>
+        <td>60.31M</td>
+      </tr><tr>
+        <td><b>VS</b><span>V.S. Industry Bhd.</span></td>
+        <td>0.210</td>
+        <td class="flat">0.00%</td>
+        <td>58.99M</td>
+      </tr><tr>
+        <td><b>DNEX</b><span>Dagang NeXchange Berhad</span></td>
+        <td>0.335</td>
+        <td class="down">-2.90%</td>
+        <td>54.89M</td>
+      </tr></tbody></table></div>
+        <div class="ticker-table"><div class="table-head"><span>Top Turnover</span><span>Daily</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>Value</th></tr></thead><tbody><tr>
+        <td><b>MAYBANK</b><span>Malayan Banking Bhd.</span></td>
+        <td>11.18</td>
+        <td class="down">-0.53%</td>
+        <td>RM160.80M</td>
+      </tr><tr>
+        <td><b>PMETAL</b><span>Press Metal Aluminium Holdings Berhad</span></td>
+        <td>9.05</td>
+        <td class="up">+0.67%</td>
+        <td>RM121.45M</td>
+      </tr><tr>
+        <td><b>TENAGA</b><span>Tenaga Nasional Bhd</span></td>
+        <td>14.72</td>
+        <td class="down">-0.41%</td>
+        <td>RM117.52M</td>
+      </tr><tr>
+        <td><b>FRONTKN</b><span>Frontken Corp. Bhd.</span></td>
+        <td>4.72</td>
+        <td class="up">+3.28%</td>
+        <td>RM104.96M</td>
+      </tr><tr>
+        <td><b>CIMB</b><span>CIMB Group Holdings Bhd</span></td>
+        <td>7.92</td>
+        <td class="up">+0.25%</td>
+        <td>RM89.54M</td>
+      </tr><tr>
+        <td><b>TM</b><span>Telekom Malaysia Bhd.</span></td>
+        <td>7.55</td>
+        <td class="down">-1.82%</td>
+        <td>RM87.87M</td>
+      </tr><tr>
+        <td><b>GAMUDA</b><span>Gamuda Bhd.</span></td>
+        <td>4.65</td>
+        <td class="up">+2.65%</td>
+        <td>RM87.23M</td>
+      </tr><tr>
+        <td><b>MRDIY</b><span>MR. D.I.Y. Group (M) Bhd.</span></td>
+        <td>1.59</td>
+        <td class="down">-2.45%</td>
+        <td>RM78.21M</td>
+      </tr><tr>
+        <td><b>PBBANK</b><span>Public Bank Bhd</span></td>
+        <td>4.88</td>
+        <td class="up">+0.83%</td>
+        <td>RM75.84M</td>
+      </tr><tr>
+        <td><b>TANCO</b><span>Tanco Holdings Bhd.</span></td>
+        <td>1.70</td>
+        <td class="up">+0.59%</td>
+        <td>RM70.87M</td>
+      </tr></tbody></table></div>
+        <div class="ticker-table"><div class="table-head"><span>Top Gainers</span><span>Value</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>RM</th></tr></thead><tbody><tr>
+        <td><b>MPI</b><span>Malaysian Pacific Industries Bhd.</span></td>
+        <td>43.80</td>
+        <td class="up">+3.64%</td>
+        <td>1.540</td>
+      </tr><tr>
+        <td><b>UMSINT</b><span>UMS Integration Limited</span></td>
+        <td>8.80</td>
+        <td class="up">+10.00%</td>
+        <td>0.800</td>
+      </tr><tr>
+        <td><b>PETDAG</b><span>Petronas Dagangan Bhd.</span></td>
+        <td>21.10</td>
+        <td class="up">+3.84%</td>
+        <td>0.780</td>
+      </tr><tr>
+        <td><b>VITROX</b><span>Vitrox Corp. Bhd.</span></td>
+        <td>6.29</td>
+        <td class="up">+4.49%</td>
+        <td>0.270</td>
+      </tr><tr>
+        <td><b>UWC</b><span>UWC Bhd.</span></td>
+        <td>5.97</td>
+        <td class="up">+4.19%</td>
+        <td>0.240</td>
+      </tr><tr>
+        <td><b>KLCC</b><span>KLCC Property Holdings Bhd.</span></td>
+        <td>9.23</td>
+        <td class="up">+2.56%</td>
+        <td>0.230</td>
+      </tr><tr>
+        <td><b>SAM</b><span>SAM Engineering &amp; Equipment (M) Bhd</span></td>
+        <td>4.57</td>
+        <td class="up">+4.34%</td>
+        <td>0.190</td>
+      </tr><tr>
+        <td><b>KGB</b><span>Kelington Group Bhd.</span></td>
+        <td>6.72</td>
+        <td class="up">+2.91%</td>
+        <td>0.190</td>
+      </tr><tr>
+        <td><b>MI</b><span>Mi Technovation Bhd.</span></td>
+        <td>3.88</td>
+        <td class="up">+4.86%</td>
+        <td>0.180</td>
+      </tr><tr>
+        <td><b>FRONTKN</b><span>Frontken Corp. Bhd.</span></td>
+        <td>4.72</td>
+        <td class="up">+3.28%</td>
+        <td>0.150</td>
+      </tr></tbody></table></div>
+        <div class="ticker-table"><div class="table-head"><span>Top Losers</span><span>Value</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>RM</th></tr></thead><tbody><tr>
+        <td><b>F&amp;N</b><span>Fraser &amp; Neave Holdings Bhd.</span></td>
+        <td>29.16</td>
+        <td class="down">-2.47%</td>
+        <td>-0.740</td>
+      </tr><tr>
+        <td><b>HLIND</b><span>Hong Leong Industries Bhd.</span></td>
+        <td>18.90</td>
+        <td class="down">-2.07%</td>
+        <td>-0.400</td>
+      </tr><tr>
+        <td><b>UTDPLT</b><span>United Plantations Bhd.</span></td>
+        <td>30.12</td>
+        <td class="down">-0.59%</td>
+        <td>-0.180</td>
+      </tr><tr>
+        <td><b>HEIM</b><span>Heineken Malaysia Bhd.</span></td>
+        <td>22.70</td>
+        <td class="down">-0.79%</td>
+        <td>-0.180</td>
+      </tr><tr>
+        <td><b>ALLIANZ</b><span>Allianz Malaysia Bhd.</span></td>
+        <td>21.12</td>
+        <td class="down">-0.85%</td>
+        <td>-0.180</td>
+      </tr><tr>
+        <td><b>APOLLO</b><span>Apollo Food Holdings Bhd.</span></td>
+        <td>5.89</td>
+        <td class="down">-2.64%</td>
+        <td>-0.160</td>
+      </tr><tr>
+        <td><b>TM</b><span>Telekom Malaysia Bhd.</span></td>
+        <td>7.55</td>
+        <td class="down">-1.82%</td>
+        <td>-0.140</td>
+      </tr><tr>
+        <td><b>YTLPOWR</b><span>YTL Power International Bhd.</span></td>
+        <td>4.11</td>
+        <td class="down">-3.07%</td>
+        <td>-0.130</td>
+      </tr><tr>
+        <td><b>QL</b><span>QL Resources Bhd.</span></td>
+        <td>3.61</td>
+        <td class="down">-3.22%</td>
+        <td>-0.120</td>
+      </tr><tr>
+        <td><b>SDG</b><span>SD Guthrie Bhd</span></td>
+        <td>6.00</td>
+        <td class="down">-1.64%</td>
+        <td>-0.100</td>
+      </tr></tbody></table></div>
+      </div>
+      <div class="right-stack">
+        <div class="panel">
+        <h2>Sector Heat Map</h2>
+          <div class="heatmap"><section class="heat-sector">
+        <header><b>TECHNOLOGY</b><span class="up">+2.45%</span></header>
+        <div class="heat-sub">科技 · 109 counters · RM 612.04M</div>
+        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:47.667289471123425%;background:hsl(145 72% 35.38512035010938%);" title="Frontken Corp. Bhd. · Technology">
+            <b>FRONTKN</b><span>+3.28%</span>
+          </div><div class="heat-tile" style="flex-basis:47.11499148691139%;background:hsl(145 72% 36.199242782773304%);" title="Malaysian Pacific Industries Bhd. · Technology">
+            <b>MPI</b><span>+3.64%</span>
+          </div><div class="heat-tile" style="flex-basis:46.93282624001025%;background:hsl(145 72% 30.72727272727273%);" title="Zetrix AI Bhd · Technology">
+            <b>ZETRIX</b><span>+1.21%</span>
+          </div><div class="heat-tile" style="flex-basis:46.43966673830922%;background:hsl(145 72% 35.14285714285715%);" title="Inari Amertron Berhad · Technology">
+            <b>INARI</b><span>+3.17%</span>
+          </div><div class="heat-tile" style="flex-basis:46.26605028149234%;background:hsl(356 68% 28.575447570332493%);" title="Unisem (M) Bhd. · Technology">
+            <b>UNISEM</b><span>-0.26%</span>
+          </div><div class="heat-tile" style="flex-basis:46.25930446989169%;background:hsl(145 72% 29.39751552795031%);" title="Oppstar Berhad · Technology">
+            <b>OPPSTAR</b><span>+0.62%</span>
+          </div><div class="heat-tile" style="flex-basis:46.084100334947294%;background:hsl(145 72% 38.09136212624587%);" title="Vitrox Corp. Bhd. · Technology">
+            <b>VITROX</b><span>+4.49%</span>
+          </div><div class="heat-tile" style="flex-basis:45.71990170762692%;background:hsl(356 68% 29.243093922651934%);" title="Dufu Technology Corp. Bhd. · Technology">
+            <b>DUFU</b><span>-0.55%</span>
+          </div></div>
+      </section><section class="heat-sector">
+        <header><b>CONSTRUCTION</b><span class="up">+1.37%</span></header>
+        <div class="heat-sub">建筑 · 85 counters · RM 325.10M</div>
+        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:47.41007598499928%;background:hsl(145 72% 33.96026490066225%);" title="Gamuda Bhd. · Construction">
+            <b>GAMUDA</b><span>+2.65%</span>
+          </div><div class="heat-tile" style="flex-basis:46.59823222985375%;background:hsl(145 72% 44.406250000000014%);" title="WCT Holdings Bhd. · Construction">
+            <b>WCT</b><span>+7.29%</span>
+          </div><div class="heat-tile" style="flex-basis:46.54755869695671%;background:hsl(356 68% 33.97345132743359%);" title="IJM Corporation Berhad · Construction">
+            <b>IJM</b><span>-2.65%</span>
+          </div><div class="heat-tile" style="flex-basis:46.22194856195722%;background:hsl(145 72% 31.169014084507058%);" title="Sunway Construction Group Bhd. · Construction">
+            <b>SUNCON</b><span>+1.41%</span>
+          </div><div class="heat-tile" style="flex-basis:45.727969446896424%;background:hsl(145 72% 34.546707503828465%);" title="Kelington Group Bhd. · Construction">
+            <b>KGB</b><span>+2.91%</span>
+          </div><div class="heat-tile" style="flex-basis:44.57147655858854%;background:#3f4959;" title="Ekovest Bhd. · Construction">
+            <b>EKOVEST</b><span>0.00%</span>
+          </div><div class="heat-tile" style="flex-basis:44.01226041107274%;background:hsl(145 72% 46%);" title="Econpile Holdings Bhd · Construction">
+            <b>ECONBHD</b><span>+9.68%</span>
+          </div><div class="heat-tile" style="flex-basis:43.89728543073627%;background:hsl(145 72% 30.960526315789476%);" title="Malaysian Resources Corp. Bhd. · Construction">
+            <b>MRCB</b><span>+1.32%</span>
+          </div></div>
+      </section><section class="heat-sector">
+        <header><b>INDUSTRIAL PRODUCTS &amp; SERVICES</b><span class="up">+0.54%</span></header>
+        <div class="heat-sub">工业产品与服务 · 257 counters · RM 575.45M</div>
+        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:47.87006279245752%;background:hsl(145 72% 29.501668520578434%);" title="Press Metal Aluminium Holdings Berhad · Industrial Products &amp; Services">
+            <b>PMETAL</b><span>+0.67%</span>
+          </div><div class="heat-tile" style="flex-basis:47.258431425219385%;background:hsl(356 68% 33.52147239263801%);" title="MR. D.I.Y. Group (M) Bhd. · Industrial Products &amp; Services">
+            <b>MRDIY</b><span>-2.45%</span>
+          </div><div class="heat-tile" style="flex-basis:46.266544035604824%;background:hsl(356 68% 28.40983606557376%);" title="PETRONAS Chemicals Group Bhd. · Industrial Products &amp; Services">
+            <b>PCHEM</b><span>-0.18%</span>
+          </div><div class="heat-tile" style="flex-basis:46.13733206677581%;background:hsl(145 72% 46%);" title="GIIB Holdings Bhd · Industrial Products &amp; Services">
+            <b>GIIB</b><span>+31.71%</span>
+          </div><div class="heat-tile" style="flex-basis:45.77135811871845%;background:hsl(145 72% 37.424083769633484%);" title="UWC Bhd. · Industrial Products &amp; Services">
+            <b>UWC</b><span>+4.19%</span>
+          </div><div class="heat-tile" style="flex-basis:45.23144255680923%;background:hsl(356 68% 32.09090909090909%);" title="SMRT Holdings Berhad · Industrial Products &amp; Services">
+            <b>SMRT</b><span>-1.82%</span>
+          </div><div class="heat-tile" style="flex-basis:45.224369182801965%;background:hsl(356 68% 31.06818181818184%);" title="Sime Darby Bhd. · Industrial Products &amp; Services">
+            <b>SIME</b><span>-1.36%</span>
+          </div><div class="heat-tile" style="flex-basis:45.09845127203053%;background:hsl(145 72% 36.63681102362206%);" title="Petronas Dagangan Bhd. · Industrial Products &amp; Services">
+            <b>PETDAG</b><span>+3.84%</span>
+          </div></div>
+      </section><section class="heat-sector">
+        <header><b>REAL ESTATE INVESTMENT TRUSTS</b><span class="up">+0.23%</span></header>
+        <div class="heat-sub">REITs · 20 counters · RM 35.17M</div>
+        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:44.719439970202714%;background:hsl(145 72% 33.750000000000014%);" title="KLCC Property Holdings Bhd. · Real Estate Investment Trusts">
+            <b>KLCC</b><span>+2.56%</span>
+          </div><div class="heat-tile" style="flex-basis:43.972848388643285%;background:hsl(356 68% 29.74418604651163%);" title="Sunway Real Estate Investment Trust · Real Estate Investment Trusts">
+            <b>SUNREIT</b><span>-0.78%</span>
+          </div><div class="heat-tile" style="flex-basis:43.630793045725824%;background:#3f4959;" title="Axis Real Estate Investment Trust · Real Estate Investment Trusts">
+            <b>AXREIT</b><span>0.00%</span>
+          </div><div class="heat-tile" style="flex-basis:42.71943632364527%;background:hsl(356 68% 30.98013245033113%);" title="IGB Real Estate Investment Trust · Real Estate Investment Trusts">
+            <b>IGBREIT</b><span>-1.32%</span>
+          </div><div class="heat-tile" style="flex-basis:42.19510381104773%;background:#3f4959;" title="Pavilion Real Estate Investment Trust · Real Estate Investment Trusts">
+            <b>PAVREIT</b><span>0.00%</span>
+          </div><div class="heat-tile" style="flex-basis:41.31843178666243%;background:#3f4959;" title="Capitaland Malaysia Trust · Real Estate Investment Trusts">
+            <b>CLMT</b><span>0.00%</span>
+          </div><div class="heat-tile" style="flex-basis:40.93694913467701%;background:hsl(356 68% 29.308139534883722%);" title="KIP Real Estate Investment Trust · Real Estate Investment Trusts">
+            <b>KIPREIT</b><span>-0.58%</span>
+          </div><div class="heat-tile" style="flex-basis:40.23908954263601%;background:#3f4959;" title="YTL Hospitality REIT · Real Estate Investment Trusts">
+            <b>YTLREIT</b><span>0.00%</span>
+          </div></div>
+      </section><section class="heat-sector">
+        <header><b>TRANSPORTATION &amp; LOGISTICS</b><span class="up">+0.03%</span></header>
+        <div class="heat-sub">交通与物流 · 35 counters · RM 87.15M</div>
+        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:46.17972066505699%;background:hsl(145 72% 31.750000000000004%);" title="AirAsia X Bhd. · Transportation &amp; Logistics">
+            <b>AAX</b><span>+1.67%</span>
+          </div><div class="heat-tile" style="flex-basis:45.502077599528505%;background:hsl(356 68% 30.18712029161604%);" title="MISC Bhd · Transportation &amp; Logistics">
+            <b>MISC</b><span>-0.97%</span>
+          </div><div class="heat-tile" style="flex-basis:44.397256026095405%;background:hsl(145 72% 29.973684210526308%);" title="Westports Holdings Bhd. · Transportation &amp; Logistics">
+            <b>WPRTS</b><span>+0.88%</span>
+          </div><div class="heat-tile" style="flex-basis:43.40261005161172%;background:hsl(145 72% 36.03571428571429%);" title="Capital A Berhad · Transportation &amp; Logistics">
+            <b>CAPITALA</b><span>+3.57%</span>
+          </div><div class="heat-tile" style="flex-basis:43.28191336719097%;background:hsl(145 72% 41.98305084745761%);" title="Orkim Bhd · Transportation &amp; Logistics">
+            <b>ORKIM</b><span>+6.21%</span>
+          </div><div class="heat-tile" style="flex-basis:43.13385106151721%;background:hsl(145 72% 31.688524590163937%);" title="MTT Shipping &amp; Logistics Bhd. · Transportation &amp; Logistics">
+            <b>MTTSL</b><span>+1.64%</span>
+          </div><div class="heat-tile" style="flex-basis:42.071378702086676%;background:hsl(356 68% 33.62500000000001%);" title="Hi Mobility Bhd. · Transportation &amp; Logistics">
+            <b>HI</b><span>-2.50%</span>
+          </div><div class="heat-tile" style="flex-basis:40.63274083738287%;background:#3f4959;" title="Perak Transit Bhd. · Transportation &amp; Logistics">
+            <b>PTRANS</b><span>0.00%</span>
+          </div></div>
+      </section><section class="heat-sector">
+        <header><b>FINANCIAL SERVICES</b><span class="down">-0.01%</span></header>
+        <div class="heat-sub">金融服务 · 25 counters · RM 402.15M</div>
+        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:48.26014177117247%;background:hsl(356 68% 29.201067615658374%);" title="Malayan Banking Bhd. · Financial Services">
+            <b>MAYBANK</b><span>-0.53%</span>
+          </div><div class="heat-tile" style="flex-basis:47.44649702855111%;background:hsl(145 72% 28.569620253164544%);" title="CIMB Group Holdings Bhd · Financial Services">
+            <b>CIMB</b><span>+0.25%</span>
+          </div><div class="heat-tile" style="flex-basis:47.21562244823962%;background:hsl(145 72% 29.859504132231407%);" title="Public Bank Bhd · Financial Services">
+            <b>PBBANK</b><span>+0.83%</span>
+          </div><div class="heat-tile" style="flex-basis:45.772505523197644%;background:#3f4959;" title="RHB Bank Bhd. · Financial Services">
+            <b>RHBBANK</b><span>0.00%</span>
+          </div><div class="heat-tile" style="flex-basis:45.151765064631164%;background:hsl(145 72% 28.203619909502258%);" title="Hong Leong Bank Bhd · Financial Services">
+            <b>HLBANK</b><span>+0.09%</span>
+          </div><div class="heat-tile" style="flex-basis:45.08179771972972%;background:hsl(356 68% 29.736111111111136%);" title="AMMB Holdings Bhd. · Financial Services">
+            <b>AMBANK</b><span>-0.77%</span>
+          </div><div class="heat-tile" style="flex-basis:42.68289406121032%;background:#3f4959;" title="Alliance Bank Malaysia Bhd. · Financial Services">
+            <b>ABMB</b><span>0.00%</span>
+          </div><div class="heat-tile" style="flex-basis:42.53232814784406%;background:#3f4959;" title="Affin Bank Bhd. · Financial Services">
+            <b>AFFIN</b><span>0.00%</span>
+          </div></div>
+      </section><section class="heat-sector">
+        <header><b>PROPERTY</b><span class="down">-0.07%</span></header>
+        <div class="heat-sub">产业/房地产 · 100 counters · RM 325.86M</div>
+        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:47.121458606155244%;background:hsl(145 72% 29.331360946745562%);" title="Tanco Holdings Bhd. · Property">
+            <b>TANCO</b><span>+0.59%</span>
+          </div><div class="heat-tile" style="flex-basis:46.69905765335851%;background:hsl(145 72% 29.027397260273997%);" title="IOI Properties Group Bhd. · Property">
+            <b>IOIPG</b><span>+0.46%</span>
+          </div><div class="heat-tile" style="flex-basis:46.66498310128537%;background:hsl(145 72% 38.62992125984253%);" title="UEM Sunrise Bhd. · Property">
+            <b>UEMS</b><span>+4.72%</span>
+          </div><div class="heat-tile" style="flex-basis:46.51419846487758%;background:#3f4959;" title="Sime Darby Property Bhd. · Property">
+            <b>SIMEPROP</b><span>0.00%</span>
+          </div><div class="heat-tile" style="flex-basis:45.59622687415696%;background:#3f4959;" title="S P Setia Bhd. · Property">
+            <b>SPSETIA</b><span>0.00%</span>
+          </div><div class="heat-tile" style="flex-basis:45.58930775557123%;background:hsl(356 68% 30.459016393442642%);" title="Sunway Bhd. · Property">
+            <b>SUNWAY</b><span>-1.09%</span>
+          </div><div class="heat-tile" style="flex-basis:44.97184194508444%;background:#3f4959;" title="Central Global Bhd · Property">
+            <b>CGB</b><span>0.00%</span>
+          </div><div class="heat-tile" style="flex-basis:43.85945119104141%;background:hsl(145 72% 30.142857142857146%);" title="Mah Sing Group Bhd. · Property">
+            <b>MAHSING</b><span>+0.95%</span>
+          </div></div>
+      </section><section class="heat-sector">
+        <header><b>ENERGY</b><span class="down">-0.17%</span></header>
+        <div class="heat-sub">能源 · 61 counters · RM 61.96M</div>
+        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:45.099588345126534%;background:hsl(145 72% 30.122641509433965%);" title="Dialog Group Bhd. · Energy">
+            <b>DIALOG</b><span>+0.94%</span>
+          </div><div class="heat-tile" style="flex-basis:44.00108000839188%;background:#3f4959;" title="Hibiscus Petroleum Bhd. · Energy">
+            <b>HIBISCS</b><span>0.00%</span>
+          </div><div class="heat-tile" style="flex-basis:43.72898955549128%;background:#3f4959;" title="Bumi Armada Bhd. · Energy">
+            <b>ARMADA</b><span>0.00%</span>
+          </div><div class="heat-tile" style="flex-basis:43.52494132420627%;background:hsl(145 72% 30.380952380952383%);" title="Dayang Enterprise Holdings Bhd. · Energy">
+            <b>DAYANG</b><span>+1.06%</span>
+          </div><div class="heat-tile" style="flex-basis:43.1918428889244%;background:hsl(356 68% 31.62903225806452%);" title="Hengyuan Refining Company Bhd · Energy">
+            <b>HENGYUAN</b><span>-1.61%</span>
+          </div><div class="heat-tile" style="flex-basis:42.91163672639409%;background:hsl(145 72% 32.28571428571429%);" title="Wasco Berhad · Energy">
+            <b>WASCO</b><span>+1.90%</span>
+          </div><div class="heat-tile" style="flex-basis:42.73934074878063%;background:hsl(356 68% 33.59701492537312%);" title="Yinson Holdings Bhd. · Energy">
+            <b>YINSON</b><span>-2.49%</span>
+          </div><div class="heat-tile" style="flex-basis:42.609474269243634%;background:#3f4959;" title="Velesto Energy Bhd. · Energy">
+            <b>VELESTO</b><span>0.00%</span>
+          </div></div>
+      </section><section class="heat-sector">
+        <header><b>HEALTH CARE</b><span class="down">-0.43%</span></header>
+        <div class="heat-sub">医疗保健 · 30 counters · RM 173.00M</div>
+        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:46.621924200045044%;background:hsl(356 68% 28.996677740863767%);" title="IHH Healthcare Bhd. · Health Care">
+            <b>IHH</b><span>-0.44%</span>
+          </div><div class="heat-tile" style="flex-basis:46.06148508673813%;background:hsl(356 68% 30.647058823529413%);" title="Top Glove Corporation Bhd. · Health Care">
+            <b>TOPGLOV</b><span>-1.18%</span>
+          </div><div class="heat-tile" style="flex-basis:45.74991881135814%;background:hsl(356 68% 29.315789473684212%);" title="KPJ Healthcare Bhd. · Health Care">
+            <b>KPJ</b><span>-0.58%</span>
+          </div><div class="heat-tile" style="flex-basis:45.67714695953727%;background:hsl(145 72% 29.20967741935484%);" title="Sunway Healthcare Holdings Berhad · Health Care">
+            <b>SUNMED</b><span>+0.54%</span>
+          </div><div class="heat-tile" style="flex-basis:45.103744478758614%;background:hsl(356 68% 29.666666666666668%);" title="Hartalega Holdings Bhd. · Health Care">
+            <b>HARTA</b><span>-0.74%</span>
+          </div><div class="heat-tile" style="flex-basis:44.64535157894356%;background:hsl(356 68% 33.35714285714286%);" title="Kossan Rubber Industries Bhd. · Health Care">
+            <b>KOSSAN</b><span>-2.38%</span>
+          </div><div class="heat-tile" style="flex-basis:42.95511894892297%;background:hsl(356 68% 34.4285714285714%);" title="Supermax Corp. Bhd. · Health Care">
+            <b>SUPERMX</b><span>-2.86%</span>
+          </div><div class="heat-tile" style="flex-basis:42.150259704985714%;background:#3f4959;" title="Duopharma Biotech Bhd. · Health Care">
+            <b>DPHARMA</b><span>0.00%</span>
+          </div></div>
+      </section><section class="heat-sector">
+        <header><b>PLANTATION</b><span class="down">-0.71%</span></header>
+        <div class="heat-sub">种植 · 55 counters · RM 145.37M</div>
+        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:46.64473018011647%;background:hsl(356 68% 31.688524590163922%);" title="SD Guthrie Bhd · Plantation">
+            <b>SDG</b><span>-1.64%</span>
+          </div><div class="heat-tile" style="flex-basis:46.12460676315837%;background:hsl(145 72% 28.647171620326006%);" title="Kuala Lumpur Kepong Bhd. · Plantation">
+            <b>KLK</b><span>+0.29%</span>
+          </div><div class="heat-tile" style="flex-basis:44.81079079828615%;background:hsl(356 68% 31.169014084507022%);" title="IOI Corporation Berhad · Plantation">
+            <b>IOICORP</b><span>-1.41%</span>
+          </div><div class="heat-tile" style="flex-basis:44.767812744421555%;background:hsl(356 68% 29.336633663366335%);" title="United Plantations Bhd. · Plantation">
+            <b>UTDPLT</b><span>-0.59%</span>
+          </div><div class="heat-tile" style="flex-basis:44.3163369213372%;background:hsl(356 68% 35.297297297297305%);" title="Johor Plantations Group Bhd · Plantation">
+            <b>JPG</b><span>-3.24%</span>
+          </div><div class="heat-tile" style="flex-basis:43.16993600889895%;background:hsl(356 68% 28.43186180422264%);" title="Genting Plantations Bhd. · Plantation">
+            <b>GENP</b><span>-0.19%</span>
+          </div><div class="heat-tile" style="flex-basis:42.77841870201228%;background:hsl(145 72% 29.63339382940109%);" title="PPB Group Bhd. · Plantation">
+            <b>PPB</b><span>+0.73%</span>
+          </div><div class="heat-tile" style="flex-basis:42.626292047391985%;background:hsl(356 68% 30.064220183486242%);" title="Sarawak Oil Palms Bhd. · Plantation">
+            <b>SOP</b><span>-0.92%</span>
+          </div></div>
+      </section><section class="heat-sector">
+        <header><b>TELECOMMUNICATIONS &amp; MEDIA</b><span class="down">-0.78%</span></header>
+        <div class="heat-sub">电讯与媒体 · 16 counters · RM 143.77M</div>
+        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:47.42028873921218%;background:hsl(356 68% 32.09622886866062%);" title="Telekom Malaysia Bhd. · Telecommunications &amp; Media">
+            <b>TM</b><span>-1.82%</span>
+          </div><div class="heat-tile" style="flex-basis:45.74913240805819%;background:hsl(356 68% 32.97787610619467%);" title="Axiata Group Bhd. · Telecommunications &amp; Media">
+            <b>AXIATA</b><span>-2.21%</span>
+          </div><div class="heat-tile" style="flex-basis:44.113917508740755%;background:hsl(356 68% 29.40625%);" title="TIME dotCom Bhd. · Telecommunications &amp; Media">
+            <b>TIMECOM</b><span>-0.63%</span>
+          </div><div class="heat-tile" style="flex-basis:43.87791195497523%;background:hsl(145 72% 30.24252491694354%);" title="CelcomDigi Berhad · Telecommunications &amp; Media">
+            <b>CDB</b><span>+1.00%</span>
+          </div><div class="heat-tile" style="flex-basis:43.84854753987646%;background:hsl(356 68% 29.869806094182813%);" title="Maxis Bhd. · Telecommunications &amp; Media">
+            <b>MAXIS</b><span>-0.83%</span>
+          </div><div class="heat-tile" style="flex-basis:43.427833808702104%;background:hsl(356 68% 46%);" title="Astro Malaysia Holdings Bhd. · Telecommunications &amp; Media">
+            <b>ASTRO</b><span>-8.33%</span>
+          </div><div class="heat-tile" style="flex-basis:42.15429437242507%;background:#3f4959;" title="Silver Ridge Holdings Bhd. · Telecommunications &amp; Media">
+            <b>SRIDGE</b><span>0.00%</span>
+          </div><div class="heat-tile" style="flex-basis:39.17620681743168%;background:hsl(356 68% 37.00000000000001%);" title="Sedania Innovator Bhd. · Telecommunications &amp; Media">
+            <b>SEDANIA</b><span>-4.00%</span>
+          </div></div>
+      </section><section class="heat-sector">
+        <header><b>CONSUMER PRODUCTS &amp; SERVICES</b><span class="down">-0.87%</span></header>
+        <div class="heat-sub">消费产品与服务 · 142 counters · RM 159.27M</div>
+        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:45.282603819301514%;background:hsl(356 68% 28.225586524964896%);" title="Nestle (Malaysia) Bhd. · Consumer Products &amp; Services">
+            <b>NESTLE</b><span>-0.10%</span>
+          </div><div class="heat-tile" style="flex-basis:45.120426245329455%;background:hsl(356 68% 31.982300884955755%);" title="99 Speed Mart Retail Holdings Bhd · Consumer Products &amp; Services">
+            <b>99SMART</b><span>-1.77%</span>
+          </div><div class="heat-tile" style="flex-basis:44.833833874373596%;background:hsl(356 68% 35.23860589812333%);" title="QL Resources Bhd. · Consumer Products &amp; Services">
+            <b>QL</b><span>-3.22%</span>
+          </div><div class="heat-tile" style="flex-basis:44.62182081394991%;background:hsl(145 72% 37.0909090909091%);" title="Empire Premium Food Bhd. · Consumer Products &amp; Services">
+            <b>EMPIRE</b><span>+4.04%</span>
+          </div><div class="heat-tile" style="flex-basis:44.58354473291452%;background:hsl(356 68% 31.585657370517893%);" title="Genting Bhd. · Consumer Products &amp; Services">
+            <b>GENTING</b><span>-1.59%</span>
+          </div><div class="heat-tile" style="flex-basis:44.26833473770188%;background:hsl(145 72% 28.97826086956524%);" title="Farm Fresh Bhd. · Consumer Products &amp; Services">
+            <b>FFB</b><span>+0.43%</span>
+          </div><div class="heat-tile" style="flex-basis:44.122918221045424%;background:hsl(356 68% 29.81451612903226%);" title="Eco-Shop Marketing Berhad · Consumer Products &amp; Services">
+            <b>ECOSHOP</b><span>-0.81%</span>
+          </div><div class="heat-tile" style="flex-basis:44.05628114936386%;background:hsl(356 68% 34.164383561643845%);" title="Padini Holdings Bhd. · Consumer Products &amp; Services">
+            <b>PADINI</b><span>-2.74%</span>
+          </div></div>
+      </section><section class="heat-sector">
+        <header><b>UTILITIES</b><span class="down">-1.23%</span></header>
+        <div class="heat-sub">公用事业 · 15 counters · RM 236.25M</div>
+        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:47.824323646810896%;background:hsl(356 68% 28.91339648173205%);" title="Tenaga Nasional Bhd · Utilities">
+            <b>TENAGA</b><span>-0.41%</span>
+          </div><div class="heat-tile" style="flex-basis:46.70205185773746%;background:hsl(356 68% 36.72844827586206%);" title="YTL Corp Bhd. · Utilities">
+            <b>YTL</b><span>-3.88%</span>
+          </div><div class="heat-tile" style="flex-basis:46.479895918246505%;background:hsl(356 68% 34.89858490566037%);" title="YTL Power International Bhd. · Utilities">
+            <b>YTLPOWR</b><span>-3.07%</span>
+          </div><div class="heat-tile" style="flex-basis:43.87965343577272%;background:hsl(356 68% 28.49999999999999%);" title="Petronas Gas Bhd. · Utilities">
+            <b>PETGAS</b><span>-0.22%</span>
+          </div><div class="heat-tile" style="flex-basis:42.9729090995225%;background:hsl(145 72% 29.90677966101695%);" title="CBH Engineering Holding Berhad · Utilities">
+            <b>CBHB</b><span>+0.85%</span>
+          </div><div class="heat-tile" style="flex-basis:42.86844366853853%;background:hsl(145 72% 29.171875%);" title="Ranhill Utilities Bhd. · Utilities">
+            <b>RANHILL</b><span>+0.52%</span>
+          </div><div class="heat-tile" style="flex-basis:42.401854367456004%;background:hsl(145 72% 31.260869565217394%);" title="Cypark Resources Bhd. · Utilities">
+            <b>CYPARK</b><span>+1.45%</span>
+          </div><div class="heat-tile" style="flex-basis:42.242858725453125%;background:hsl(356 68% 30.786377708978332%);" title="Mega First Corp. Bhd. · Utilities">
+            <b>MFCB</b><span>-1.24%</span>
+          </div></div>
+      </section></div>
+          <div class="heat-legend">
+            <span><i style="background:hsl(145 72% 44%)"></i>上涨较强</span>
+            <span><i style="background:hsl(145 72% 32%)"></i>小涨</span>
+            <span><i style="background:#3f4959"></i>接近平盘</span>
+            <span><i style="background:hsl(356 68% 32%)"></i>小跌</span>
+            <span><i style="background:hsl(356 68% 44%)"></i>下跌较强</span>
+          </div>
+          <p class="source-line">Heat Map 按 Bursa Malaysia sector classification 分组，并按 sector 市值加权涨跌幅由强到弱排列；方块大小按成交额近似缩放，颜色显示个股当天涨跌。</p>
+        </div>
+      </div>
     </section>
 
-    <div class="table-tools">
-      <h2>若 RM0.10-RM0.15 指的是权证买入价，符合以下名单</h2>
-      <div class="table-count">24 个权证</div>
-    </div>
+    <section>
+      <div class="panel">
+        <h2>Top 5 Bursa Sector · 1D 走势</h2>
+        <div class="sector-grid"><article class="sector-card">
+        <div class="sector-title">
+          <div><b>1. TECHNOLOGY</b><span>科技 · 109 counters</span></div>
+          <strong class="up"><small>加权涨跌</small>+2.45%</strong>
+        </div>
+        <canvas class="spark" data-series="[0,0.75,0.98,1.14,1.62,1.37,1.86,1.45,1.62,1.36,1.1,1.28,0.86,1.1,0.98,1.01,1.36,2.45]"></canvas>
+        <div class="sector-meta">
+          <span>Turnover RM 612.04M</span>
+          <span>44 Adv / 33 Dec</span>
+        </div>
+      </article><article class="sector-card">
+        <div class="sector-title">
+          <div><b>2. CONSTRUCTION</b><span>建筑 · 85 counters</span></div>
+          <strong class="up"><small>加权涨跌</small>+1.37%</strong>
+        </div>
+        <canvas class="spark" data-series="[0,-0.57,-0.31,-0.17,0.14,0.26,0.56,0.63,0.95,1.2,1.2,1.47,1.43,1.48,1.36,1.61,1.5,1.37]"></canvas>
+        <div class="sector-meta">
+          <span>Turnover RM 325.10M</span>
+          <span>34 Adv / 21 Dec</span>
+        </div>
+      </article><article class="sector-card">
+        <div class="sector-title">
+          <div><b>3. INDUSTRIAL PRODUCTS &amp; SERVICES</b><span>工业产品与服务 · 257 counters</span></div>
+          <strong class="up"><small>加权涨跌</small>+0.54%</strong>
+        </div>
+        <canvas class="spark" data-series="[0,0.07,0.32,0.1,0.22,0.66,0.34,0.76,0.68,0.65,0.63,0.37,0.36,0.13,0.1,0.14,0.19,0.54]"></canvas>
+        <div class="sector-meta">
+          <span>Turnover RM 575.45M</span>
+          <span>95 Adv / 72 Dec</span>
+        </div>
+      </article><article class="sector-card">
+        <div class="sector-title">
+          <div><b>4. REAL ESTATE INVESTMENT TRUSTS</b><span>REITs · 20 counters</span></div>
+          <strong class="up"><small>加权涨跌</small>+0.23%</strong>
+        </div>
+        <canvas class="spark" data-series="[0,-0.06,-0.1,-0.34,-0.18,-0.37,-0.32,-0.07,-0.12,0.13,0.19,0.26,0.47,0.4,0.59,0.45,0.47,0.23]"></canvas>
+        <div class="sector-meta">
+          <span>Turnover RM 35.17M</span>
+          <span>3 Adv / 7 Dec</span>
+        </div>
+      </article><article class="sector-card">
+        <div class="sector-title">
+          <div><b>5. TRANSPORTATION &amp; LOGISTICS</b><span>交通与物流 · 35 counters</span></div>
+          <strong class="up"><small>加权涨跌</small>+0.03%</strong>
+        </div>
+        <canvas class="spark" data-series="[0,-0.24,-0.19,-0.46,-0.26,-0.53,-0.33,-0.21,-0.22,-0.08,0.1,0.26,0.16,0.2,0.32,0.17,0.27,0.03]"></canvas>
+        <div class="sector-meta">
+          <span>Turnover RM 87.15M</span>
+          <span>15 Adv / 12 Dec</span>
+        </div>
+      </article></div>
+        <p class="source-line">此处 Top 5 sector 按 Bursa Malaysia sector classification 大类归并后，以市值加权涨跌幅由强到弱排序；右上角百分比 = 市值加权 sector 当天涨跌幅；底部 Adv / Dec = 该板块上涨/下跌家数；Turnover = 板块成分股成交额合计。</p>
+      </div>
+    </section>
 
-    <div class="table-wrap" role="region" aria-label="筛选后的权证表格" tabindex="0">
-      <table>
-        <colgroup>
-          <col style="width: 13%">
-          <col style="width: 7%">
-          <col style="width: 7%">
-          <col style="width: 8%">
-          <col style="width: 8%">
-          <col style="width: 8%">
-          <col style="width: 8%">
-          <col style="width: 8%">
-          <col style="width: 8%">
-          <col style="width: 8%">
-          <col style="width: 8%">
-          <col style="width: 9%">
-        </colgroup>
-        <thead>
-          <tr class="group-row">
-            <th class="group-general" colspan="5">GENERAL 基本条款</th>
-            <th class="group-market" colspan="4">MARKET 市场报价</th>
-            <th class="group-warrant" colspan="3">WARRANT 权证指标</th>
-          </tr>
-          <tr class="column-row">
-            <th>权证名称</th>
-            <th class="num">行使价</th>
-            <th class="num">换股比率</th>
-            <th>到期日</th>
-            <th>发行商</th>
-            <th class="num">买入价<br>(MYR)</th>
-            <th class="num">卖出价<br>(MYR)</th>
-            <th class="num">成交量<br>('000)</th>
-            <th class="num">价格变化<br>(%)</th>
-            <th class="num">有效杠杆<br>(x)</th>
-            <th class="num">隐含波动率<br>(%)</th>
-            <th class="num">Premium<br>(%)</th>
-          </tr>
-          <tr class="sort-row" aria-label="排序指标">
-            <th><span class="sort-icons"><span class="tri down"></span><span class="tri up"></span></span></th>
-            <th><span class="sort-icons"><span class="tri down"></span><span class="tri up"></span></span></th>
-            <th><span class="sort-icons"><span class="tri down"></span><span class="tri up"></span></span></th>
-            <th><span class="sort-icons"><span class="tri down"></span><span class="tri up"></span></span></th>
-            <th><span class="sort-icons"><span class="tri down"></span><span class="tri up"></span></span></th>
-            <th><span class="sort-icons"><span class="tri down"></span><span class="tri up"></span></span></th>
-            <th><span class="sort-icons"><span class="tri down"></span><span class="tri up"></span></span></th>
-            <th><span class="sort-icons"><span class="tri down"></span><span class="tri up"></span></span></th>
-            <th><span class="sort-icons"><span class="tri down"></span><span class="tri up"></span></span></th>
-            <th><span class="sort-icons"><span class="tri down"></span><span class="tri up"></span></span></th>
-            <th><span class="sort-icons"><span class="tri down"></span><span class="tri up"></span></span></th>
-            <th><span class="sort-icons"><span class="tri down"></span><span class="tri up"></span></span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td class="warrant">DIALOG-C2R</td><td class="num">1.90</td><td class="num">2.0</td><td>30 Jun 26</td><td><span class="issuer cimb">CIMB</span></td><td class="num bid">0.135</td><td class="num ask">0.140</td><td class="num">430</td><td class="num"><span class="change up">+8.0</span></td><td class="num">6.6</td><td class="num">36.7</td><td class="num premium">1.9</td></tr>
-          <tr><td class="warrant">DRBHCOMC4E</td><td class="num">1.20</td><td class="num">1.5</td><td>30 Sep 26</td><td><span class="issuer cimb">CIMB</span></td><td class="num bid">0.100</td><td class="num ask">0.115</td><td class="num">0</td><td class="num"><span class="change down">-13.0</span></td><td class="num">4.9</td><td class="num">44.0</td><td class="num premium">11.6</td></tr>
-          <tr><td class="warrant">GAMUDA-C4P</td><td class="num">4.00</td><td class="num">5.0</td><td>30 Sep 26</td><td><span class="issuer cimb">CIMB</span></td><td class="num bid">0.145</td><td class="num ask">0.155</td><td class="num">584</td><td class="num"><span class="change up">+7.4</span></td><td class="num">5.5</td><td class="num">25.2</td><td class="num premium">2.7</td></tr>
-          <tr><td class="warrant">GENTINGC4L</td><td class="num">2.30</td><td class="num">2.5</td><td>30 Oct 26</td><td><span class="issuer cimb">CIMB</span></td><td class="num bid">0.135</td><td class="num ask">0.140</td><td class="num">65</td><td class="num"><span class="change down">-6.9</span></td><td class="num">4.7</td><td class="num">38.7</td><td class="num premium">7.3</td></tr>
-          <tr><td class="warrant">HIBISCS-C93</td><td class="num">2.00</td><td class="num">2.0</td><td>30 Sep 26</td><td><span class="issuer cimb">CIMB</span></td><td class="num bid">0.125</td><td class="num ask">0.130</td><td class="num">570</td><td class="num"><span class="change flat">0.0</span></td><td class="num">5.1</td><td class="num">41.3</td><td class="num premium">8.1</td></tr>
-          <tr><td class="warrant">INARI-C4K</td><td class="num">1.85</td><td class="num">2.0</td><td>31 Jul 26</td><td><span class="issuer cimb">CIMB</span></td><td class="num bid">0.105</td><td class="num ask">0.110</td><td class="num">1,764</td><td class="num"><span class="change up">+16.7</span></td><td class="num">6.0</td><td class="num">43.6</td><td class="num premium">6.2</td></tr>
-          <tr><td class="warrant">KGB-C10</td><td class="num">6.50</td><td class="num">6.0</td><td>30 Nov 26</td><td><span class="issuer cimb">CIMB</span></td><td class="num bid">0.140</td><td class="num ask">0.150</td><td class="num">134</td><td class="num"><span class="change flat"></span></td><td class="num">4.9</td><td class="num">36.1</td><td class="num premium">10.1</td></tr>
-          <tr><td class="warrant">MAYBANKC2Q</td><td class="num">11.00</td><td class="num">5.0</td><td>30 Nov 26</td><td><span class="issuer cimb">CIMB</span></td><td class="num bid">0.120</td><td class="num ask">0.125</td><td class="num">0</td><td class="num"><span class="change flat"></span></td><td class="num">9.8</td><td class="num">17.9</td><td class="num premium">4.0</td></tr>
-          <tr><td class="warrant">MNRB-CO</td><td class="num">2.50</td><td class="num">2.5</td><td>28 Aug 26</td><td><span class="issuer cimb">CIMB</span></td><td class="num bid">0.120</td><td class="num ask">0.125</td><td class="num">299</td><td class="num"><span class="change down">-4.0</span></td><td class="num">6.0</td><td class="num">35.9</td><td class="num premium">4.9</td></tr>
-          <tr><td class="warrant">PMETAL-C2Q</td><td class="num">8.00</td><td class="num">8.0</td><td>28 Aug 26</td><td><span class="issuer cimb">CIMB</span></td><td class="num bid">0.150</td><td class="num ask">0.155</td><td class="num">232</td><td class="num"><span class="change up">+7.1</span></td><td class="num">6.4</td><td class="num">24.2</td><td class="num premium">2.1</td></tr>
-          <tr><td class="warrant">TENAGA-C3N</td><td class="num">13.00</td><td class="num">15.0</td><td>30 Jun 26</td><td><span class="issuer cimb">CIMB</span></td><td class="num bid">0.115</td><td class="num ask">0.125</td><td class="num">0</td><td class="num"><span class="change down">-4.2</span></td><td class="num">8.3</td><td class="num">N/A</td><td class="num premium">1.1</td></tr>
-          <tr><td class="warrant">WPRTS-C46</td><td class="num">5.50</td><td class="num">5.0</td><td>30 Oct 26</td><td><span class="issuer cimb">CIMB</span></td><td class="num bid">0.110</td><td class="num ask">0.120</td><td class="num">480</td><td class="num"><span class="change up">+4.8</span></td><td class="num">6.4</td><td class="num">28.3</td><td class="num premium">6.1</td></tr>
-          <tr><td class="warrant">YTLPOWR-C1V</td><td class="num">4.00</td><td class="num">4.0</td><td>30 Oct 26</td><td><span class="issuer cimb">CIMB</span></td><td class="num bid">0.115</td><td class="num ask">0.120</td><td class="num">130</td><td class="num"><span class="change down">-11.5</span></td><td class="num">5.4</td><td class="num">35.3</td><td class="num premium">9.0</td></tr>
-          <tr><td class="warrant">ZETRIX-CA3</td><td class="num">0.70</td><td class="num">2.0</td><td>28 Aug 26</td><td><span class="issuer cimb">CIMB</span></td><td class="num bid">0.110</td><td class="num ask">0.120</td><td class="num">0</td><td class="num"><span class="change up">+4.8</span></td><td class="num">2.7</td><td class="num">88.4</td><td class="num premium">12.6</td></tr>
-          <tr><td class="warrant">ZETRIX-CBA</td><td class="num">0.68</td><td class="num">2.0</td><td>30 Sep 26</td><td><span class="issuer cimb">CIMB</span></td><td class="num bid">0.120</td><td class="num ask">0.125</td><td class="num">150</td><td class="num"><span class="change up">+4.3</span></td><td class="num">2.6</td><td class="num">83.1</td><td class="num premium">11.4</td></tr>
-          <tr><td class="warrant">ZETRIX-CBK</td><td class="num">0.75</td><td class="num">2.0</td><td>30 Oct 26</td><td><span class="issuer cimb">CIMB</span></td><td class="num bid">0.140</td><td class="num ask">0.155</td><td class="num">0</td><td class="num"><span class="change flat">0.0</span></td><td class="num">2.1</td><td class="num">114.0</td><td class="num premium">26.9</td></tr>
-          <tr><td class="warrant">DIALOG-C2V</td><td class="num">2.08</td><td class="num">3.0</td><td>30 Sep 26</td><td><span class="issuer macq">MACQ</span></td><td class="num bid">0.115</td><td class="num ask">0.120</td><td class="num">50</td><td class="num"><span class="change up">+4.5</span></td><td class="num">3.8</td><td class="num">59.9</td><td class="num premium">14.0</td></tr>
-          <tr><td class="warrant">IOIPG-C54</td><td class="num">4.38</td><td class="num">5.0</td><td>16 Nov 26</td><td><span class="issuer macq">MACQ</span></td><td class="num bid">0.135</td><td class="num ask">0.140</td><td class="num">0</td><td class="num"><span class="change flat">0.0</span></td><td class="num">3.8</td><td class="num">52.4</td><td class="num premium">15.5</td></tr>
-          <tr><td class="warrant">MI-C42</td><td class="num">3.68</td><td class="num">5.0</td><td>30 Jul 26</td><td><span class="issuer macq">MACQ</span></td><td class="num bid">0.110</td><td class="num ask">0.120</td><td class="num">400</td><td class="num"><span class="change up">+22.2</span></td><td class="num">4.5</td><td class="num">62.7</td><td class="num premium">10.3</td></tr>
-          <tr><td class="warrant">SLVEST-C4</td><td class="num">2.38</td><td class="num">6.0</td><td>30 Sep 26</td><td><span class="issuer macq">MACQ</span></td><td class="num bid">0.115</td><td class="num ask">0.120</td><td class="num">0</td><td class="num"><span class="change flat">0.0</span></td><td class="num">2.8</td><td class="num">76.3</td><td class="num premium">13.6</td></tr>
-          <tr><td class="warrant">TENAGA-C3L</td><td class="num">14.08</td><td class="num">10.0</td><td>29 Jun 26</td><td><span class="issuer macq">MACQ</span></td><td class="num bid">0.100</td><td class="num ask">0.110</td><td class="num">0</td><td class="num"><span class="change down">-9.1</span></td><td class="num">9.9</td><td class="num">30.7</td><td class="num premium">3.1</td></tr>
-          <tr><td class="warrant">YTL-C2P</td><td class="num">2.08</td><td class="num">3.0</td><td>30 Sep 26</td><td><span class="issuer macq">MACQ</span></td><td class="num bid">0.140</td><td class="num ask">0.150</td><td class="num">0</td><td class="num"><span class="change down">-12.5</span></td><td class="num">3.4</td><td class="num">64.3</td><td class="num premium">13.5</td></tr>
-          <tr><td class="warrant">ZETRIX-CBJ</td><td class="num">0.75</td><td class="num">3.0</td><td>30 Oct 26</td><td><span class="issuer macq">MACQ</span></td><td class="num bid">0.105</td><td class="num ask">0.125</td><td class="num">0</td><td class="num"><span class="change up">+5.0</span></td><td class="num">1.9</td><td class="num">132.2</td><td class="num premium">34.7</td></tr>
-          <tr><td class="warrant">ZETRIX-CBM</td><td class="num">0.79</td><td class="num">3.2</td><td>30 Dec 26</td><td><span class="issuer macq">MACQ</span></td><td class="num bid">0.120</td><td class="num ask">0.125</td><td class="num">94,457</td><td class="num"><span class="change flat">0.0</span></td><td class="num">1.6</td><td class="num">152.2</td><td class="num premium">42.5</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <section>
+      <div class="panel">
+        <h2>各 Bursa Sector 量化候选股与股价</h2>
+        <div class="recommendations"><div class="recommend-block">
+        <div class="recommend-head">
+          <div>
+            <b>TECHNOLOGY</b>
+            <span>科技 · 109 counters</span>
+          </div>
+          <em class="up">+2.45%</em>
+        </div>
+        <table>
+          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
+          <tbody>
+          <tr>
+                <td><b>OPPSTAR</b><span>Oppstar Berhad</span></td>
+                <td>0.810</td>
+                <td class="up">+0.62%</td>
+                <td>93.4</td>
+              </tr><tr>
+                <td><b>MTOUCHE</b><span>mTouche Technology Bhd.</span></td>
+                <td>0.035</td>
+                <td class="up">+40.00%</td>
+                <td>58.9</td>
+              </tr><tr>
+                <td><b>TTVHB</b><span>TT Vision Holdings Bhd.</span></td>
+                <td>0.340</td>
+                <td class="up">+6.25%</td>
+                <td>58.9</td>
+              </tr><tr>
+                <td><b>UMSINT</b><span>UMS Integration Limited</span></td>
+                <td>8.80</td>
+                <td class="up">+10.00%</td>
+                <td>56.5</td>
+              </tr><tr>
+                <td><b>KRONO</b><span>Kronologi Asia Bhd.</span></td>
+                <td>0.145</td>
+                <td class="up">+11.54%</td>
+                <td>55.3</td>
+              </tr>
+          </tbody>
+        </table>
+      </div><div class="recommend-block">
+        <div class="recommend-head">
+          <div>
+            <b>CONSTRUCTION</b>
+            <span>建筑 · 85 counters</span>
+          </div>
+          <em class="up">+1.37%</em>
+        </div>
+        <table>
+          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
+          <tbody>
+          <tr>
+                <td><b>KGB</b><span>Kelington Group Bhd.</span></td>
+                <td>6.72</td>
+                <td class="up">+2.91%</td>
+                <td>52.7</td>
+              </tr><tr>
+                <td><b>ZELAN</b><span>Zelan Bhd.</span></td>
+                <td>0.045</td>
+                <td class="up">+12.50%</td>
+                <td>52.1</td>
+              </tr><tr>
+                <td><b>SFPTECH</b><span>SFP Tech Holdings Bhd</span></td>
+                <td>0.205</td>
+                <td class="up">+5.13%</td>
+                <td>51.4</td>
+              </tr><tr>
+                <td><b>KEEMING</b><span>Kee Ming Group Berhad</span></td>
+                <td>1.05</td>
+                <td class="up">+10.53%</td>
+                <td>49.3</td>
+              </tr><tr>
+                <td><b>WCT</b><span>WCT Holdings Bhd.</span></td>
+                <td>0.515</td>
+                <td class="up">+7.29%</td>
+                <td>47.8</td>
+              </tr>
+          </tbody>
+        </table>
+      </div><div class="recommend-block">
+        <div class="recommend-head">
+          <div>
+            <b>INDUSTRIAL PRODUCTS &amp; SERVICES</b>
+            <span>工业产品与服务 · 257 counters</span>
+          </div>
+          <em class="up">+0.54%</em>
+        </div>
+        <table>
+          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
+          <tbody>
+          <tr>
+                <td><b>PHB</b><span>Pegasus Heights Bhd</span></td>
+                <td>0.010</td>
+                <td class="up">+100%</td>
+                <td>120.3</td>
+              </tr><tr>
+                <td><b>GIIB</b><span>GIIB Holdings Bhd</span></td>
+                <td>0.270</td>
+                <td class="up">+31.71%</td>
+                <td>110.6</td>
+              </tr><tr>
+                <td><b>PUC</b><span>PUC Bhd</span></td>
+                <td>0.020</td>
+                <td class="up">+33.33%</td>
+                <td>57.9</td>
+              </tr><tr>
+                <td><b>ISF</b><span>ISF Group Berhad</span></td>
+                <td>0.600</td>
+                <td class="up">+18.81%</td>
+                <td>57.4</td>
+              </tr><tr>
+                <td><b>JETSON</b><span>Kumpulan Jetson Bhd.</span></td>
+                <td>0.130</td>
+                <td class="up">+23.81%</td>
+                <td>56.0</td>
+              </tr>
+          </tbody>
+        </table>
+      </div><div class="recommend-block">
+        <div class="recommend-head">
+          <div>
+            <b>REAL ESTATE INVESTMENT TRUSTS</b>
+            <span>REITs · 20 counters</span>
+          </div>
+          <em class="up">+0.23%</em>
+        </div>
+        <table>
+          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
+          <tbody>
+          <tr>
+                <td><b>KLCC</b><span>KLCC Property Holdings Bhd.</span></td>
+                <td>9.23</td>
+                <td class="up">+2.56%</td>
+                <td>46.6</td>
+              </tr><tr>
+                <td><b>SUNREIT</b><span>Sunway Real Estate Investment Trust</span></td>
+                <td>2.56</td>
+                <td class="down">-0.78%</td>
+                <td>40.8</td>
+              </tr><tr>
+                <td><b>PAVREIT</b><span>Pavilion Real Estate Investment Trust</span></td>
+                <td>1.89</td>
+                <td class="up">0.00%</td>
+                <td>39.0</td>
+              </tr><tr>
+                <td><b>IGBREIT</b><span>IGB Real Estate Investment Trust</span></td>
+                <td>2.98</td>
+                <td class="down">-1.32%</td>
+                <td>38.6</td>
+              </tr><tr>
+                <td><b>PARADIGM</b><span>PARADIGM REAL ESTATE INVESTMENT TRUST</span></td>
+                <td>0.990</td>
+                <td class="up">0.00%</td>
+                <td>38.4</td>
+              </tr>
+          </tbody>
+        </table>
+      </div><div class="recommend-block">
+        <div class="recommend-head">
+          <div>
+            <b>TRANSPORTATION &amp; LOGISTICS</b>
+            <span>交通与物流 · 35 counters</span>
+          </div>
+          <em class="up">+0.03%</em>
+        </div>
+        <table>
+          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
+          <tbody>
+          <tr>
+                <td><b>ASDION</b><span>Asdion Bhd.</span></td>
+                <td>0.025</td>
+                <td class="up">+25.00%</td>
+                <td>65.6</td>
+              </tr><tr>
+                <td><b>WPRTS</b><span>Westports Holdings Bhd.</span></td>
+                <td>5.75</td>
+                <td class="up">+0.88%</td>
+                <td>43.2</td>
+              </tr><tr>
+                <td><b>SWIFT</b><span>Swift Haulage Berhad</span></td>
+                <td>0.465</td>
+                <td class="up">+1.09%</td>
+                <td>40.4</td>
+              </tr><tr>
+                <td><b>PERDANA</b><span>Perdana Petroleum Bhd.</span></td>
+                <td>0.205</td>
+                <td class="up">+2.50%</td>
+                <td>36.3</td>
+              </tr><tr>
+                <td><b>DKSH</b><span>DKSH Holdings (Malaysia) Bhd.</span></td>
+                <td>5.75</td>
+                <td class="up">+1.05%</td>
+                <td>34.9</td>
+              </tr>
+          </tbody>
+        </table>
+      </div><div class="recommend-block">
+        <div class="recommend-head">
+          <div>
+            <b>FINANCIAL SERVICES</b>
+            <span>金融服务 · 25 counters</span>
+          </div>
+          <em class="down">-0.01%</em>
+        </div>
+        <table>
+          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
+          <tbody>
+          <tr>
+                <td><b>PBBANK</b><span>Public Bank Bhd</span></td>
+                <td>4.88</td>
+                <td class="up">+0.83%</td>
+                <td>45.8</td>
+              </tr><tr>
+                <td><b>CIMB</b><span>CIMB Group Holdings Bhd</span></td>
+                <td>7.92</td>
+                <td class="up">+0.25%</td>
+                <td>43.7</td>
+              </tr><tr>
+                <td><b>RHBBANK</b><span>RHB Bank Bhd.</span></td>
+                <td>8.35</td>
+                <td class="up">0.00%</td>
+                <td>43.4</td>
+              </tr><tr>
+                <td><b>AMBANK</b><span>AMMB Holdings Bhd.</span></td>
+                <td>6.43</td>
+                <td class="down">-0.77%</td>
+                <td>40.3</td>
+              </tr><tr>
+                <td><b>ABMB</b><span>Alliance Bank Malaysia Bhd.</span></td>
+                <td>4.93</td>
+                <td class="up">0.00%</td>
+                <td>38.2</td>
+              </tr>
+          </tbody>
+        </table>
+      </div><div class="recommend-block">
+        <div class="recommend-head">
+          <div>
+            <b>PROPERTY</b>
+            <span>产业/房地产 · 100 counters</span>
+          </div>
+          <em class="down">-0.07%</em>
+        </div>
+        <table>
+          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
+          <tbody>
+          <tr>
+                <td><b>AXTERIA</b><span>Axteria Group Bhd</span></td>
+                <td>0.160</td>
+                <td class="up">+14.29%</td>
+                <td>57.2</td>
+              </tr><tr>
+                <td><b>UEMS</b><span>UEM Sunrise Bhd.</span></td>
+                <td>0.665</td>
+                <td class="up">+4.72%</td>
+                <td>47.7</td>
+              </tr><tr>
+                <td><b>IOIPG</b><span>IOI Properties Group Bhd.</span></td>
+                <td>4.40</td>
+                <td class="up">+0.46%</td>
+                <td>47.3</td>
+              </tr><tr>
+                <td><b>THRIVEN</b><span>Thriven Global Bhd.</span></td>
+                <td>0.080</td>
+                <td class="up">+14.29%</td>
+                <td>45.9</td>
+              </tr><tr>
+                <td><b>SIMEPROP</b><span>Sime Darby Property Bhd.</span></td>
+                <td>1.52</td>
+                <td class="up">0.00%</td>
+                <td>43.1</td>
+              </tr>
+          </tbody>
+        </table>
+      </div><div class="recommend-block">
+        <div class="recommend-head">
+          <div>
+            <b>ENERGY</b>
+            <span>能源 · 61 counters</span>
+          </div>
+          <em class="down">-0.17%</em>
+        </div>
+        <table>
+          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
+          <tbody>
+          <tr>
+                <td><b>HHRG</b><span>HHRG BERHAD</span></td>
+                <td>0.075</td>
+                <td class="up">+15.38%</td>
+                <td>52.9</td>
+              </tr><tr>
+                <td><b>WASCO</b><span>Wasco Berhad</span></td>
+                <td>1.07</td>
+                <td class="up">+1.90%</td>
+                <td>40.9</td>
+              </tr><tr>
+                <td><b>PETRONM</b><span>Petron Malaysia Refining &amp; Marketing Bhd.</span></td>
+                <td>4.48</td>
+                <td class="up">+1.36%</td>
+                <td>40.7</td>
+              </tr><tr>
+                <td><b>ESCERAM</b><span>ES Ceramics Technology Bhd.</span></td>
+                <td>0.140</td>
+                <td class="up">+3.70%</td>
+                <td>38.8</td>
+              </tr><tr>
+                <td><b>ALAM</b><span>Alam Maritim Resources Bhd.</span></td>
+                <td>0.285</td>
+                <td class="up">+1.79%</td>
+                <td>37.9</td>
+              </tr>
+          </tbody>
+        </table>
+      </div><div class="recommend-block">
+        <div class="recommend-head">
+          <div>
+            <b>HEALTH CARE</b>
+            <span>医疗保健 · 30 counters</span>
+          </div>
+          <em class="down">-0.43%</em>
+        </div>
+        <table>
+          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
+          <tbody>
+          <tr>
+                <td><b>NEXGRAM</b><span>Nexgram Holdings Berhad</span></td>
+                <td>0.035</td>
+                <td class="up">+16.67%</td>
+                <td>60.8</td>
+              </tr><tr>
+                <td><b>HARTA</b><span>Hartalega Holdings Bhd.</span></td>
+                <td>1.34</td>
+                <td class="down">-0.74%</td>
+                <td>41.1</td>
+              </tr><tr>
+                <td><b>KPJ</b><span>KPJ Healthcare Bhd.</span></td>
+                <td>3.40</td>
+                <td class="down">-0.58%</td>
+                <td>41.0</td>
+              </tr><tr>
+                <td><b>TOPGLOV</b><span>Top Glove Corporation Bhd.</span></td>
+                <td>0.840</td>
+                <td class="down">-1.18%</td>
+                <td>39.4</td>
+              </tr><tr>
+                <td><b>IHH</b><span>IHH Healthcare Bhd.</span></td>
+                <td>8.99</td>
+                <td class="down">-0.44%</td>
+                <td>38.9</td>
+              </tr>
+          </tbody>
+        </table>
+      </div><div class="recommend-block">
+        <div class="recommend-head">
+          <div>
+            <b>PLANTATION</b>
+            <span>种植 · 55 counters</span>
+          </div>
+          <em class="down">-0.71%</em>
+        </div>
+        <table>
+          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
+          <tbody>
+          <tr>
+                <td><b>MENTIGA</b><span>Mentiga Corp. Bhd.</span></td>
+                <td>0.800</td>
+                <td class="up">+8.11%</td>
+                <td>44.5</td>
+              </tr><tr>
+                <td><b>INNO</b><span>Innoprise Plantations Bhd.</span></td>
+                <td>2.11</td>
+                <td class="up">+0.48%</td>
+                <td>43.2</td>
+              </tr><tr>
+                <td><b>FIMACOR</b><span>Fima Corp. Bhd.</span></td>
+                <td>1.71</td>
+                <td class="up">+0.59%</td>
+                <td>42.3</td>
+              </tr><tr>
+                <td><b>GENP</b><span>Genting Plantations Bhd.</span></td>
+                <td>5.20</td>
+                <td class="down">-0.19%</td>
+                <td>38.5</td>
+              </tr><tr>
+                <td><b>SWKPLNT</b><span>Sarawak Plantation Bhd.</span></td>
+                <td>3.73</td>
+                <td class="down">-0.27%</td>
+                <td>38.5</td>
+              </tr>
+          </tbody>
+        </table>
+      </div><div class="recommend-block">
+        <div class="recommend-head">
+          <div>
+            <b>TELECOMMUNICATIONS &amp; MEDIA</b>
+            <span>电讯与媒体 · 16 counters</span>
+          </div>
+          <em class="down">-0.78%</em>
+        </div>
+        <table>
+          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
+          <tbody>
+          <tr>
+                <td><b>TIMECOM</b><span>TIME dotCom Bhd.</span></td>
+                <td>6.36</td>
+                <td class="down">-0.63%</td>
+                <td>39.1</td>
+              </tr><tr>
+                <td><b>TM</b><span>Telekom Malaysia Bhd.</span></td>
+                <td>7.55</td>
+                <td class="down">-1.82%</td>
+                <td>37.7</td>
+              </tr><tr>
+                <td><b>CDB</b><span>CelcomDigi Berhad</span></td>
+                <td>3.04</td>
+                <td class="up">+1.00%</td>
+                <td>36.5</td>
+              </tr><tr>
+                <td><b>SEDANIA</b><span>Sedania Innovator Bhd.</span></td>
+                <td>0.120</td>
+                <td class="down">-4.00%</td>
+                <td>35.9</td>
+              </tr><tr>
+                <td><b>SRIDGE</b><span>Silver Ridge Holdings Bhd.</span></td>
+                <td>0.375</td>
+                <td class="up">0.00%</td>
+                <td>34.4</td>
+              </tr>
+          </tbody>
+        </table>
+      </div><div class="recommend-block">
+        <div class="recommend-head">
+          <div>
+            <b>CONSUMER PRODUCTS &amp; SERVICES</b>
+            <span>消费产品与服务 · 142 counters</span>
+          </div>
+          <em class="down">-0.87%</em>
+        </div>
+        <table>
+          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
+          <tbody>
+          <tr>
+                <td><b>FOCUS</b><span>Focus Dynamics Group Bhd.</span></td>
+                <td>0.010</td>
+                <td class="up">+100%</td>
+                <td>103.3</td>
+              </tr><tr>
+                <td><b>PERMAJU</b><span>Permaju Industries Bhd.</span></td>
+                <td>0.010</td>
+                <td class="up">+100%</td>
+                <td>83.5</td>
+              </tr><tr>
+                <td><b>PARLO</b><span>Parlo Bhd</span></td>
+                <td>0.040</td>
+                <td class="up">+33.33%</td>
+                <td>57.4</td>
+              </tr><tr>
+                <td><b>EURO</b><span>Euro Holdings Bhd.</span></td>
+                <td>0.085</td>
+                <td class="up">+6.25%</td>
+                <td>51.9</td>
+              </tr><tr>
+                <td><b>EG</b><span>EG Industries Bhd.</span></td>
+                <td>1.29</td>
+                <td class="up">+3.20%</td>
+                <td>45.5</td>
+              </tr>
+          </tbody>
+        </table>
+      </div><div class="recommend-block">
+        <div class="recommend-head">
+          <div>
+            <b>UTILITIES</b>
+            <span>公用事业 · 15 counters</span>
+          </div>
+          <em class="down">-1.23%</em>
+        </div>
+        <table>
+          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
+          <tbody>
+          <tr>
+                <td><b>TENAGA</b><span>Tenaga Nasional Bhd</span></td>
+                <td>14.72</td>
+                <td class="down">-0.41%</td>
+                <td>43.5</td>
+              </tr><tr>
+                <td><b>YTL</b><span>YTL Corp Bhd.</span></td>
+                <td>2.23</td>
+                <td class="down">-3.88%</td>
+                <td>42.2</td>
+              </tr><tr>
+                <td><b>YTLPOWR</b><span>YTL Power International Bhd.</span></td>
+                <td>4.11</td>
+                <td class="down">-3.07%</td>
+                <td>40.8</td>
+              </tr><tr>
+                <td><b>GASMSIA</b><span>Gas Malaysia Bhd.</span></td>
+                <td>5.40</td>
+                <td class="up">+0.93%</td>
+                <td>40.5</td>
+              </tr><tr>
+                <td><b>RANHILL</b><span>Ranhill Utilities Bhd.</span></td>
+                <td>1.93</td>
+                <td class="up">+0.52%</td>
+                <td>38.7</td>
+              </tr>
+          </tbody>
+        </table>
+      </div></div>
+        <p class="source-line">Sector 按市值加权涨跌幅由强到弱排列；每个 Bursa Malaysia sector classification 大类列出 5 个量化候选股。候选股按技术评分、流动性、成交额、近期表现、估值与股息等字段综合排序。这不是投资建议，买卖前仍需核对公司公告、财报和个人风险承受能力。</p>
+      </div>
+    </section>
 
-    <div class="legend" aria-label="图例">
-      <span>🔥 热门权证</span>
-      <span>💧 最高流通量</span>
-      <span>📅 接近到期</span>
-      <span>✖ 库存售罄</span>
-      <span>🌿 新权证</span>
-      <span>⚡ 更敏感</span>
-      <span>⚙ 高有效杠杆</span>
-      <span>⏱ 低时间价值损耗</span>
-    </div>
-
-    <p class="source">资料来源：<a href="https://www.malaysiawarrants.com.my/tools/warrantsearch/">Malaysia Warrants - Warrant Search</a></p>
-    <p class="fineprint">Premium 公式：((行使价 + 卖出价 × 换股比率) / 相关股价 - 1) × 100。数字来自当前筛选器回应，本页面是静态快照，不是实时市场数据。</p>
+    <p class="source-line">数据来源：Yahoo Finance ^KLSE chart API（FBM KLCI 日线/收盘）、TradingView Malaysia Screener（个股快照与市场宽度）、Bursa Malaysia sector classification / sectorial index categories、The Star、Bernama、BusinessToday。官方 Bursa Malaysia 网站在本机命令行访问时触发 Cloudflare 验证，因此本页用可读取市场数据源交叉整理。</p>
   </main>
 
   <script>
-    (() => {
-      const table = document.querySelector("table");
-      const tbody = table.querySelector("tbody");
-      const sortCells = Array.from(table.querySelectorAll(".sort-row th"));
-      const sortTypes = ["text", "number", "number", "date", "text", "number", "number", "number", "number", "number", "number", "number"];
-      const monthIndex = { Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5, Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11 };
+    const DATA = {"klciPrices":[{"date":"2026-05-12","open":1748.449951171875,"high":1755.5400390625,"low":1748.449951171875,"close":1750.56005859375,"change":5.25,"pctChange":0.0030080615041146825,"volume":188430600},{"date":"2026-05-11","open":1754,"high":1754,"low":1744.989990234375,"close":1745.31005859375,"change":-2.75,"pctChange":-0.0015731724928331546,"volume":208709200},{"date":"2026-05-08","open":1758.0699462890625,"high":1760.18994140625,"low":1748.06005859375,"close":1748.06005859375,"change":-10.7899169921875,"pctChange":-0.006134643171367121,"volume":200609300},{"date":"2026-05-07","open":1762.81005859375,"high":1768.4599609375,"low":1758.4200439453125,"close":1758.8499755859375,"change":1.97998046875,"pctChange":0.0011269931607079046,"volume":366627200},{"date":"2026-05-06","open":1749.0799560546875,"high":1760.300048828125,"low":1746.800048828125,"close":1756.8699951171875,"change":9.43994140625,"pctChange":0.005402185561706935,"volume":338686500},{"date":"2026-05-05","open":1737.800048828125,"high":1747.8199462890625,"low":1732.6400146484375,"close":1747.4300537109375,"change":7.6600341796875,"pctChange":0.004402900437237883,"volume":181688100},{"date":"2026-05-04","open":1728.739990234375,"high":1739.77001953125,"low":1725.010009765625,"close":1739.77001953125,"change":0,"pctChange":0,"volume":175441600},{"date":"2026-04-30","open":1720.22998046875,"high":1722.030029296875,"low":1712.1400146484375,"close":1722.02001953125,"change":1.5999755859375,"pctChange":0.0009299912492697969,"volume":255549000},{"date":"2026-04-29","open":1731.6500244140625,"high":1733.8399658203125,"low":1718.449951171875,"close":1720.4200439453125,"change":-9.179931640625,"pctChange":-0.005307546120608096,"volume":218878100},{"date":"2026-04-28","open":1721.4000244140625,"high":1729.5999755859375,"low":1714.1199951171875,"close":1729.5999755859375,"change":12.3299560546875,"pctChange":0.0071799751433691906,"volume":234894500},{"date":"2026-04-27","open":1724.469970703125,"high":1731.7900390625,"low":1717.27001953125,"close":1717.27001953125,"change":-3.0699462890625,"pctChange":-0.0017844997791460668,"volume":203342400},{"date":"2026-04-24","open":1723.25,"high":1724.300048828125,"low":1719.72998046875,"close":1720.3399658203125,"change":-1.3599853515625,"pctChange":-0.0007899084568346686,"volume":234305600},{"date":"2026-04-23","open":1715.550048828125,"high":1723.510009765625,"low":1714.4100341796875,"close":1721.699951171875,"change":11.3099365234375,"pctChange":0.006612489798569248,"volume":243313000},{"date":"2026-04-22","open":1718,"high":1720.4599609375,"low":1705.1099853515625,"close":1710.3900146484375,"change":-4.93994140625,"pctChange":-0.002879878234979362,"volume":202099800},{"date":"2026-04-21","open":1702.6099853515625,"high":1716.6400146484375,"low":1700.5400390625,"close":1715.3299560546875,"change":13.0299072265625,"pctChange":0.0076542952786333865,"volume":255418100},{"date":"2026-04-20","open":1693.5,"high":1703.6400146484375,"low":1689,"close":1702.300048828125,"change":7.090087890625,"pctChange":0.004182424628217721,"volume":234380500},{"date":"2026-04-17","open":1689.0699462890625,"high":1696.3900146484375,"low":1682.8800048828125,"close":1695.2099609375,"change":5.5,"pctChange":0.003254996494752532,"volume":269384300},{"date":"2026-04-16","open":1684.8599853515625,"high":1690.8299560546875,"low":1682.81005859375,"close":1689.7099609375,"change":6.2899169921875,"pctChange":0.0037363918855606985,"volume":292753700},{"date":"2026-04-15","open":1691.4200439453125,"high":1695.6800537109375,"low":1680.4599609375,"close":1683.4200439453125,"change":-4.699951171875,"pctChange":-0.002784133346841102,"volume":266750200},{"date":"2026-04-14","open":1690.9599609375,"high":1694.1600341796875,"low":1686.06005859375,"close":1688.1199951171875,"change":7.5999755859375,"pctChange":0.004522395150078231,"volume":242078200},{"date":"2026-04-13","open":1682.4300537109375,"high":1685.52001953125,"low":1675.6400146484375,"close":1680.52001953125,"change":-10.7900390625,"pctChange":-0.006379693071459318,"volume":242099900},{"date":"2026-04-10","open":1691.469970703125,"high":1692.969970703125,"low":1685.6600341796875,"close":1691.31005859375,"change":5.070068359375,"pctChange":0.0030067299961675665,"volume":271090100},{"date":"2026-04-09","open":1692.6500244140625,"high":1692.6500244140625,"low":1680.010009765625,"close":1686.239990234375,"change":-10.070068359375,"pctChange":-0.005936455017971856,"volume":272166600},{"date":"2026-04-08","open":1688.510009765625,"high":1696.31005859375,"low":1683.5799560546875,"close":1696.31005859375,"change":19.4500732421875,"pctChange":0.011599103927636325,"volume":336574200},{"date":"2026-04-07","open":1684.050048828125,"high":1687.5999755859375,"low":1673.1400146484375,"close":1676.8599853515625,"change":-3.969970703125,"pctChange":-0.0023619109647733056,"volume":251437900},{"date":"2026-04-06","open":1694.3199462890625,"high":1697.8800048828125,"low":1677.780029296875,"close":1680.8299560546875,"change":-14.6700439453125,"pctChange":-0.008652340870134178,"volume":302919300},{"date":"2026-04-03","open":1704.1199951171875,"high":1708.1199951171875,"low":1693.6500244140625,"close":1695.5,"change":-2.800048828125,"pctChange":-0.0016487362348350122,"volume":307479000},{"date":"2026-04-02","open":1712.0400390625,"high":1712.800048828125,"low":1688.8900146484375,"close":1698.300048828125,"change":-10.5999755859375,"pctChange":-0.006202806152789398,"volume":355567800},{"date":"2026-04-01","open":1715.93994140625,"high":1715.93994140625,"low":1700.199951171875,"close":1708.9000244140625,"change":18.5400390625,"pctChange":0.01096810100994199,"volume":351033100},{"date":"2026-03-31","open":1694.2900390625,"high":1695.77001953125,"low":1683.97998046875,"close":1690.3599853515625,"change":2.4599609375,"pctChange":0.0014574091485980935,"volume":460982100}],"intradayCandles":[{"time":"8am","open":1748.449951171875,"high":1755.5400390625,"low":1748.449951171875,"close":1748.449951171875},{"time":"9am","open":1748.449951171875,"high":1748.769005126953,"low":1748.449951171875,"close":1748.449951171875},{"time":"10am","open":1748.449951171875,"high":1748.8753564453125,"low":1748.449951171875,"close":1748.449951171875},{"time":"11am","open":1748.449951171875,"high":1748.6626538085939,"low":1748.449951171875,"close":1748.449951171875},{"time":"12pm","open":1748.449951171875,"high":1748.769005126953,"low":1748.449951171875,"close":1748.449951171875},{"time":"1pm","open":1748.449951171875,"high":1748.8753564453125,"low":1748.449951171875,"close":1748.449951171875},{"time":"2pm","open":1748.449951171875,"high":1748.6626538085939,"low":1748.449951171875,"close":1748.449951171875},{"time":"3pm","open":1748.449951171875,"high":1748.769005126953,"low":1748.449951171875,"close":1748.449951171875},{"time":"4pm","open":1748.449951171875,"high":1749.7261669921875,"low":1748.449951171875,"close":1749.30076171875},{"time":"5pm","open":1749.30076171875,"high":1750.7727612304689,"low":1749.0880590820311,"close":1750.56005859375}],"marketSummary":[{"date":"2026-05-12","gainers":328,"losers":304,"unchanged":318,"untraded":0,"total":950,"bullRatio":0.5189873417721519,"indexClose":1750.56005859375,"indexChange":5.25,"indexPctChange":0.0030080615041146825,"source":"TradingView breadth","breadthAvailable":true,"volumeAvailable":true,"isDelayed":false},{"date":"2026-05-11","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1745.31005859375,"indexChange":-2.75,"indexPctChange":-0.0015731724928331546,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-05-08","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1748.06005859375,"indexChange":-10.7899169921875,"indexPctChange":-0.006134643171367121,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-05-07","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1758.8499755859375,"indexChange":1.97998046875,"indexPctChange":0.0011269931607079046,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-05-06","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1756.8699951171875,"indexChange":9.43994140625,"indexPctChange":0.005402185561706935,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-05-05","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1747.4300537109375,"indexChange":7.6600341796875,"indexPctChange":0.004402900437237883,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-05-04","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1739.77001953125,"indexChange":0,"indexPctChange":0,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-04-30","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1722.02001953125,"indexChange":1.5999755859375,"indexPctChange":0.0009299912492697969,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-04-29","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1720.4200439453125,"indexChange":-9.179931640625,"indexPctChange":-0.005307546120608096,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-04-28","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1729.5999755859375,"indexChange":12.3299560546875,"indexPctChange":0.0071799751433691906,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-04-27","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1717.27001953125,"indexChange":-3.0699462890625,"indexPctChange":-0.0017844997791460668,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-04-24","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1720.3399658203125,"indexChange":-1.3599853515625,"indexPctChange":-0.0007899084568346686,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-04-23","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1721.699951171875,"indexChange":11.3099365234375,"indexPctChange":0.006612489798569248,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-04-22","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1710.3900146484375,"indexChange":-4.93994140625,"indexPctChange":-0.002879878234979362,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-04-21","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1715.3299560546875,"indexChange":13.0299072265625,"indexPctChange":0.0076542952786333865,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-04-20","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1702.300048828125,"indexChange":7.090087890625,"indexPctChange":0.004182424628217721,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-04-17","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1695.2099609375,"indexChange":5.5,"indexPctChange":0.003254996494752532,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-04-16","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1689.7099609375,"indexChange":6.2899169921875,"indexPctChange":0.0037363918855606985,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-04-15","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1683.4200439453125,"indexChange":-4.699951171875,"indexPctChange":-0.002784133346841102,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-04-14","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1688.1199951171875,"indexChange":7.5999755859375,"indexPctChange":0.004522395150078231,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-04-13","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1680.52001953125,"indexChange":-10.7900390625,"indexPctChange":-0.006379693071459318,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-04-10","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1691.31005859375,"indexChange":5.070068359375,"indexPctChange":0.0030067299961675665,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-04-09","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1686.239990234375,"indexChange":-10.070068359375,"indexPctChange":-0.005936455017971856,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-04-08","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1696.31005859375,"indexChange":19.4500732421875,"indexPctChange":0.011599103927636325,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-04-07","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1676.8599853515625,"indexChange":-3.969970703125,"indexPctChange":-0.0023619109647733056,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-04-06","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1680.8299560546875,"indexChange":-14.6700439453125,"indexPctChange":-0.008652340870134178,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-04-03","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1695.5,"indexChange":-2.800048828125,"indexPctChange":-0.0016487362348350122,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-04-02","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1698.300048828125,"indexChange":-10.5999755859375,"indexPctChange":-0.006202806152789398,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-04-01","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1708.9000244140625,"indexChange":18.5400390625,"indexPctChange":0.01096810100994199,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-03-31","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1690.3599853515625,"indexChange":2.4599609375,"indexPctChange":0.0014574091485980935,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false}],"sectors":[{"sector":"Technology","sectorZh":"科技","spark":[0,0.75,0.98,1.14,1.62,1.37,1.86,1.45,1.62,1.36,1.1,1.28,0.86,1.1,0.98,1.01,1.36,2.45],"weightedChange":2.44870266702132},{"sector":"Construction","sectorZh":"建筑","spark":[0,-0.57,-0.31,-0.17,0.14,0.26,0.56,0.63,0.95,1.2,1.2,1.47,1.43,1.48,1.36,1.61,1.5,1.37],"weightedChange":1.3656210891389613},{"sector":"Industrial Products & Services","sectorZh":"工业产品与服务","spark":[0,0.07,0.32,0.1,0.22,0.66,0.34,0.76,0.68,0.65,0.63,0.37,0.36,0.13,0.1,0.14,0.19,0.54],"weightedChange":0.535063080959235},{"sector":"Real Estate Investment Trusts","sectorZh":"REITs","spark":[0,-0.06,-0.1,-0.34,-0.18,-0.37,-0.32,-0.07,-0.12,0.13,0.19,0.26,0.47,0.4,0.59,0.45,0.47,0.23],"weightedChange":0.22761713039053616},{"sector":"Transportation & Logistics","sectorZh":"交通与物流","spark":[0,-0.24,-0.19,-0.46,-0.26,-0.53,-0.33,-0.21,-0.22,-0.08,0.1,0.26,0.16,0.2,0.32,0.17,0.27,0.03],"weightedChange":0.02608309691703307}]};
 
-      function numberValue(value) {
-        const parsed = Number(String(value).replace(/[,+]/g, ""));
-        return Number.isFinite(parsed) ? parsed : Number.NEGATIVE_INFINITY;
+    function css(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+    function drawLine(canvas, values, opts = {}) {
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      const ctx = canvas.getContext("2d");
+      ctx.scale(dpr, dpr);
+      const w = rect.width, h = rect.height;
+      ctx.clearRect(0, 0, w, h);
+      const pad = { l: 24, r: 18, t: 10, b: 18 };
+      const min = Math.min(...values), max = Math.max(...values);
+      const span = max - min || 1;
+      ctx.strokeStyle = "rgba(159,170,189,.16)";
+      ctx.lineWidth = 1;
+      for (let i = 0; i < 5; i++) {
+        const y = pad.t + ((h - pad.t - pad.b) * i) / 4;
+        ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(w - pad.r, y); ctx.stroke();
       }
-
-      function dateValue(value) {
-        const parts = String(value).trim().split(/\s+/);
-        if (parts.length !== 3) return 0;
-        return new Date(2000 + Number(parts[2]), monthIndex[parts[1]], Number(parts[0])).getTime();
-      }
-
-      function cellValue(row, column, type) {
-        const value = row.children[column].textContent.trim();
-        if (type === "number") return numberValue(value);
-        if (type === "date") return dateValue(value);
-        return value.toLowerCase();
-      }
-
-      function sortTable(column, direction) {
-        const type = sortTypes[column] || "text";
-        const modifier = direction === "asc" ? 1 : -1;
-        const rows = Array.from(tbody.querySelectorAll("tr"));
-        rows.sort((a, b) => {
-          const aValue = cellValue(a, column, type);
-          const bValue = cellValue(b, column, type);
-          if (type === "text") return aValue.localeCompare(bValue) * modifier;
-          return (aValue - bValue) * modifier;
+      const lineColor = opts.color || (values.at(-1) >= values[0] ? css("--green") : css("--red"));
+      ctx.strokeStyle = lineColor;
+      ctx.lineWidth = 2;
+      if (values.length === 1) {
+        const x = pad.l + (w - pad.l - pad.r) / 2;
+        const y = pad.t + (1 - (values[0] - min) / span) * (h - pad.t - pad.b);
+        ctx.beginPath();
+        ctx.moveTo(pad.l, y);
+        ctx.lineTo(w - pad.r, y);
+        ctx.stroke();
+        ctx.fillStyle = lineColor;
+        ctx.beginPath();
+        ctx.arc(x, y, 4, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        ctx.beginPath();
+        values.forEach((value, i) => {
+          const x = pad.l + ((w - pad.l - pad.r) * i) / Math.max(1, values.length - 1);
+          const y = pad.t + (1 - (value - min) / span) * (h - pad.t - pad.b);
+          i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
         });
-        tbody.append(...rows);
-        sortCells.forEach(cell => cell.classList.remove("active"));
-        sortCells[column].classList.add("active");
+        ctx.stroke();
+        ctx.fillStyle = lineColor;
+        const lastX = w - pad.r;
+        const lastY = pad.t + (1 - (values.at(-1) - min) / span) * (h - pad.t - pad.b);
+        ctx.beginPath();
+        ctx.arc(lastX, lastY, 3, 0, Math.PI * 2);
+        ctx.fill();
       }
-
-      sortCells.forEach((cell, column) => {
-        cell.setAttribute("title", "点击绿色箭头升序，红色箭头降序");
-        cell.setAttribute("tabindex", "0");
-        cell.insertAdjacentHTML("beforeend", "<span class=\"sr-only\">排序</span>");
-        cell.addEventListener("click", event => {
-          const target = event.target;
-          const direction = target.classList.contains("down") ? "desc" : "asc";
-          sortTable(column, direction);
-        });
-        cell.addEventListener("keydown", event => {
-          if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            sortTable(column, "asc");
-          }
-        });
+      ctx.fillStyle = css("--muted");
+      ctx.font = "10px Arial";
+      ctx.fillText(max.toFixed(opts.digits ?? 2), 2, pad.t + 5);
+      ctx.fillText(min.toFixed(opts.digits ?? 2), 2, h - pad.b);
+    }
+    function drawBars(canvas, values) {
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      const ctx = canvas.getContext("2d");
+      ctx.scale(dpr, dpr);
+      const w = rect.width, h = rect.height;
+      const max = Math.max(...values) || 1;
+      const barW = w / values.length;
+      values.forEach((value, i) => {
+        const bh = (value / max) * (h - 18);
+        ctx.fillStyle = i % 2 ? "rgba(77,178,255,.55)" : "rgba(0,199,111,.62)";
+        ctx.fillRect(i * barW + 1, h - bh - 8, Math.max(1, barW - 2), bh);
       });
-    })();
+    }
+    function drawCandles(canvas, prices) {
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      const ctx = canvas.getContext("2d");
+      ctx.scale(dpr, dpr);
+      const w = rect.width, h = rect.height;
+      const pad = { l: 24, r: 18, t: 8, b: 18 };
+      const min = Math.min(...prices.map(p => p.low));
+      const max = Math.max(...prices.map(p => p.high));
+      const span = max - min || 1;
+      const xStep = (w - pad.l - pad.r) / prices.length;
+      ctx.strokeStyle = "rgba(159,170,189,.14)";
+      for (let i = 0; i < 5; i++) {
+        const y = pad.t + ((h - pad.t - pad.b) * i) / 4;
+        ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(w - pad.r, y); ctx.stroke();
+      }
+      prices.forEach((p, i) => {
+        const x = pad.l + i * xStep + xStep / 2;
+        const yHigh = pad.t + (1 - (p.high - min) / span) * (h - pad.t - pad.b);
+        const yLow = pad.t + (1 - (p.low - min) / span) * (h - pad.t - pad.b);
+        const yOpen = pad.t + (1 - (p.open - min) / span) * (h - pad.t - pad.b);
+        const yClose = pad.t + (1 - (p.close - min) / span) * (h - pad.t - pad.b);
+        ctx.strokeStyle = p.close >= p.open ? css("--green") : css("--red");
+        ctx.fillStyle = ctx.strokeStyle;
+        ctx.beginPath(); ctx.moveTo(x, yHigh); ctx.lineTo(x, yLow); ctx.stroke();
+        ctx.fillRect(x - Math.max(2, xStep * .28), Math.min(yOpen, yClose), Math.max(4, xStep * .56), Math.max(2, Math.abs(yClose - yOpen)));
+      });
+      ctx.fillStyle = css("--muted");
+      ctx.font = "10px Arial";
+      ctx.fillText(max.toFixed(0), 2, pad.t + 5);
+      ctx.fillText(min.toFixed(0), 2, h - pad.b);
+    }
+    function timestampSlug() {
+      const d = new Date();
+      const pad = (n) => String(n).padStart(2, "0");
+      return [
+        d.getFullYear(),
+        pad(d.getMonth() + 1),
+        pad(d.getDate()),
+        pad(d.getHours()),
+        pad(d.getMinutes()),
+      ].join("");
+    }
+    function setExportStatus(text) {
+      const status = document.getElementById("exportStatus");
+      if (status) status.textContent = text;
+    }
+    function markReportExported(type) {
+      const payload = { type, exportedAt: new Date().toISOString(), page: location.href };
+      try {
+        window.localStorage?.setItem("malaysiaStockDashboardLastExport", JSON.stringify(payload));
+      } catch (error) {
+        // Some file:// or embedded browser contexts deny Web Storage access.
+        console.warn("Export metadata persistence skipped:", error);
+      }
+    }
+    function downloadBlob(blob, filename) {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1200);
+    }
+    function clonePageForExport() {
+      const clone = document.body.cloneNode(true);
+      clone.querySelectorAll(".export-toolbar, script").forEach((node) => node.remove());
+      const originalCanvases = document.querySelectorAll("canvas");
+      clone.querySelectorAll("canvas").forEach((canvas, index) => {
+        const original = originalCanvases[index];
+        const image = document.createElement("img");
+        image.src = original.toDataURL("image/png");
+        image.alt = original.id || "chart";
+        image.className = canvas.className;
+        image.style.width = original.clientWidth + "px";
+        image.style.height = original.clientHeight + "px";
+        image.style.display = "block";
+        canvas.replaceWith(image);
+      });
+      return clone;
+    }
+    function standaloneReportHtml() {
+      const cssText = Array.from(document.querySelectorAll("style")).map((style) => style.textContent).join("\n");
+      const clone = clonePageForExport();
+      return "<!doctype html><html lang=\"zh-CN\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>Malaysia Stock Dashboard Report</title><style>" +
+        cssText +
+        "</style></head><body>" +
+        clone.innerHTML +
+        "</body></html>";
+    }
+    function canvasToPngBlob(canvas) {
+      return new Promise((resolve, reject) => {
+        try {
+          canvas.toBlob((blob) => {
+            blob ? resolve(blob) : reject(new Error("Canvas did not produce a PNG blob."));
+          }, "image/png", 0.95);
+        } catch (error) {
+          reject(error);
+        }
+      });
+    }
+    async function captureVisibleScreenPng() {
+      if (!navigator.mediaDevices?.getDisplayMedia) {
+        throw new Error("Screen capture is not available in this browser context.");
+      }
+      setExportStatus("请选择当前浏览器页面或窗口来生成 PNG 截图...");
+      const stream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: false });
+      try {
+        const video = document.createElement("video");
+        video.srcObject = stream;
+        video.muted = true;
+        await video.play();
+        await new Promise((resolve) => {
+          if (video.videoWidth) resolve();
+          else video.onloadedmetadata = resolve;
+        });
+        const canvas = document.createElement("canvas");
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        canvas.getContext("2d").drawImage(video, 0, 0);
+        const blob = await canvasToPngBlob(canvas);
+        downloadBlob(blob, "Malaysia-Stock-Dashboard-Screen-" + timestampSlug() + ".png");
+        markReportExported("png-screen");
+        setExportStatus("当前画面 PNG 已导出。");
+      } finally {
+        stream.getTracks().forEach((track) => track.stop());
+      }
+    }
+    function screenshotSvgText() {
+      const cssText = Array.from(document.querySelectorAll("style")).map((style) => style.textContent).join("\n");
+      const clone = clonePageForExport();
+      const width = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth);
+      const height = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+      const wrapper = document.createElement("div");
+      wrapper.setAttribute("xmlns", "http://www.w3.org/1999/xhtml");
+      wrapper.setAttribute("style", "margin:0;background:#1f2430;color:#dce3ef;font-family:Arial, sans-serif;font-size:13px;width:" + width + "px;");
+      const style = document.createElement("style");
+      style.textContent = cssText;
+      wrapper.appendChild(style);
+      Array.from(clone.childNodes).forEach((node) => wrapper.appendChild(node.cloneNode(true)));
+      const xhtml = new XMLSerializer().serializeToString(wrapper);
+      return {
+        width,
+        height,
+        svg: '<svg xmlns="http://www.w3.org/2000/svg" width="' + width + '" height="' + height + '"><foreignObject width="100%" height="100%">' + xhtml + '</foreignObject></svg>',
+      };
+    }
+    async function exportReportHtml() {
+      try {
+        setExportStatus("正在生成报告 HTML...");
+        const html = standaloneReportHtml();
+        downloadBlob(new Blob([html], { type: "text/html;charset=utf-8" }), "Malaysia-Stock-Dashboard-Report-" + timestampSlug() + ".html");
+        markReportExported("html");
+        setExportStatus("报告 HTML 已导出。");
+      } catch (error) {
+        console.error(error);
+        setExportStatus("报告导出失败：" + error.message);
+      }
+    }
+    async function exportScreenshotPng() {
+      let svgText = "";
+      try {
+        setExportStatus("正在生成截图 PNG...");
+        const { width, height, svg } = screenshotSvgText();
+        svgText = svg;
+        const image = new Image();
+        const svgUrl = URL.createObjectURL(new Blob([svg], { type: "image/svg+xml;charset=utf-8" }));
+        await new Promise((resolve, reject) => {
+          image.onload = resolve;
+          image.onerror = reject;
+          image.src = svgUrl;
+        });
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        ctx.fillStyle = "#1f2430";
+        ctx.fillRect(0, 0, width, height);
+        ctx.drawImage(image, 0, 0);
+        URL.revokeObjectURL(svgUrl);
+        const blob = await canvasToPngBlob(canvas);
+        downloadBlob(blob, "Malaysia-Stock-Dashboard-" + timestampSlug() + ".png");
+        markReportExported("png");
+        setExportStatus("截图 PNG 已导出。");
+      } catch (error) {
+        console.warn("Full-page PNG export fell back:", error);
+        try {
+          await captureVisibleScreenPng();
+        } catch (captureError) {
+          console.warn("Screen capture fallback failed:", captureError);
+          if (svgText) {
+            downloadBlob(new Blob([svgText], { type: "image/svg+xml;charset=utf-8" }), "Malaysia-Stock-Dashboard-" + timestampSlug() + ".svg");
+            markReportExported("svg");
+            setExportStatus("浏览器限制 PNG 截图，已改为导出 SVG 截图；报告 HTML 仍可用。");
+          } else {
+            setExportStatus("截图导出失败，可改用报告 HTML：" + captureError.message);
+          }
+        }
+      }
+    }
+    function render() {
+      const prices = [...DATA.klciPrices].reverse();
+      drawCandles(document.getElementById("klciChart"), prices);
+      drawCandles(document.getElementById("dailyCandleChart"), DATA.intradayCandles);
+      drawBars(document.getElementById("volumeChart"), prices.map(p => p.volume));
+      const breadthChart = document.getElementById("breadthChart");
+      if (breadthChart) {
+        drawLine(breadthChart, [...DATA.marketSummary].reverse().filter(s => s.total > 0).map(s => s.bullRatio * 100), { color: css("--yellow"), digits: 1 });
+      }
+      document.querySelectorAll(".spark").forEach((canvas) => {
+        drawLine(canvas, JSON.parse(canvas.dataset.series), { digits: 1 });
+      });
+    }
+    document.getElementById("exportPngBtn")?.addEventListener("click", exportScreenshotPng);
+    document.getElementById("exportReportBtn")?.addEventListener("click", exportReportHtml);
+    window.addEventListener("resize", render);
+    render();
   </script>
 </body>
 </html>

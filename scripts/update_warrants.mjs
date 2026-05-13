@@ -5,9 +5,9 @@ import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const rootDir = resolve(__dirname, "..");
 const htmlPath = resolve(rootDir, "warrants_filtered.html");
-const indexPath = resolve(rootDir, "index.html");
 
 const API_URL = "https://www.malaysiawarrants.com.my/apimqmy/ScreenerJSONServlet";
+const MARKET_URL = "https://www.klsescreener.com/v2/markets";
 const MONTHS = {
   Jan: 0,
   Feb: 1,
@@ -96,6 +96,190 @@ function extractCss(existingHtml) {
   return match ? match[1] : "";
 }
 
+function ensureCss(css) {
+  if (css.includes(".market-overview")) return css;
+  return `${css}
+
+    .market-overview,
+    .leaderboard {
+      margin: 18px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 14px;
+      margin: 24px 0 12px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+    }
+
+    .section-head p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .market-cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .market-card {
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .market-card .label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .market-card .price {
+      display: block;
+      margin-top: 8px;
+      font-size: 24px;
+      font-weight: 850;
+      letter-spacing: 0;
+    }
+
+    .market-card .move {
+      display: inline-flex;
+      margin-top: 6px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .move.up,
+    .market-card.up .move {
+      background: var(--green-soft);
+      color: var(--green);
+    }
+
+    .move.down,
+    .market-card.down .move {
+      background: var(--rose-soft);
+      color: var(--rose);
+    }
+
+    .move.flat,
+    .market-card.flat .move {
+      background: #eef2f7;
+      color: var(--muted);
+    }
+
+    .leaderboard-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .board {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .board h3 {
+      margin: 0;
+      padding: 12px 14px;
+      color: #fff;
+      font-size: 14px;
+      letter-spacing: 0;
+    }
+
+    .board.active h3 {
+      background: var(--blue);
+    }
+
+    .board.gainers h3 {
+      background: var(--green);
+    }
+
+    .board.losers h3 {
+      background: var(--rose);
+    }
+
+    .leader-row {
+      display: grid;
+      grid-template-columns: 28px minmax(0, 1fr) auto;
+      gap: 8px;
+      align-items: center;
+      padding: 10px 12px;
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+    }
+
+    .leader-row .rank {
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .leader-row .name {
+      min-width: 0;
+      font-weight: 850;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .leader-row .meta {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .leader-row .right {
+      text-align: right;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .leader-row .volume {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 980px) {
+      .market-cards,
+      .leaderboard-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .section-head {
+        display: block;
+      }
+
+      .market-cards,
+      .leaderboard-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+`;
+}
+
 async function fetchWarrants() {
   const params = new URLSearchParams({
     underlying: "all",
@@ -127,6 +311,96 @@ async function fetchWarrants() {
   return payload.data || [];
 }
 
+async function fetchMarketHtml() {
+  const response = await fetch(MARKET_URL, {
+    headers: {
+      "user-agent": "Mozilla/5.0",
+      "accept": "text/html,application/xhtml+xml"
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error(`KLSE Screener markets page failed: ${response.status} ${response.statusText}`);
+  }
+
+  return response.text();
+}
+
+function stripTags(value) {
+  return String(value ?? "")
+    .replace(/<script[\s\S]*?<\/script>/gi, "")
+    .replace(/<style[\s\S]*?<\/style>/gi, "")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&nbsp;/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function sectionAfter(html, marker, endMarkers = []) {
+  const start = html.indexOf(marker);
+  if (start === -1) return "";
+  const nextIndexes = endMarkers
+    .map(end => html.indexOf(end, start + marker.length))
+    .filter(index => index !== -1);
+  const end = nextIndexes.length ? Math.min(...nextIndexes) : html.length;
+  return html.slice(start, end);
+}
+
+function moveClass(change) {
+  const text = String(change ?? "").trim();
+  if (text.startsWith("+")) return "up";
+  if (text.startsWith("-")) return "down";
+  if (/\s\+/.test(text)) return "up";
+  if (/\s-/.test(text)) return "down";
+  return "flat";
+}
+
+function parseMarketItems(section, limit = 10) {
+  const cards = [...section.matchAll(/<div class="col-md-4[^"]*"[^>]*data-code="([^"]+)"[\s\S]*?<\/div>\s*<\/div>\s*<\/div>/g)];
+  return cards.slice(0, limit).map((match, index) => {
+    const card = match[0];
+    const link = card.match(/href="\/v2\/(?:stocks\/view|markets\/intraday)\/([^"]+)">([\s\S]*?)<\/a>/);
+    const name = stripTags((link || [])[2]);
+    const last = stripTags((card.match(/<span class="last">([\s\S]*?)<\/span>/) || [])[1]);
+    const change = stripTags((card.match(/data-value="price_change">([\s\S]*?)<\/span>/) || card.match(/data-value="price_change">([\s\S]*?)<\/div>/) || [])[1]);
+    const volume = stripTags((card.match(/<div class="volume[^"]*"[^>]*>([\s\S]*?)<\/div>/) || [])[1]);
+    return {
+      rank: index + 1,
+      code: link ? link[1] : match[1],
+      name,
+      last,
+      change,
+      volume,
+      direction: moveClass(change)
+    };
+  }).filter(item => item.name);
+}
+
+async function fetchMarketData() {
+  const html = await fetchMarketHtml();
+  const indicesSection = sectionAfter(html, '<div class="row equal indices-section">', ["<hr />"]);
+  const activeSection = sectionAfter(html, "Top Active</h2>", ["<h2>Top Gainers</h2>"]);
+  const gainersSection = sectionAfter(html, "<h2>Top Gainers</h2>", ["<h2>Top Gainers %</h2>"]);
+  const losersSection = sectionAfter(html, "<h2>Top Losers</h2>", ["<h2>Top Losers %</h2>"]);
+  const primaryIndex = parseMarketItems(indicesSection, 1);
+  const preferredIndexCodes = new Set(["0863I", "0864I", "0865I", "0868I", "0005I", "0010I", "0003I"]);
+  const seenIndexCodes = new Set(primaryIndex.map(item => item.code));
+  const bursaIndices = parseMarketItems(html, 800)
+    .filter(item => preferredIndexCodes.has(item.code) && !seenIndexCodes.has(item.code))
+    .filter(item => {
+      seenIndexCodes.add(item.code);
+      return true;
+    });
+
+  return {
+    indices: [...primaryIndex, ...bursaIndices].slice(0, 8),
+    active: parseMarketItems(activeSection, 8),
+    gainers: parseMarketItems(gainersSection, 8),
+    losers: parseMarketItems(losersSection, 8)
+  };
+}
+
 function rowHtml(warrant) {
   const issuer = warrant.issuer === "Macquarie" ? "MACQ" : warrant.issuer;
   const issuerClass = warrant.issuer === "Macquarie" ? "macq" : "cimb";
@@ -140,6 +414,21 @@ function sortIconCells(count) {
     { length: count },
     () => '            <th><span class="sort-icons"><span class="tri down"></span><span class="tri up"></span></span></th>'
   ).join("\n");
+}
+
+function marketCardHtml(item) {
+  return `        <article class="market-card ${item.direction}"><span class="label">${htmlEscape(item.name)}</span><strong class="price">${htmlEscape(item.last)}</strong><span class="move ${item.direction}">${htmlEscape(item.change || "0.000 0.0%")}</span></article>`;
+}
+
+function boardRowHtml(item) {
+  return `          <div class="leader-row"><span class="rank">${item.rank}</span><div><div class="name">${htmlEscape(item.name)}</div><div class="meta">${htmlEscape(item.code)}</div></div><div class="right"><div class="move ${item.direction}">${htmlEscape(item.change || "0.000 0.0%")}</div><div class="volume">${htmlEscape(item.volume || item.last)}</div></div></div>`;
+}
+
+function boardHtml(title, type, rows) {
+  return `      <section class="board ${type}">
+        <h3>${title}</h3>
+${rows.map(boardRowHtml).join("\n")}
+      </section>`;
 }
 
 function generateHtml({ css, rows, today, cutoff }) {
@@ -340,7 +629,7 @@ ${rows.map(rowHtml).join("\n")}
 
 async function main() {
   const existingHtml = await readFile(htmlPath, "utf8").catch(() => "");
-  const css = extractCss(existingHtml);
+  const css = ensureCss(extractCss(existingHtml));
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const cutoff = new Date(today);
@@ -364,7 +653,6 @@ async function main() {
 
   const html = generateHtml({ css, rows, today, cutoff });
   await writeFile(htmlPath, html);
-  await writeFile(indexPath, html);
   console.log(`Updated ${rows.length} warrants. Cutoff: ${formatDate(cutoff)}`);
 }
 

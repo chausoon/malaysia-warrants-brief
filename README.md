@@ -1,8 +1,9 @@
-# Malaysia Warrants Brief
+# Malaysia Stock Dashboard + Warrants Brief
 
-Malaysia KLSE warrants screener brief.
+Daily-updated static website for the Malaysia Stock Dashboard and CIMB/Macquarie warrants brief.
 
-Daily-updated static HTML brief for CIMB and Macquarie call warrants.
+- `index.html`: full Malaysia Stock Dashboard
+- `warrants_filtered.html`: Daily Malaysia Warrants HTML update
 
 ## Update Locally
 
@@ -10,12 +11,12 @@ Daily-updated static HTML brief for CIMB and Macquarie call warrants.
 npm run update
 ```
 
-The updater fetches current MalaysiaWarrants screener data and rewrites:
+The updater fetches current dashboard and warrants data, then rewrites:
 
-- `warrants_filtered.html`
 - `index.html`
+- `warrants_filtered.html`
 
-## Filters
+## Warrants Filters
 
 - Issuers: CIMB, Macquarie
 - Type: Call warrants
