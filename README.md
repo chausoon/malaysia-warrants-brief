@@ -16,6 +16,13 @@ The updater fetches current dashboard and warrants data, then rewrites:
 - `index.html`
 - `warrants_filtered.html`
 
+## Data Sources
+
+- Dashboard index: Yahoo Finance `^KLSE` chart data.
+- Stock breadth, top volume, top turnover, sector heatmap and recommendations: TradingView Malaysia Screener.
+- News priority: Bursa Malaysia official-related content first. If Bursa official pages trigger Cloudflare verification in an automated environment, the updater uses Google News RSS to index Bursa / FBM KLCI items, with Moomoo and Sin Chew / 星洲财经 as auxiliary references.
+- Warrants: MalaysiaWarrants warrant search data.
+
 ## Warrants Filters
 
 - Issuers: CIMB, Macquarie

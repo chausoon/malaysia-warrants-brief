@@ -8,6 +8,7 @@ const htmlPath = resolve(rootDir, "warrants_filtered.html");
 
 const API_URL = "https://www.malaysiawarrants.com.my/apimqmy/ScreenerJSONServlet";
 const MARKET_URL = "https://www.klsescreener.com/v2/markets";
+const MALAYSIA_TIME_ZONE = "Asia/Kuala_Lumpur";
 const MONTHS = {
   Jan: 0,
   Feb: 1,
@@ -40,7 +41,34 @@ function parseWarrantDate(value) {
 }
 
 function formatDate(date) {
-  return date.toISOString().slice(0, 10);
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: MALAYSIA_TIME_ZONE,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  }).formatToParts(date);
+  const values = Object.fromEntries(parts.map(part => [part.type, part.value]));
+  return `${values.year}-${values.month}-${values.day}`;
+}
+
+function formatTime(date) {
+  const parts = new Intl.DateTimeFormat("en-GB", {
+    timeZone: MALAYSIA_TIME_ZONE,
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false
+  }).formatToParts(date);
+  const values = Object.fromEntries(parts.map(part => [part.type, part.value]));
+  return `${values.hour}:${values.minute}`;
+}
+
+function formatDateTime(date) {
+  return `${formatDate(date)} ${formatTime(date)} GMT+8`;
+}
+
+function dateFromIso(value) {
+  const [year, month, day] = value.split("-").map(Number);
+  return new Date(year, month - 1, day);
 }
 
 function daysBetween(start, end) {
@@ -728,7 +756,7 @@ ${rows.map(boardRowHtml).join("\n")}
       </section>`;
 }
 
-function generateHtml({ css, rows, today, cutoff }) {
+function generateHtml({ css, rows, today, cutoff, updatedAt }) {
   const rowCount = rows.length;
   const issuerCounts = rows.reduce((counts, warrant) => {
     const issuer = warrant.issuer === "Macquarie" ? "Macquarie" : warrant.issuer;
@@ -761,6 +789,7 @@ function generateHtml({ css, rows, today, cutoff }) {
       </div>
       <div class="hero-actions">
         <a class="nav-button" href="index.html">返回 Dashboard</a>
+        <div class="date-pill">资料更新时间：${formatDateTime(updatedAt)}</div>
         <div class="date-pill">筛选日期：${formatDate(today)}</div>
       </div>
     </section>
@@ -934,8 +963,8 @@ ${rows.map(rowHtml).join("\n")}
 async function main() {
   const existingHtml = await readFile(htmlPath, "utf8").catch(() => "");
   const css = ensureCss(extractCss(existingHtml));
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  const updatedAt = new Date();
+  const today = dateFromIso(formatDate(updatedAt));
   const cutoff = new Date(today);
   cutoff.setDate(cutoff.getDate() + 30);
 
@@ -955,9 +984,9 @@ async function main() {
       return issuerOrder || a.underlyingSymbol.localeCompare(b.underlyingSymbol);
     });
 
-  const html = generateHtml({ css, rows, today, cutoff });
+  const html = generateHtml({ css, rows, today, cutoff, updatedAt });
   await writeFile(htmlPath, html);
-  console.log(`Updated ${rows.length} warrants. Cutoff: ${formatDate(cutoff)}`);
+  console.log(`Updated ${rows.length} warrants. Data time: ${formatDateTime(updatedAt)}. Cutoff: ${formatDate(cutoff)}`);
 }
 
 main().catch(error => {
