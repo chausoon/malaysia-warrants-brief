@@ -1155,8 +1155,10 @@ function buildHtml(model) {
       border-top: 8px solid #202634;
       color: #fff;
     }
-    .nav { display: flex; gap: 19px; align-items: center; font-weight: 700; }
-    .nav b:first-child { background: rgba(255,255,255,.12); padding: 11px 10px; margin-left: -10px; }
+    .nav { display: flex; gap: 19px; align-items: center; font-weight: 700; white-space: nowrap; }
+    .nav a, .nav b { color: #fff; text-decoration: none; }
+    .nav a:hover { color: var(--blue); text-decoration: none; }
+    .nav .active { color: var(--blue); }
     .toolbar { display: flex; gap: 14px; align-items: center; font-size: 12px; }
     .pill { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); border-radius: 999px; padding: 4px 9px; color: var(--muted); background: var(--panel2); }
     main { padding: 16px 32px 28px; max-width: 1500px; margin: 0 auto; }
@@ -1346,7 +1348,7 @@ function buildHtml(model) {
 </head>
 <body>
   <div class="topbar">
-    <div class="nav"><b>Dashboard</b><a href="warrants_filtered.html">Warrants</a><b>News</b><b>Screener</b><b>Charts</b><b>Maps</b><b>Portfolio</b><b>Calendar</b></div>
+    <div class="nav"><b class="active">Dashboard</b><a href="warrants_filtered.html">Warrants</a><b>News</b><b>Screener</b><b>Charts</b><b>Maps</b></div>
     <div class="toolbar"><span>${esc(model.generatedLabel)}</span><span class="pill">Theme</span><b>Malaysia</b></div>
   </div>
   <main>

@@ -47,7 +47,9 @@
     }
 
     .nav { display: flex; gap: 19px; align-items: center; font-weight: 700; white-space: nowrap; }
-    .nav b:first-child { background: rgba(255,255,255,.12); padding: 11px 10px; margin-left: -10px; }
+    .nav a, .nav b { color: #fff; text-decoration: none; }
+    .nav a:hover { color: var(--blue); text-decoration: none; }
+    .nav .active { color: var(--blue); }
     .toolbar { display: flex; gap: 14px; align-items: center; color: var(--muted); font-size: 12px; white-space: nowrap; }
 
     main { max-width: 1500px; margin: 0 auto; padding: 16px 32px 28px; }
@@ -261,8 +263,8 @@
 </head>
 <body>
   <div class="topbar">
-    <div class="nav"><a href="index.html">Dashboard</a><b>Warrants</b><b>筛选</b><b>Premium</b><b>Sorting</b></div>
-    <div class="toolbar">Daily Malaysia Warrants HTML update</div>
+    <div class="nav"><a href="index.html">Dashboard</a><b class="active">Warrants</b><b>筛选</b><b>Premium</b><b>Sorting</b></div>
+    <div class="toolbar">资料更新时间：2026-05-14 20:45 GMT+8</div>
   </div>
   <main>
     <section class="hero">
@@ -272,8 +274,6 @@
         <p class="subtitle">只看 Call Warrants、相关资产为股票、价内、距离到期超过 30 天。数据取自 MalaysiaWarrants 当前筛选器。</p>
       </div>
       <div class="hero-actions">
-        <a class="nav-button" href="index.html">返回 Dashboard</a>
-        <div class="date-pill">资料更新时间：2026-05-14 20:27 GMT+8</div>
         <div class="date-pill">筛选日期：2026-05-14</div>
       </div>
     </section>
