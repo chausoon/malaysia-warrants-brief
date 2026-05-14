@@ -576,7 +576,7 @@ function klciAnalysis(prices, latestSummary, sectors) {
 function normalizeYahooKlci(raw) {
   const timestamps = raw.timestamp ?? [];
   const quote = raw.indicators?.quote?.[0] ?? {};
-  const prices = timestamps
+  let prices = timestamps
     .map((ts, index) => {
       const open = num(quote.open?.[index]);
       const high = num(quote.high?.[index]);
@@ -606,6 +606,42 @@ function normalizeYahooKlci(raw) {
   }
 
   const meta = raw.meta ?? {};
+  const metaPrice = num(meta.regularMarketPrice);
+  const metaTime = meta.regularMarketTime ? new Date(meta.regularMarketTime * 1000) : null;
+  const metaDate = metaTime ? malaysiaDate(metaTime) : null;
+  if (metaDate && metaPrice !== null) {
+    const latest = prices[0];
+    const dayHigh = num(meta.regularMarketDayHigh) ?? metaPrice;
+    const dayLow = num(meta.regularMarketDayLow) ?? metaPrice;
+    if (metaDate > latest.date) {
+      const change = metaPrice - latest.close;
+      prices = [
+        {
+          date: metaDate,
+          open: latest.close,
+          high: Math.max(dayHigh, metaPrice, latest.close),
+          low: Math.min(dayLow, metaPrice, latest.close),
+          close: metaPrice,
+          change,
+          pctChange: latest.close ? change / latest.close : 0,
+          volume: 0,
+        },
+        ...prices,
+      ].slice(0, 30);
+    } else if (metaDate === latest.date && Math.abs(metaPrice - latest.close) > 0.001) {
+      const previous = prices[1] ?? latest;
+      const change = metaPrice - previous.close;
+      prices[0] = {
+        ...latest,
+        high: Math.max(latest.high, dayHigh, metaPrice),
+        low: Math.min(latest.low, dayLow, metaPrice),
+        close: metaPrice,
+        change,
+        pctChange: previous.close ? change / previous.close : 0,
+      };
+    }
+  }
+
   return {
     klciPrices: prices,
     latestMeta: {
