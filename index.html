@@ -76,6 +76,7 @@
       cursor: pointer;
     }
     .export-toolbar button:hover { border-color: var(--blue); color: var(--blue); }
+    .export-toolbar button:disabled { cursor: wait; opacity: .68; }
     .export-status { color: var(--muted); font-size: 11px; margin-left: 4px; }
     .grid4 { display: grid; grid-template-columns: repeat(4, minmax(250px, 1fr)); gap: 16px; margin-top: 16px; }
     .market-card, .panel, .ticker-table, .sector-card, .news-card, .recommend-block {
@@ -242,9 +243,10 @@
     </section>
 
     <section class="export-toolbar" aria-label="Export tools">
+      <button type="button" id="refreshPageBtn">更新页面</button>
       <button type="button" id="exportPngBtn">导出截图 PNG</button>
       <button type="button" id="exportReportBtn">导出报告 HTML</button>
-      <span class="export-status" id="exportStatus">PNG 会要求选择当前页面/窗口；手动导出不会影响每日自动更新。</span>
+      <span class="export-status" id="exportStatus">更新页面会重新载入最新已发布内容；手动导出不会影响每日自动更新。</span>
     </section>
 
     <section class="grid4">
@@ -1497,6 +1499,17 @@
       const status = document.getElementById("exportStatus");
       if (status) status.textContent = text;
     }
+    function refreshPage() {
+      const button = document.getElementById("refreshPageBtn");
+      if (button) {
+        button.disabled = true;
+        button.textContent = "更新中...";
+      }
+      setExportStatus("正在重新载入最新页面...");
+      const url = new URL(window.location.href);
+      url.searchParams.set("refresh", Date.now().toString());
+      window.location.replace(url.toString());
+    }
     function markReportExported(type) {
       const payload = { type, exportedAt: new Date().toISOString(), page: location.href };
       try {
@@ -1665,6 +1678,7 @@
         drawLine(canvas, JSON.parse(canvas.dataset.series), { digits: 1 });
       });
     }
+    document.getElementById("refreshPageBtn")?.addEventListener("click", refreshPage);
     document.getElementById("exportPngBtn")?.addEventListener("click", exportScreenshotPng);
     document.getElementById("exportReportBtn")?.addEventListener("click", exportReportHtml);
     window.addEventListener("resize", render);
