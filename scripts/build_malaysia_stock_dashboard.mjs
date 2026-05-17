@@ -1075,6 +1075,25 @@ function serializeData(data) {
   return JSON.stringify(data).replaceAll("</script", "<\\/script");
 }
 
+function malaysiaDateTimeLabel(date) {
+  const parts = Object.fromEntries(
+    new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Asia/Kuala_Lumpur",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hourCycle: "h23",
+      timeZoneName: "short",
+    })
+      .formatToParts(date)
+      .filter((part) => part.type !== "literal")
+      .map((part) => [part.type, part.value]),
+  );
+  return `${parts.year}-${parts.month}-${parts.day} ${parts.hour}:${parts.minute} ${parts.timeZoneName || "GMT+8"}`;
+}
+
 function buildHtml(model) {
   const latest = model.klciPrices[0];
   const latestSummary = model.marketSummary[0];
@@ -1113,6 +1132,9 @@ function buildHtml(model) {
   const middayNote = midday
     ? `<div class="data-note"><b>午盘快照：</b>${esc(midday.summary)} 数据源：${esc(midday.source)}。</div>`
     : "";
+  const updateTitle = `页面生成：${model.generatedLabel}；主要行情日：${latest.date}`;
+  const updateBadge = `<small class="section-time" title="${esc(updateTitle)}">更新：${esc(model.generatedShortLabel)}</small>`;
+  const updateInline = `<span class="inline-update" title="${esc(updateTitle)}">更新：${esc(model.generatedShortLabel)}</span>`;
 
   return `<!doctype html>
 <html lang="zh-CN">
@@ -1192,6 +1214,7 @@ function buildHtml(model) {
       cursor: pointer;
     }
     .export-toolbar button:hover { border-color: var(--blue); color: var(--blue); }
+    .export-toolbar button:disabled { cursor: wait; opacity: .68; }
     .export-status { color: var(--muted); font-size: 11px; margin-left: 4px; }
     .grid4 { display: grid; grid-template-columns: repeat(4, minmax(250px, 1fr)); gap: 16px; margin-top: 16px; }
     .market-card, .panel, .ticker-table, .sector-card, .news-card, .recommend-block {
@@ -1205,6 +1228,10 @@ function buildHtml(model) {
     .market-title h2 { margin: 0; color: #abb5c8; font-size: 18px; }
     .market-title span { color: var(--muted); font-size: 11px; }
     .market-title strong { font-size: 13px; }
+    .section-title { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin: 0 0 9px; }
+    .section-title h2 { margin: 0; }
+    .section-time { display: block; color: var(--muted); font-size: 10px; font-weight: 600; line-height: 1.25; margin-top: 2px; white-space: nowrap; }
+    .inline-update { color: var(--muted); font-size: 9px; font-weight: 600; white-space: nowrap; }
     canvas { width: 100%; display: block; }
     .klci-chart { height: 138px; }
     .sentiment-fallback {
@@ -1265,7 +1292,8 @@ function buildHtml(model) {
     .content-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(340px, .8fr); gap: 14px; margin-top: 10px; align-items: start; }
     .tables-grid { display: grid; grid-template-columns: repeat(2, minmax(235px, 1fr)); gap: 8px; min-width: 0; }
     .ticker-table { overflow: hidden; min-width: 0; }
-    .table-head { display: flex; justify-content: space-between; padding: 9px 10px 3px; color: var(--blue); font-weight: 700; }
+    .table-head { display: flex; justify-content: space-between; gap: 10px; padding: 9px 10px 3px; color: var(--blue); font-weight: 700; }
+    .table-head > span:last-child { text-align: right; }
     table { width: 100%; border-collapse: collapse; table-layout: fixed; }
     th { color: #c4ccd9; text-align: right; font-weight: 600; padding: 4px 8px; border-bottom: 1px solid #323b4c; }
     th:first-child, td:first-child { text-align: left; }
@@ -1358,65 +1386,67 @@ function buildHtml(model) {
     </section>
 
     <section class="export-toolbar" aria-label="Export tools">
+      <button type="button" id="refreshPageBtn">更新页面</button>
       <button type="button" id="exportPngBtn">导出截图 PNG</button>
       <button type="button" id="exportReportBtn">导出报告 HTML</button>
-      <span class="export-status" id="exportStatus">PNG 会要求选择当前页面/窗口；手动导出不会影响每日自动更新。</span>
+      <span class="export-status" id="exportStatus">资料生成：${esc(model.generatedLabel)}。若当前是 file:/// 本地页面，按钮只会重载本机 HTML，不会触发 15 分钟自动抓数。</span>
     </section>
 
     <section class="grid4">
       <article class="market-card">
-        <div class="market-title"><h2>FBM KLCI</h2><span>30D daily OHLC · ${esc(latest.date)}</span><strong class="${latest.change >= 0 ? "up" : "down"}">${fmt(latest.close, 2)} ${pct(latest.pctChange * 100)}</strong></div>
+        <div class="market-title"><h2>FBM KLCI</h2><span>30D daily OHLC · ${esc(latest.date)} · 更新 ${esc(model.generatedShortLabel)}</span><strong class="${latest.change >= 0 ? "up" : "down"}">${fmt(latest.close, 2)} ${pct(latest.pctChange * 100)}</strong></div>
         <canvas class="klci-chart" id="klciChart"></canvas>
       </article>
       <article class="market-card">
-        <div class="market-title"><h2>Daily Candle</h2><span>8am-5pm · from daily OHLC</span><strong>${fmt(latest.open, 2)} / ${fmt(latest.close, 2)}</strong></div>
+        <div class="market-title"><h2>Daily Candle</h2><span>8am-5pm · 更新 ${esc(model.generatedShortLabel)}</span><strong>${fmt(latest.open, 2)} / ${fmt(latest.close, 2)}</strong></div>
         <canvas class="klci-chart" id="dailyCandleChart"></canvas>
       </article>
       <article class="market-card">
-        <div class="market-title"><h2>Volume</h2><span>${volumeSubtitle}</span><strong>${latestVolumeLabel}</strong></div>
+        <div class="market-title"><h2>Volume</h2><span>${volumeSubtitle} · 更新 ${esc(model.generatedShortLabel)}</span><strong>${latestVolumeLabel}</strong></div>
         <canvas class="klci-chart" id="volumeChart"></canvas>
       </article>
       <article class="market-card">
-        <div class="market-title"><h2>Sentiment</h2><span>${breadthSubtitle}</span><strong class="${latestSummary.gainers >= latestSummary.losers ? "up" : "down"}">${breadthPct.toFixed(1)}% Bull</strong></div>
+        <div class="market-title"><h2>Sentiment</h2><span>${breadthSubtitle} · 更新 ${esc(model.generatedShortLabel)}</span><strong class="${latestSummary.gainers >= latestSummary.losers ? "up" : "down"}">${breadthPct.toFixed(1)}% Bull</strong></div>
         ${sentimentBody}
       </article>
     </section>
 
     <section class="data-notes">
       ${middayNote}
+      <div class="data-note"><b>自动更新说明：</b>线上 GitHub Pages 由 GitHub Actions 在交易时段约每 15 分钟重新生成一次；若当前地址是 file:/// 本地页面，浏览器只会读取本机这份 index.html，不会自动同步线上更新。页面各区块旁的“更新”时间就是这份 HTML 的生成时间。</div>
       <div class="data-note"><b>Volume 数据说明：</b>${esc(model.volumeNote)}</div>
       <div class="data-note"><b>Sector 1D 数据说明：</b>Sector 分组使用 Bursa Malaysia sector classification 大类名称；右上角数字是该板块成分股按市值加权后的当天涨跌幅。小线图是用成分股涨跌、成交额与市场宽度生成的 1D 快速走势视图，不是逐笔/逐分钟行情。</div>
     </section>
 
     <section class="market-context">
       <div class="panel">
-        <h2>FBM KLCI 大市走势与交易解读</h2>
+        <div class="section-title"><h2>FBM KLCI 大市走势与交易解读</h2>${updateBadge}</div>
         <ul>${model.analysis.map((line) => `<li>${esc(line)}</li>`).join("")}</ul>
       </div>
       <div class="panel">
-        <h2>大市新闻与情绪</h2>
+        <div class="section-title"><h2>大市新闻与情绪</h2>${updateBadge}</div>
         <div class="news-lines">${compactNewsListWithMidday(model.middaySnapshot, model.newsItems)}</div>
       </div>
     </section>
 
     <section class="breadth-row">
-      <div class="breadth-card"><small>Advancing / Declining</small><b><span class="up">${latestSummary.gainers}</span><span class="down">${latestSummary.losers}</span></b><div class="bar"><i style="width:${advPct}%"></i><i style="width:${decPct}%"></i></div></div>
-      <div class="breadth-card"><small>30D KLCI</small><b><span class="${klci30 >= 0 ? "up" : "down"}">${pct(klci30)}</span><span>${fmt(prev30?.close ?? latest.close, 2)}</span></b><div class="bar"><i style="width:${Math.max(0, 50 + klci30 * 4)}%"></i><i style="width:${Math.max(0, 50 - klci30 * 4)}%"></i></div></div>
-      <div class="breadth-card"><small>Top Sector Turnover</small><b><span>${esc(model.sectors[0]?.sectorZh)}</span><span>RM ${compact(model.sectors[0]?.turnover)}</span></b><div class="bar"><i style="width:64%"></i><i style="width:36%"></i></div></div>
-      <div class="breadth-card"><small>Active Counters</small><b><span>${model.stocks.length}</span><span>stocks</span></b><div class="bar"><i style="width:58%"></i><i style="width:42%"></i></div></div>
-      <div class="breadth-card"><small>News Tone</small><b><span class="yellow">Mixed</span><span>rotation</span></b><div class="bar"><i style="width:52%"></i><i style="width:48%"></i></div></div>
+      <div class="breadth-card"><small>Advancing / Declining ${updateInline}</small><b><span class="up">${latestSummary.gainers}</span><span class="down">${latestSummary.losers}</span></b><div class="bar"><i style="width:${advPct}%"></i><i style="width:${decPct}%"></i></div></div>
+      <div class="breadth-card"><small>30D KLCI ${updateInline}</small><b><span class="${klci30 >= 0 ? "up" : "down"}">${pct(klci30)}</span><span>${fmt(prev30?.close ?? latest.close, 2)}</span></b><div class="bar"><i style="width:${Math.max(0, 50 + klci30 * 4)}%"></i><i style="width:${Math.max(0, 50 - klci30 * 4)}%"></i></div></div>
+      <div class="breadth-card"><small>Top Sector Turnover ${updateInline}</small><b><span>${esc(model.sectors[0]?.sectorZh)}</span><span>RM ${compact(model.sectors[0]?.turnover)}</span></b><div class="bar"><i style="width:64%"></i><i style="width:36%"></i></div></div>
+      <div class="breadth-card"><small>Active Counters ${updateInline}</small><b><span>${model.stocks.length}</span><span>stocks</span></b><div class="bar"><i style="width:58%"></i><i style="width:42%"></i></div></div>
+      <div class="breadth-card"><small>News Tone ${updateInline}</small><b><span class="yellow">Mixed</span><span>rotation</span></b><div class="bar"><i style="width:52%"></i><i style="width:48%"></i></div></div>
     </section>
 
     <section class="content-grid">
       <div class="tables-grid">
-        <div class="ticker-table"><div class="table-head"><span>Top Volume</span><span>Daily</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>Volume</th></tr></thead><tbody>${tableRows(model.tables.topVolume)}</tbody></table></div>
-        <div class="ticker-table"><div class="table-head"><span>Top Turnover</span><span>Daily</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>Value</th></tr></thead><tbody>${tableRows(model.tables.topTurnover, "turnover")}</tbody></table></div>
-        <div class="ticker-table"><div class="table-head"><span>Top Gainers</span><span>Value</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>RM</th></tr></thead><tbody>${tableRows(model.tables.topGainers, "change")}</tbody></table></div>
-        <div class="ticker-table"><div class="table-head"><span>Top Losers</span><span>Value</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>RM</th></tr></thead><tbody>${tableRows(model.tables.topLosers, "change")}</tbody></table></div>
+        <div class="ticker-table"><div class="table-head"><span>Top Volume ${updateBadge}</span><span>Daily</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>Volume</th></tr></thead><tbody>${tableRows(model.tables.topVolume)}</tbody></table></div>
+        <div class="ticker-table"><div class="table-head"><span>Top Turnover ${updateBadge}</span><span>Daily</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>Value</th></tr></thead><tbody>${tableRows(model.tables.topTurnover, "turnover")}</tbody></table></div>
+        <div class="ticker-table"><div class="table-head"><span>Top Gainers ${updateBadge}</span><span>Value</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>RM</th></tr></thead><tbody>${tableRows(model.tables.topGainers, "change")}</tbody></table></div>
+        <div class="ticker-table"><div class="table-head"><span>Top Losers ${updateBadge}</span><span>Value</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>RM</th></tr></thead><tbody>${tableRows(model.tables.topLosers, "change")}</tbody></table></div>
       </div>
       <div class="right-stack">
         <div class="panel">
-        <h2>Sector Heat Map</h2>
+        <div class="section-title"><h2>Sector Heat Map</h2>${updateBadge}</div>
           <div class="heatmap">${makeHeatmap(model.sectors)}</div>
           <div class="heat-legend">
             <span><i style="background:hsl(145 72% 44%)"></i>上涨较强</span>
@@ -1432,7 +1462,7 @@ function buildHtml(model) {
 
     <section>
       <div class="panel">
-        <h2>Top 5 Bursa Sector · 1D 走势</h2>
+        <div class="section-title"><h2>Top 5 Bursa Sector · 1D 走势</h2>${updateBadge}</div>
         <div class="sector-grid">${sectorCards(model.sectors)}</div>
         <p class="source-line">此处 Top 5 sector 按 Bursa Malaysia sector classification 大类归并后，以市值加权涨跌幅由强到弱排序；右上角百分比 = 市值加权 sector 当天涨跌幅；底部 Adv / Dec = 该板块上涨/下跌家数；Turnover = 板块成分股成交额合计。</p>
       </div>
@@ -1440,7 +1470,7 @@ function buildHtml(model) {
 
     <section>
       <div class="panel">
-        <h2>各 Bursa Sector 量化候选股与股价</h2>
+        <div class="section-title"><h2>各 Bursa Sector 量化候选股与股价</h2>${updateBadge}</div>
         <div class="recommendations">${recommendationRows(model.sectors)}</div>
         <p class="source-line">Sector 按市值加权涨跌幅由强到弱排列；每个 Bursa Malaysia sector classification 大类列出 5 个量化候选股。候选股按技术评分、流动性、成交额、近期表现、估值与股息等字段综合排序。这不是投资建议，买卖前仍需核对公司公告、财报和个人风险承受能力。</p>
       </div>
@@ -1460,6 +1490,8 @@ function buildHtml(model) {
         spark: sector.spark,
         weightedChange: sector.weightedChange,
       })),
+      generatedLabel: model.generatedLabel,
+      generatedShortLabel: model.generatedShortLabel,
     })};
 
     function css(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
@@ -1579,6 +1611,21 @@ function buildHtml(model) {
     function setExportStatus(text) {
       const status = document.getElementById("exportStatus");
       if (status) status.textContent = text;
+    }
+    function refreshPage() {
+      const button = document.getElementById("refreshPageBtn");
+      if (button) {
+        button.disabled = true;
+        button.textContent = "更新中...";
+      }
+      if (window.location.protocol === "file:") {
+        setExportStatus("当前打开的是本地 file:/// 页面；这个按钮只能重载本机 index.html，不能触发 GitHub Action 抓新资料。要看 15 分钟自动更新，请打开线上 GitHub Pages 页面，或先在本机运行 npm run update。");
+      } else {
+        setExportStatus("正在绕过浏览器缓存，重新载入最新已发布页面...");
+      }
+      const url = new URL(window.location.href);
+      url.searchParams.set("refresh", Date.now().toString());
+      window.location.replace(url.toString());
     }
     function markReportExported(type) {
       const payload = { type, exportedAt: new Date().toISOString(), page: location.href };
@@ -1748,6 +1795,7 @@ function buildHtml(model) {
         drawLine(canvas, JSON.parse(canvas.dataset.series), { digits: 1 });
       });
     }
+    document.getElementById("refreshPageBtn")?.addEventListener("click", refreshPage);
     document.getElementById("exportPngBtn")?.addEventListener("click", exportScreenshotPng);
     document.getElementById("exportReportBtn")?.addEventListener("click", exportReportHtml);
     window.addEventListener("resize", render);
@@ -1790,6 +1838,7 @@ async function main() {
       timeZone: "Asia/Kuala_Lumpur",
       timeZoneName: "short",
     }),
+    generatedShortLabel: malaysiaDateTimeLabel(now),
     generatedTime: now.toLocaleTimeString("en-US", {
       hour: "2-digit",
       minute: "2-digit",
