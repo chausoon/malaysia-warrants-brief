@@ -1,0 +1,38 @@
+name: Daily market brief update
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "*/15 0-10 * * 1-5"
+    - cron: "0 0 * * 0,6"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-market-brief-update
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Update static pages
+        run: npm run update
+
+      - name: Commit updated pages
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update daily Malaysia market brief"
+          file_pattern: "index.html warrants_filtered.html"
