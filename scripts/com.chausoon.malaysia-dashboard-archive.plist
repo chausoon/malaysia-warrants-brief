@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.chausoon.malaysia-dashboard-archive</string>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/chausoon/Documents/New project</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/chausoon/Documents/New project/scripts/run_malaysia_dashboard_archive.sh</string>
+  </array>
+
+  <key>StartCalendarInterval</key>
+  <array>
+    <dict>
+      <key>Hour</key>
+      <integer>12</integer>
+      <key>Minute</key>
+      <integer>35</integer>
+    </dict>
+    <dict>
+      <key>Hour</key>
+      <integer>17</integer>
+      <key>Minute</key>
+      <integer>5</integer>
+    </dict>
+  </array>
+
+  <key>StandardOutPath</key>
+  <string>/Users/chausoon/Documents/New project/outputs/auto-archives/logs/launchd.out.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/chausoon/Documents/New project/outputs/auto-archives/logs/launchd.err.log</string>
+</dict>
+</plist>

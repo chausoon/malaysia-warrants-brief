@@ -2,27 +2,13 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 const root = path.resolve(".");
-const outputPath = path.join(root, "index.html");
+const outputPath = path.join(root, "Malaysia Stock Dashboard.html");
 const middaySnapshotPath = path.join(root, "data/malaysia_midday_snapshot.json");
 
 const screenerUrl = "https://scanner.tradingview.com/malaysia/scan";
 const yahooKlciUrls = [
   "https://query1.finance.yahoo.com/v8/finance/chart/%5EKLSE?range=2mo&interval=1d&includePrePost=false",
   "https://query2.finance.yahoo.com/v8/finance/chart/%5EKLSE?range=2mo&interval=1d&includePrePost=false",
-];
-const newsRssUrls = [
-  {
-    name: "Bursa Malaysia official via Google News",
-    url: "https://news.google.com/rss/search?q=site%3Abursamalaysia.com%20%28Bursa%20Malaysia%20OR%20FBM%20KLCI%20OR%20KLCI%29%20when%3A14d&hl=en-MY&gl=MY&ceid=MY%3Aen",
-  },
-  {
-    name: "Bursa / FBM KLCI market news",
-    url: "https://news.google.com/rss/search?q=%28Bursa%20Malaysia%20OR%20FBM%20KLCI%20OR%20KLCI%20Futures%29%20when%3A7d&hl=en-MY&gl=MY&ceid=MY%3Aen",
-  },
-  {
-    name: "Moomoo / Sin Chew auxiliary news",
-    url: "https://news.google.com/rss/search?q=%28Moomoo%20OR%20Sin%20Chew%20OR%20%E6%98%9F%E6%B4%B2%29%20%28Bursa%20Malaysia%20OR%20FBM%20KLCI%20OR%20%E9%A9%AC%E8%82%A1%29%20when%3A14d&hl=en-MY&gl=MY&ceid=MY%3Aen",
-  },
 ];
 
 const tvColumns = [
@@ -185,7 +171,7 @@ const manualBursaSector = new Map(
   }),
 );
 
-const fallbackNewsItems = [
+const newsItems = [
   {
     source: "The Star",
     title: "Late selling drags Bursa Malaysia lower as regional markets hit fresh highs",
@@ -259,24 +245,6 @@ function esc(value) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
-}
-
-function decodeHtml(value) {
-  return String(value ?? "")
-    .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
-    .replace(/&nbsp;/g, " ")
-    .replace(/&#039;/g, "'")
-    .replace(/&quot;/g, '"')
-    .replace(/&amp;/g, "&")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(Number(code)))
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-function stripHtml(value) {
-  return decodeHtml(String(value ?? "").replace(/<[^>]+>/g, " "));
 }
 
 function bursaSectorFor(stock) {
@@ -371,141 +339,6 @@ async function fetchJson(url, init, { retries = 0, timeoutMs = 12000 } = {}) {
   }
 
   throw lastError;
-}
-
-async function fetchText(url, init, { retries = 0, timeoutMs = 12000 } = {}) {
-  let lastError;
-  for (let attempt = 0; attempt <= retries; attempt += 1) {
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(new Error(`Request timed out after ${timeoutMs}ms`)), timeoutMs);
-    try {
-      const response = await fetch(url, {
-        ...init,
-        signal: controller.signal,
-      });
-      if (!response.ok) {
-        throw new Error(`${url} failed: ${response.status} ${response.statusText}`);
-      }
-      return response.text();
-    } catch (error) {
-      lastError = error;
-      if (attempt === retries) break;
-      await new Promise((resolve) => setTimeout(resolve, 400 * (attempt + 1)));
-    } finally {
-      clearTimeout(timer);
-    }
-  }
-
-  throw lastError;
-}
-
-function newsSummaryFromTitle(title, source) {
-  const text = title.toLowerCase();
-  if (/midday|morning session/.test(text)) {
-    return "盘中新闻更新 FBM KLCI 与市场宽度，可用来判断当天资金是否继续追价或转向观望。";
-  }
-  if (/open|opens|opened/.test(text) && /higher|gains|up|advances/.test(text)) {
-    return "早盘报道显示马股开盘偏强，通常与区域市场、权重股买盘或科技/公用事业题材有关。";
-  }
-  if (/open|opens|opened/.test(text) && /lower|mixed|slips|weaker/.test(text)) {
-    return "早盘报道显示马股开盘偏谨慎，需留意权重股卖压和盘中成交是否改善。";
-  }
-  if (/close|ends|snaps|negative|lower|profit-taking|weigh/.test(text)) {
-    return "收盘报道显示市场面对获利回吐或权重股压力，适合配合上方涨跌家数与成交额观察情绪。";
-  }
-  if (/higher|rebounds|bargain|rally|gains/.test(text)) {
-    return "新闻显示逢低买盘或区域风险偏好改善，对当天市场情绪形成支撑。";
-  }
-  if (/futures|range-bound|consolidate|cautious/.test(text)) {
-    return "期货或展望新闻显示短线走势仍偏区间/谨慎，可作为隔日开盘风险参考。";
-  }
-  return `${source} 最新 Bursa / FBM KLCI 相关新闻，作为当天大市情绪参考。`;
-}
-
-function newsTagsFromTitle(title) {
-  const text = title.toLowerCase();
-  const tags = [];
-  if (/open|opens|opened/.test(text)) tags.push("开盘");
-  if (/midday|morning session/.test(text)) tags.push("午盘");
-  if (/close|ends|snaps/.test(text)) tags.push("收盘");
-  if (/higher|rebounds|gains|up|rally/.test(text)) tags.push("偏强");
-  if (/lower|negative|slips|weaker|profit-taking|weigh/.test(text)) tags.push("偏弱");
-  if (/futures/.test(text)) tags.push("期货");
-  if (/klci/.test(text)) tags.push("KLCI");
-  if (/bursa/.test(text)) tags.push("Bursa");
-  return tags.slice(0, 4).length ? tags.slice(0, 4) : ["大市"];
-}
-
-function rssDate(value) {
-  const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? malaysiaDate(new Date()) : malaysiaDate(date);
-}
-
-function parseGoogleNewsRss(xml, feedName = "Google News") {
-  const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)];
-  const seen = new Set();
-  return items
-    .map((match) => {
-      const item = match[1];
-      const title = decodeHtml((item.match(/<title>([\s\S]*?)<\/title>/) || [])[1]);
-      const link = decodeHtml((item.match(/<link>([\s\S]*?)<\/link>/) || [])[1]);
-      const pubDate = decodeHtml((item.match(/<pubDate>([\s\S]*?)<\/pubDate>/) || [])[1]);
-      const source = stripHtml((item.match(/<source[^>]*>([\s\S]*?)<\/source>/) || [])[1]) || "Google News";
-      const key = title.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
-      if (!title || !link || seen.has(key)) return null;
-      if (/^(index|home|newsroom|media releases?)\s*(?:-|$)/i.test(title)) return null;
-      if (!/\b(bursa|fbm|klci)\b/i.test(title)) return null;
-      seen.add(key);
-      return {
-        source,
-        title,
-        date: rssDate(pubDate),
-        url: link,
-        summary: newsSummaryFromTitle(title, source),
-        tags: newsTagsFromTitle(title),
-        feedName,
-        _timestamp: new Date(pubDate).getTime() || 0,
-      };
-    })
-    .filter(Boolean);
-}
-
-async function fetchLatestNews() {
-  const merged = [];
-  try {
-    for (const feed of newsRssUrls) {
-      try {
-        const xml = await fetchText(
-          feed.url,
-          {
-            headers: {
-              "user-agent": "Mozilla/5.0",
-              accept: "application/rss+xml,text/xml,*/*",
-            },
-          },
-          { retries: 1, timeoutMs: 12000 },
-        );
-        merged.push(...parseGoogleNewsRss(xml, feed.name));
-      } catch (error) {
-        console.warn(`News RSS fetch failed (${feed.name}): ${error.message}`);
-      }
-    }
-    const seen = new Set();
-    const items = merged
-      .filter((item) => {
-        const key = item.title.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
-        if (seen.has(key)) return false;
-        seen.add(key);
-        return true;
-      })
-      .sort((a, b) => b._timestamp - a._timestamp)
-      .slice(0, 4)
-      .map(({ _timestamp, feedName, ...item }) => item);
-    return items.length ? items : fallbackNewsItems;
-  } catch (error) {
-    console.warn(`News RSS fetch failed: ${error.message}`);
-    return fallbackNewsItems;
-  }
 }
 
 async function fetchStocks() {
@@ -743,7 +576,7 @@ function klciAnalysis(prices, latestSummary, sectors) {
 function normalizeYahooKlci(raw) {
   const timestamps = raw.timestamp ?? [];
   const quote = raw.indicators?.quote?.[0] ?? {};
-  let prices = timestamps
+  const prices = timestamps
     .map((ts, index) => {
       const open = num(quote.open?.[index]);
       const high = num(quote.high?.[index]);
@@ -773,42 +606,6 @@ function normalizeYahooKlci(raw) {
   }
 
   const meta = raw.meta ?? {};
-  const metaPrice = num(meta.regularMarketPrice);
-  const metaTime = meta.regularMarketTime ? new Date(meta.regularMarketTime * 1000) : null;
-  const metaDate = metaTime ? malaysiaDate(metaTime) : null;
-  if (metaDate && metaPrice !== null) {
-    const latest = prices[0];
-    const dayHigh = num(meta.regularMarketDayHigh) ?? metaPrice;
-    const dayLow = num(meta.regularMarketDayLow) ?? metaPrice;
-    if (metaDate > latest.date) {
-      const change = metaPrice - latest.close;
-      prices = [
-        {
-          date: metaDate,
-          open: latest.close,
-          high: Math.max(dayHigh, metaPrice, latest.close),
-          low: Math.min(dayLow, metaPrice, latest.close),
-          close: metaPrice,
-          change,
-          pctChange: latest.close ? change / latest.close : 0,
-          volume: 0,
-        },
-        ...prices,
-      ].slice(0, 30);
-    } else if (metaDate === latest.date && Math.abs(metaPrice - latest.close) > 0.001) {
-      const previous = prices[1] ?? latest;
-      const change = metaPrice - previous.close;
-      prices[0] = {
-        ...latest,
-        high: Math.max(latest.high, dayHigh, metaPrice),
-        low: Math.min(latest.low, dayLow, metaPrice),
-        close: metaPrice,
-        change,
-        pctChange: previous.close ? change / previous.close : 0,
-      };
-    }
-  }
-
   return {
     klciPrices: prices,
     latestMeta: {
@@ -1023,8 +820,8 @@ function volumeAnomalyNote(prices) {
   return noteParts.join(" ");
 }
 
-function newsCards(items = fallbackNewsItems) {
-  return items
+function newsCards() {
+  return newsItems
     .map(
       (item) => `<article class="news-card">
         <div><span>${esc(item.source)}</span><time>${esc(item.date)}</time></div>
@@ -1036,8 +833,8 @@ function newsCards(items = fallbackNewsItems) {
     .join("");
 }
 
-function compactNewsList(items = fallbackNewsItems) {
-  return newsListMarkup(items);
+function compactNewsList() {
+  return newsListMarkup(newsItems);
 }
 
 function newsListMarkup(items) {
@@ -1054,7 +851,7 @@ function newsLineMarkup(item) {
       </article>`;
 }
 
-function compactNewsListWithMidday(middaySnapshot, items = fallbackNewsItems) {
+function compactNewsListWithMidday(middaySnapshot) {
   const middayNews = middaySnapshot
     ? [
         {
@@ -1066,32 +863,13 @@ function compactNewsListWithMidday(middaySnapshot, items = fallbackNewsItems) {
         },
       ]
     : [];
-  return [...middayNews, ...items]
+  return [...middayNews, ...newsItems]
     .map((item) => newsLineMarkup(item))
     .join("");
 }
 
 function serializeData(data) {
   return JSON.stringify(data).replaceAll("</script", "<\\/script");
-}
-
-function malaysiaDateTimeLabel(date) {
-  const parts = Object.fromEntries(
-    new Intl.DateTimeFormat("en-GB", {
-      timeZone: "Asia/Kuala_Lumpur",
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      hourCycle: "h23",
-      timeZoneName: "short",
-    })
-      .formatToParts(date)
-      .filter((part) => part.type !== "literal")
-      .map((part) => [part.type, part.value]),
-  );
-  return `${parts.year}-${parts.month}-${parts.day} ${parts.hour}:${parts.minute} ${parts.timeZoneName || "GMT+8"}`;
 }
 
 function buildHtml(model) {
@@ -1132,9 +910,6 @@ function buildHtml(model) {
   const middayNote = midday
     ? `<div class="data-note"><b>午盘快照：</b>${esc(midday.summary)} 数据源：${esc(midday.source)}。</div>`
     : "";
-  const updateTitle = `页面生成：${model.generatedLabel}；主要行情日：${latest.date}`;
-  const updateBadge = `<small class="section-time" title="${esc(updateTitle)}">更新：${esc(model.generatedShortLabel)}</small>`;
-  const updateInline = `<span class="inline-update" title="${esc(updateTitle)}">更新：${esc(model.generatedShortLabel)}</span>`;
 
   return `<!doctype html>
 <html lang="zh-CN">
@@ -1177,10 +952,8 @@ function buildHtml(model) {
       border-top: 8px solid #202634;
       color: #fff;
     }
-    .nav { display: flex; gap: 19px; align-items: center; font-weight: 700; white-space: nowrap; }
-    .nav a, .nav b { color: #fff; text-decoration: none; }
-    .nav a:hover { color: var(--blue); text-decoration: none; }
-    .nav .active { color: var(--blue); }
+    .nav { display: flex; gap: 19px; align-items: center; font-weight: 700; }
+    .nav b:first-child { background: rgba(255,255,255,.12); padding: 11px 10px; margin-left: -10px; }
     .toolbar { display: flex; gap: 14px; align-items: center; font-size: 12px; }
     .pill { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); border-radius: 999px; padding: 4px 9px; color: var(--muted); background: var(--panel2); }
     main { padding: 16px 32px 28px; max-width: 1500px; margin: 0 auto; }
@@ -1214,7 +987,6 @@ function buildHtml(model) {
       cursor: pointer;
     }
     .export-toolbar button:hover { border-color: var(--blue); color: var(--blue); }
-    .export-toolbar button:disabled { cursor: wait; opacity: .68; }
     .export-status { color: var(--muted); font-size: 11px; margin-left: 4px; }
     .grid4 { display: grid; grid-template-columns: repeat(4, minmax(250px, 1fr)); gap: 16px; margin-top: 16px; }
     .market-card, .panel, .ticker-table, .sector-card, .news-card, .recommend-block {
@@ -1228,10 +1000,6 @@ function buildHtml(model) {
     .market-title h2 { margin: 0; color: #abb5c8; font-size: 18px; }
     .market-title span { color: var(--muted); font-size: 11px; }
     .market-title strong { font-size: 13px; }
-    .section-title { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin: 0 0 9px; }
-    .section-title h2 { margin: 0; }
-    .section-time { display: block; color: var(--muted); font-size: 10px; font-weight: 600; line-height: 1.25; margin-top: 2px; white-space: nowrap; }
-    .inline-update { color: var(--muted); font-size: 9px; font-weight: 600; white-space: nowrap; }
     canvas { width: 100%; display: block; }
     .klci-chart { height: 138px; }
     .sentiment-fallback {
@@ -1292,8 +1060,7 @@ function buildHtml(model) {
     .content-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(340px, .8fr); gap: 14px; margin-top: 10px; align-items: start; }
     .tables-grid { display: grid; grid-template-columns: repeat(2, minmax(235px, 1fr)); gap: 8px; min-width: 0; }
     .ticker-table { overflow: hidden; min-width: 0; }
-    .table-head { display: flex; justify-content: space-between; gap: 10px; padding: 9px 10px 3px; color: var(--blue); font-weight: 700; }
-    .table-head > span:last-child { text-align: right; }
+    .table-head { display: flex; justify-content: space-between; padding: 9px 10px 3px; color: var(--blue); font-weight: 700; }
     table { width: 100%; border-collapse: collapse; table-layout: fixed; }
     th { color: #c4ccd9; text-align: right; font-weight: 600; padding: 4px 8px; border-bottom: 1px solid #323b4c; }
     th:first-child, td:first-child { text-align: left; }
@@ -1376,7 +1143,7 @@ function buildHtml(model) {
 </head>
 <body>
   <div class="topbar">
-    <div class="nav"><b class="active">Dashboard</b><a href="warrants_filtered.html">Warrants</a><b>News</b><b>Screener</b><b>Charts</b><b>Maps</b></div>
+    <div class="nav"><b>Home</b><b>News</b><b>Screener</b><b>Charts</b><b>Maps</b><b>Portfolio</b><b>Calendar</b></div>
     <div class="toolbar"><span>${esc(model.generatedLabel)}</span><span class="pill">Theme</span><b>Malaysia</b></div>
   </div>
   <main>
@@ -1386,67 +1153,65 @@ function buildHtml(model) {
     </section>
 
     <section class="export-toolbar" aria-label="Export tools">
-      <button type="button" id="refreshPageBtn">更新页面</button>
       <button type="button" id="exportPngBtn">导出截图 PNG</button>
       <button type="button" id="exportReportBtn">导出报告 HTML</button>
-      <span class="export-status" id="exportStatus">资料生成：${esc(model.generatedLabel)}。若当前是 file:/// 本地页面，按钮只会重载本机 HTML，不会触发 15 分钟自动抓数。</span>
+      <span class="export-status" id="exportStatus">PNG 会要求选择当前页面/窗口；手动导出不会影响每日自动更新。</span>
     </section>
 
     <section class="grid4">
       <article class="market-card">
-        <div class="market-title"><h2>FBM KLCI</h2><span>30D daily OHLC · ${esc(latest.date)} · 更新 ${esc(model.generatedShortLabel)}</span><strong class="${latest.change >= 0 ? "up" : "down"}">${fmt(latest.close, 2)} ${pct(latest.pctChange * 100)}</strong></div>
+        <div class="market-title"><h2>FBM KLCI</h2><span>30D daily OHLC · ${esc(latest.date)}</span><strong class="${latest.change >= 0 ? "up" : "down"}">${fmt(latest.close, 2)} ${pct(latest.pctChange * 100)}</strong></div>
         <canvas class="klci-chart" id="klciChart"></canvas>
       </article>
       <article class="market-card">
-        <div class="market-title"><h2>Daily Candle</h2><span>8am-5pm · 更新 ${esc(model.generatedShortLabel)}</span><strong>${fmt(latest.open, 2)} / ${fmt(latest.close, 2)}</strong></div>
+        <div class="market-title"><h2>Daily Candle</h2><span>8am-5pm · from daily OHLC</span><strong>${fmt(latest.open, 2)} / ${fmt(latest.close, 2)}</strong></div>
         <canvas class="klci-chart" id="dailyCandleChart"></canvas>
       </article>
       <article class="market-card">
-        <div class="market-title"><h2>Volume</h2><span>${volumeSubtitle} · 更新 ${esc(model.generatedShortLabel)}</span><strong>${latestVolumeLabel}</strong></div>
+        <div class="market-title"><h2>Volume</h2><span>${volumeSubtitle}</span><strong>${latestVolumeLabel}</strong></div>
         <canvas class="klci-chart" id="volumeChart"></canvas>
       </article>
       <article class="market-card">
-        <div class="market-title"><h2>Sentiment</h2><span>${breadthSubtitle} · 更新 ${esc(model.generatedShortLabel)}</span><strong class="${latestSummary.gainers >= latestSummary.losers ? "up" : "down"}">${breadthPct.toFixed(1)}% Bull</strong></div>
+        <div class="market-title"><h2>Sentiment</h2><span>${breadthSubtitle}</span><strong class="${latestSummary.gainers >= latestSummary.losers ? "up" : "down"}">${breadthPct.toFixed(1)}% Bull</strong></div>
         ${sentimentBody}
       </article>
     </section>
 
     <section class="data-notes">
       ${middayNote}
-      <div class="data-note"><b>自动更新说明：</b>线上 GitHub Pages 由 GitHub Actions 在交易时段约每 15 分钟重新生成一次；若当前地址是 file:/// 本地页面，浏览器只会读取本机这份 index.html，不会自动同步线上更新。页面各区块旁的“更新”时间就是这份 HTML 的生成时间。</div>
       <div class="data-note"><b>Volume 数据说明：</b>${esc(model.volumeNote)}</div>
       <div class="data-note"><b>Sector 1D 数据说明：</b>Sector 分组使用 Bursa Malaysia sector classification 大类名称；右上角数字是该板块成分股按市值加权后的当天涨跌幅。小线图是用成分股涨跌、成交额与市场宽度生成的 1D 快速走势视图，不是逐笔/逐分钟行情。</div>
     </section>
 
     <section class="market-context">
       <div class="panel">
-        <div class="section-title"><h2>FBM KLCI 大市走势与交易解读</h2>${updateBadge}</div>
+        <h2>FBM KLCI 大市走势与交易解读</h2>
         <ul>${model.analysis.map((line) => `<li>${esc(line)}</li>`).join("")}</ul>
       </div>
       <div class="panel">
-        <div class="section-title"><h2>大市新闻与情绪</h2>${updateBadge}</div>
-        <div class="news-lines">${compactNewsListWithMidday(model.middaySnapshot, model.newsItems)}</div>
+        <h2>大市新闻与情绪</h2>
+        <div class="news-lines">${compactNewsListWithMidday(model.middaySnapshot)}</div>
       </div>
     </section>
 
     <section class="breadth-row">
-      <div class="breadth-card"><small>Advancing / Declining ${updateInline}</small><b><span class="up">${latestSummary.gainers}</span><span class="down">${latestSummary.losers}</span></b><div class="bar"><i style="width:${advPct}%"></i><i style="width:${decPct}%"></i></div></div>
-      <div class="breadth-card"><small>30D KLCI ${updateInline}</small><b><span class="${klci30 >= 0 ? "up" : "down"}">${pct(klci30)}</span><span>${fmt(prev30?.close ?? latest.close, 2)}</span></b><div class="bar"><i style="width:${Math.max(0, 50 + klci30 * 4)}%"></i><i style="width:${Math.max(0, 50 - klci30 * 4)}%"></i></div></div>
-      <div class="breadth-card"><small>Top Sector Turnover ${updateInline}</small><b><span>${esc(model.sectors[0]?.sectorZh)}</span><span>RM ${compact(model.sectors[0]?.turnover)}</span></b><div class="bar"><i style="width:64%"></i><i style="width:36%"></i></div></div>
-      <div class="breadth-card"><small>Active Counters ${updateInline}</small><b><span>${model.stocks.length}</span><span>stocks</span></b><div class="bar"><i style="width:58%"></i><i style="width:42%"></i></div></div>
-      <div class="breadth-card"><small>News Tone ${updateInline}</small><b><span class="yellow">Mixed</span><span>rotation</span></b><div class="bar"><i style="width:52%"></i><i style="width:48%"></i></div></div>
+      <div class="breadth-card"><small>Advancing / Declining</small><b><span class="up">${latestSummary.gainers}</span><span class="down">${latestSummary.losers}</span></b><div class="bar"><i style="width:${advPct}%"></i><i style="width:${decPct}%"></i></div></div>
+      <div class="breadth-card"><small>30D KLCI</small><b><span class="${klci30 >= 0 ? "up" : "down"}">${pct(klci30)}</span><span>${fmt(prev30?.close ?? latest.close, 2)}</span></b><div class="bar"><i style="width:${Math.max(0, 50 + klci30 * 4)}%"></i><i style="width:${Math.max(0, 50 - klci30 * 4)}%"></i></div></div>
+      <div class="breadth-card"><small>Top Sector Turnover</small><b><span>${esc(model.sectors[0]?.sectorZh)}</span><span>RM ${compact(model.sectors[0]?.turnover)}</span></b><div class="bar"><i style="width:64%"></i><i style="width:36%"></i></div></div>
+      <div class="breadth-card"><small>Active Counters</small><b><span>${model.stocks.length}</span><span>stocks</span></b><div class="bar"><i style="width:58%"></i><i style="width:42%"></i></div></div>
+      <div class="breadth-card"><small>News Tone</small><b><span class="yellow">Mixed</span><span>rotation</span></b><div class="bar"><i style="width:52%"></i><i style="width:48%"></i></div></div>
     </section>
 
     <section class="content-grid">
       <div class="tables-grid">
-        <div class="ticker-table"><div class="table-head"><span>Top Volume ${updateBadge}</span><span>Daily</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>Volume</th></tr></thead><tbody>${tableRows(model.tables.topVolume)}</tbody></table></div>
-        <div class="ticker-table"><div class="table-head"><span>Top Turnover ${updateBadge}</span><span>Daily</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>Value</th></tr></thead><tbody>${tableRows(model.tables.topTurnover, "turnover")}</tbody></table></div>
-        <div class="ticker-table"><div class="table-head"><span>Top Gainers ${updateBadge}</span><span>Value</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>RM</th></tr></thead><tbody>${tableRows(model.tables.topGainers, "change")}</tbody></table></div>
-        <div class="ticker-table"><div class="table-head"><span>Top Losers ${updateBadge}</span><span>Value</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>RM</th></tr></thead><tbody>${tableRows(model.tables.topLosers, "change")}</tbody></table></div>
+        <div class="ticker-table"><div class="table-head"><span>Top Volume</span><span>Daily</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>Volume</th></tr></thead><tbody>${tableRows(model.tables.topVolume)}</tbody></table></div>
+        <div class="ticker-table"><div class="table-head"><span>Top Turnover</span><span>Daily</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>Value</th></tr></thead><tbody>${tableRows(model.tables.topTurnover, "turnover")}</tbody></table></div>
+        <div class="ticker-table"><div class="table-head"><span>Top Gainers</span><span>Value</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>RM</th></tr></thead><tbody>${tableRows(model.tables.topGainers, "change")}</tbody></table></div>
+        <div class="ticker-table"><div class="table-head"><span>Top Losers</span><span>Value</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>RM</th></tr></thead><tbody>${tableRows(model.tables.topLosers, "change")}</tbody></table></div>
       </div>
       <div class="right-stack">
         <div class="panel">
-        <div class="section-title"><h2>Sector Heat Map</h2>${updateBadge}</div>
+        <h2>Sector Heat Map</h2>
           <div class="heatmap">${makeHeatmap(model.sectors)}</div>
           <div class="heat-legend">
             <span><i style="background:hsl(145 72% 44%)"></i>上涨较强</span>
@@ -1462,7 +1227,7 @@ function buildHtml(model) {
 
     <section>
       <div class="panel">
-        <div class="section-title"><h2>Top 5 Bursa Sector · 1D 走势</h2>${updateBadge}</div>
+        <h2>Top 5 Bursa Sector · 1D 走势</h2>
         <div class="sector-grid">${sectorCards(model.sectors)}</div>
         <p class="source-line">此处 Top 5 sector 按 Bursa Malaysia sector classification 大类归并后，以市值加权涨跌幅由强到弱排序；右上角百分比 = 市值加权 sector 当天涨跌幅；底部 Adv / Dec = 该板块上涨/下跌家数；Turnover = 板块成分股成交额合计。</p>
       </div>
@@ -1470,13 +1235,13 @@ function buildHtml(model) {
 
     <section>
       <div class="panel">
-        <div class="section-title"><h2>各 Bursa Sector 量化候选股与股价</h2>${updateBadge}</div>
+        <h2>各 Bursa Sector 量化候选股与股价</h2>
         <div class="recommendations">${recommendationRows(model.sectors)}</div>
         <p class="source-line">Sector 按市值加权涨跌幅由强到弱排列；每个 Bursa Malaysia sector classification 大类列出 5 个量化候选股。候选股按技术评分、流动性、成交额、近期表现、估值与股息等字段综合排序。这不是投资建议，买卖前仍需核对公司公告、财报和个人风险承受能力。</p>
       </div>
     </section>
 
-    <p class="source-line">数据来源：Yahoo Finance ^KLSE chart API（FBM KLCI 日线/收盘）、TradingView Malaysia Screener（个股快照与市场宽度）、Bursa Malaysia sector classification / sectorial index categories。新闻优先参考 Bursa Malaysia 官方相关内容；若官方网页在自动环境触发 Cloudflare 验证，则通过 Google News RSS 聚合 Bursa / FBM KLCI，并纳入 Moomoo、星洲财经等辅助来源。</p>
+    <p class="source-line">数据来源：Yahoo Finance ^KLSE chart API（FBM KLCI 日线/收盘）、TradingView Malaysia Screener（个股快照与市场宽度）、Bursa Malaysia sector classification / sectorial index categories、The Star、Bernama、BusinessToday。官方 Bursa Malaysia 网站在本机命令行访问时触发 Cloudflare 验证，因此本页用可读取市场数据源交叉整理。</p>
   </main>
 
   <script>
@@ -1490,8 +1255,6 @@ function buildHtml(model) {
         spark: sector.spark,
         weightedChange: sector.weightedChange,
       })),
-      generatedLabel: model.generatedLabel,
-      generatedShortLabel: model.generatedShortLabel,
     })};
 
     function css(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
@@ -1611,21 +1374,6 @@ function buildHtml(model) {
     function setExportStatus(text) {
       const status = document.getElementById("exportStatus");
       if (status) status.textContent = text;
-    }
-    function refreshPage() {
-      const button = document.getElementById("refreshPageBtn");
-      if (button) {
-        button.disabled = true;
-        button.textContent = "更新中...";
-      }
-      if (window.location.protocol === "file:") {
-        setExportStatus("当前打开的是本地 file:/// 页面；这个按钮只能重载本机 index.html，不能触发 GitHub Action 抓新资料。要看 15 分钟自动更新，请打开线上 GitHub Pages 页面，或先在本机运行 npm run update。");
-      } else {
-        setExportStatus("正在绕过浏览器缓存，重新载入最新已发布页面...");
-      }
-      const url = new URL(window.location.href);
-      url.searchParams.set("refresh", Date.now().toString());
-      window.location.replace(url.toString());
     }
     function markReportExported(type) {
       const payload = { type, exportedAt: new Date().toISOString(), page: location.href };
@@ -1795,7 +1543,6 @@ function buildHtml(model) {
         drawLine(canvas, JSON.parse(canvas.dataset.series), { digits: 1 });
       });
     }
-    document.getElementById("refreshPageBtn")?.addEventListener("click", refreshPage);
     document.getElementById("exportPngBtn")?.addEventListener("click", exportScreenshotPng);
     document.getElementById("exportReportBtn")?.addEventListener("click", exportReportHtml);
     window.addEventListener("resize", render);
@@ -1806,7 +1553,7 @@ function buildHtml(model) {
 }
 
 async function main() {
-  const [klciRaw, stocks, newsItems] = await Promise.all([fetchKlciHistory(), fetchStocks(), fetchLatestNews()]);
+  const [klciRaw, stocks] = await Promise.all([fetchKlciHistory(), fetchStocks()]);
   const yahoo = normalizeYahooKlci(klciRaw);
   const market = {
     klciPrices: yahoo.klciPrices,
@@ -1838,7 +1585,6 @@ async function main() {
       timeZone: "Asia/Kuala_Lumpur",
       timeZoneName: "short",
     }),
-    generatedShortLabel: malaysiaDateTimeLabel(now),
     generatedTime: now.toLocaleTimeString("en-US", {
       hour: "2-digit",
       minute: "2-digit",
@@ -1853,7 +1599,6 @@ async function main() {
     sectors,
     tables,
     analysis,
-    newsItems,
   };
 
   await fs.writeFile(outputPath, buildHtml(model), "utf8");
@@ -1867,7 +1612,6 @@ async function main() {
         yahooMeta: market.latestMeta,
         middaySnapshot,
         latestSummary,
-        news: newsItems.map((item) => `${item.date} ${item.source}: ${item.title}`),
         topVolume: tables.topVolume.slice(0, 3).map((s) => `${s.ticker} ${compact(s.volume)}`),
       },
       null,
