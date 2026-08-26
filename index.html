@@ -239,44 +239,44 @@
 <body>
   <div class="topbar">
     <div class="nav"><b class="active">Dashboard</b><a href="warrants_filtered.html">Warrants</a><b>News</b><b>Screener</b><b>Charts</b><b>Maps</b></div>
-    <div class="toolbar"><span>Wed, Aug 26, 2026, 08:45 AM GMT+8</span><span class="pill">Theme</span><b>Malaysia</b></div>
+    <div class="toolbar"><span>Wed, Aug 26, 2026, 10:19 AM GMT+8</span><span class="pill">Theme</span><b>Malaysia</b></div>
   </div>
   <main>
     <section class="headline">
-      <div><span class="yellow">✦</span> Today, 08:45 AM <b>FBM KLCI 回落 -0.15 点至 1,736.33</b>，市场焦点：手套股、AI/芯片、油价与权重股获利回吐。</div>
-      <span><b class="down">-0.01%</b></span>
+      <div><span class="yellow">✦</span> Today, 10:19 AM <b>FBM KLCI 走高 0.00 点至 1,743.32</b>，市场焦点：手套股、AI/芯片、油价与权重股获利回吐。</div>
+      <span><b class="up">0.00%</b></span>
     </section>
 
     <section class="export-toolbar" aria-label="Export tools">
       <button type="button" id="refreshPageBtn">更新页面</button>
       <button type="button" id="exportPngBtn">导出截图 PNG</button>
       <button type="button" id="exportReportBtn">导出报告 HTML</button>
-      <span class="export-status" id="exportStatus">资料生成：Wed, Aug 26, 2026, 08:45 AM GMT+8。若当前是 file:/// 本地页面，按钮只会重载本机 HTML，不会触发 15 分钟自动抓数。</span>
+      <span class="export-status" id="exportStatus">资料生成：Wed, Aug 26, 2026, 10:19 AM GMT+8。若当前是 file:/// 本地页面，按钮只会重载本机 HTML，不会触发 15 分钟自动抓数。</span>
     </section>
 
     <section class="grid4">
       <article class="market-card">
-        <div class="market-title"><h2>FBM KLCI</h2><span>30D daily OHLC · 2026-08-24 · 更新 2026-08-26 08:45 GMT+8</span><strong class="down">1,736.33 -0.01%</strong></div>
+        <div class="market-title"><h2>FBM KLCI</h2><span>30D daily OHLC · 2026-08-26 · 更新 2026-08-26 10:19 GMT+8</span><strong class="up">1,743.32 0.00%</strong></div>
         <canvas class="klci-chart" id="klciChart"></canvas>
       </article>
       <article class="market-card">
-        <div class="market-title"><h2>Daily Candle</h2><span>8am-5pm · 更新 2026-08-26 08:45 GMT+8</span><strong>1,738.31 / 1,736.33</strong></div>
+        <div class="market-title"><h2>Daily Candle</h2><span>8am-5pm · 更新 2026-08-26 10:19 GMT+8</span><strong>1,739.40 / 1,743.32</strong></div>
         <canvas class="klci-chart" id="dailyCandleChart"></canvas>
       </article>
       <article class="market-card">
-        <div class="market-title"><h2>Volume</h2><span>30 trading days · 更新 2026-08-26 08:45 GMT+8</span><strong>157.04M</strong></div>
+        <div class="market-title"><h2>Volume</h2><span>30 trading days · latest missing · 更新 2026-08-26 10:19 GMT+8</span><strong>n/a</strong></div>
         <canvas class="klci-chart" id="volumeChart"></canvas>
       </article>
       <article class="market-card">
-        <div class="market-title"><h2>Sentiment</h2><span>TradingView latest breadth · 更新 2026-08-26 08:45 GMT+8</span><strong class="down">43.4% Bull</strong></div>
+        <div class="market-title"><h2>Sentiment</h2><span>TradingView latest breadth · 更新 2026-08-26 10:19 GMT+8</span><strong class="up">56.9% Bull</strong></div>
         <div class="sentiment-fallback">
           <div class="sentiment-meter">
-            <div class="sentiment-meter-fill" style="width:43.4%"></div>
+            <div class="sentiment-meter-fill" style="width:56.9%"></div>
           </div>
           <div class="sentiment-facts">
-            <div><small>上涨</small><b class="up">267</b></div>
-            <div><small>下跌</small><b class="down">348</b></div>
-            <div><small>状态</small><b class="down">偏空</b></div>
+            <div><small>上涨</small><b class="up">333</b></div>
+            <div><small>下跌</small><b class="down">252</b></div>
+            <div><small>状态</small><b class="up">偏多</b></div>
           </div>
           <p>目前只有最新 breadth 快照，没有足够历史点可画趋势。</p>
         </div>
@@ -286,25 +286,21 @@
     <section class="data-notes">
       
       <div class="data-note"><b>自动更新说明：</b>线上 GitHub Pages 由 GitHub Actions 在交易时段约每 15 分钟重新生成一次；若当前地址是 file:/// 本地页面，浏览器只会读取本机这份 index.html，不会自动同步线上更新。页面各区块旁的“更新”时间就是这份 HTML 的生成时间。</div>
-      <div class="data-note"><b>Volume 数据说明：</b>Volume 图为 Yahoo Finance `^KLSE` 最近 30 个交易日量能；周六、周日不包含在图内。若最新一日显示 0，通常表示指数成交量字段未更新或该源未提供。</div>
+      <div class="data-note"><b>Volume 数据说明：</b>Volume 图为 Yahoo Finance `^KLSE` 最近 30 个交易日量能，周六、周日不包含在图内。 缺失日期：2026-08-26 Wed source missing。 若最新一日显示缺失或 0，通常表示指数成交量字段未更新或该源未提供。</div>
       <div class="data-note"><b>Sector 1D 数据说明：</b>Sector 分组使用 Bursa Malaysia sector classification 大类名称；右上角数字是该板块成分股按市值加权后的当天涨跌幅。小线图是用成分股涨跌、成交额与市场宽度生成的 1D 快速走势视图，不是逐笔/逐分钟行情。</div>
     </section>
 
     <section class="market-context">
       <div class="panel">
-        <div class="section-title"><h2>FBM KLCI 大市走势与交易解读</h2><small class="section-time" title="页面生成：Wed, Aug 26, 2026, 08:45 AM GMT+8；主要行情日：2026-08-24">更新：2026-08-26 08:45 GMT+8</small></div>
-        <ul><li>FBM KLCI 最新收在 1,736.33，日变动 -0.15 点（-0.01%），近 30 个交易日累计 +0.95%。</li><li>区间高低为 1,750.41 / 1,697.76；当前站上 20 日均线 1,731.17，短线趋势仍需观察量能能否配合。</li><li>市场宽度偏谨慎，跌股 348 多于涨股 267；成交活跃集中在 交通与物流，显示资金在主题股与权重股之间轮动。</li><li>新闻面显示：区域 AI 风险偏好提供支撑，但油价、地缘政治与权重股获利回吐压抑尾盘，整体情绪属于“指数偏弱、题材仍活跃”。</li></ul>
+        <div class="section-title"><h2>FBM KLCI 大市走势与交易解读</h2><small class="section-time" title="页面生成：Wed, Aug 26, 2026, 10:19 AM GMT+8；主要行情日：2026-08-26">更新：2026-08-26 10:19 GMT+8</small></div>
+        <ul><li>FBM KLCI 最新收在 1,743.32，日变动 0.00 点（0.00%），近 30 个交易日累计 +1.72%。</li><li>区间高低为 1,750.41 / 1,697.76；当前站上 20 日均线 1,732.71，短线趋势仍需观察量能能否配合。</li><li>市场宽度偏正面，涨股 333 多于跌股 252；成交活跃集中在 公用事业，显示资金在主题股与权重股之间轮动。</li><li>新闻面显示：区域 AI 风险偏好提供支撑，但油价、地缘政治与权重股获利回吐压抑尾盘，整体情绪属于“指数偏弱、题材仍活跃”。</li></ul>
       </div>
       <div class="panel">
-        <div class="section-title"><h2>大市新闻与情绪</h2><small class="section-time" title="页面生成：Wed, Aug 26, 2026, 08:45 AM GMT+8；主要行情日：2026-08-24">更新：2026-08-26 08:45 GMT+8</small></div>
+        <div class="section-title"><h2>大市新闻与情绪</h2><small class="section-time" title="页面生成：Wed, Aug 26, 2026, 10:19 AM GMT+8；主要行情日：2026-08-26">更新：2026-08-26 10:19 GMT+8</small></div>
         <div class="news-lines"><article class="news-line">
         <div><b>Bursa Malaysia</b><time>2026-08-26</time></div>
         <h3><a href="https://news.google.com/rss/articles/CBMieEFVX3lxTE10anl6ZUlWa1ZTVnAzM1ZnV3J0WU41M3IyYXliMXRsa1JFZW5sMU8wM0Vvc0JYUVZ0T1pSSjMxejFEM05kVW9YWllqand2VGNjcjJEQU9BVFlIekFSUDNPMmgxU3Y2Tm9nTHYzdFJUZ2w0OEtvaV9sTw?oc=5" target="_blank" rel="noopener">Market Data Overview - Bursa Malaysia - Bursa Malaysia</a></h3>
         <p>Bursa Malaysia 最新 Bursa / FBM KLCI 相关新闻，作为当天大市情绪参考。</p>
-      </article><article class="news-line">
-        <div><b>The Star</b><time>2026-08-25</time></div>
-        <h3><a href="https://news.google.com/rss/articles/CBMisAFBVV95cUxQV1FlUTU4dlRKaHNGMjA0anhYc2ZvSmg1dFdIWGhmblEteHFEZVhTSzgzRTVZelhOSDZ3Vjc0NlM4c1F2UU1CaEVqOHluWkN5ZjNWM1BlejBlZXY1VlpFbkxpLUU1WGVFSDhiNkExbEFWdDdGWFY5d1htaEx2Qm1wc003NDFESy1UUTc4X3VheFZDMi1oa1RueldKcFEzTlBuSnQ2enNZWnhoRXIyc2hydw?oc=5" target="_blank" rel="noopener">Bursa Malaysia ends flat as market awaits earnings - The Star</a></h3>
-        <p>收盘报道显示市场面对获利回吐或权重股压力，适合配合上方涨跌家数与成交额观察情绪。</p>
       </article><article class="news-line">
         <div><b>Bernama</b><time>2026-08-25</time></div>
         <h3><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE1tZXpyQ0pQOGdHSGNVdGZMVkFDWEtaalZzTGFFV09KV2lObEhzVnloRS1ka25GQVJSUnRKeVVVU1FpMktWZTd6SmtNZFNTYmFsWmVaWE9SVVBOejNTTWw0cGEwRQ?oc=5" target="_blank" rel="noopener">Bursa Malaysia Ends Flat As Market Awaits Earnings For Direction - Bernama</a></h3>
@@ -313,150 +309,154 @@
         <div><b>Bernama</b><time>2026-08-25</time></div>
         <h3><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTFA4YXlFVHBSTTktcEkwX2o1WFRaVXpOd19QcUllRGxpV29qblNDMlNWZUlHWXBNNmRqRXYtRHNpa1ZyUnhFWWpQU1V6ZWlnS29XWDlvT0FfWTQxQ0hob0s5T3VJTQ?oc=5" target="_blank" rel="noopener">Bursa Malaysia Opens Higher On Resilient Domestic Demand - Bernama</a></h3>
         <p>早盘报道显示马股开盘偏强，通常与区域市场、权重股买盘或科技/公用事业题材有关。</p>
+      </article><article class="news-line">
+        <div><b>BernamaBiz</b><time>2026-08-25</time></div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiVEFVX3lxTE90RHphb25LNkJTRUdVck9fbVQ1Y0dYOHkyd3NHaTBLSGM2Z25BMUg5cHFBbGFuNF9MaWl5aHdLeXZFeGF3TnFza09wSTFtMnVKbGxUQg?oc=5" target="_blank" rel="noopener">KLCI Futures End Mostly Higher - BernamaBiz</a></h3>
+        <p>新闻显示逢低买盘或区域风险偏好改善，对当天市场情绪形成支撑。</p>
       </article></div>
       </div>
     </section>
 
     <section class="breadth-row">
-      <div class="breadth-card"><small>Advancing / Declining <span class="inline-update" title="页面生成：Wed, Aug 26, 2026, 08:45 AM GMT+8；主要行情日：2026-08-24">更新：2026-08-26 08:45 GMT+8</span></small><b><span class="up">267</span><span class="down">348</span></b><div class="bar"><i style="width:28.075709779179807%"></i><i style="width:36.59305993690852%"></i></div></div>
-      <div class="breadth-card"><small>30D KLCI <span class="inline-update" title="页面生成：Wed, Aug 26, 2026, 08:45 AM GMT+8；主要行情日：2026-08-24">更新：2026-08-26 08:45 GMT+8</span></small><b><span class="up">+0.95%</span><span>1,719.94</span></b><div class="bar"><i style="width:53.81176441196819%"></i><i style="width:46.18823558803181%"></i></div></div>
-      <div class="breadth-card"><small>Top Sector Turnover <span class="inline-update" title="页面生成：Wed, Aug 26, 2026, 08:45 AM GMT+8；主要行情日：2026-08-24">更新：2026-08-26 08:45 GMT+8</span></small><b><span>交通与物流</span><span>RM 161.25M</span></b><div class="bar"><i style="width:64%"></i><i style="width:36%"></i></div></div>
-      <div class="breadth-card"><small>Active Counters <span class="inline-update" title="页面生成：Wed, Aug 26, 2026, 08:45 AM GMT+8；主要行情日：2026-08-24">更新：2026-08-26 08:45 GMT+8</span></small><b><span>951</span><span>stocks</span></b><div class="bar"><i style="width:58%"></i><i style="width:42%"></i></div></div>
-      <div class="breadth-card"><small>News Tone <span class="inline-update" title="页面生成：Wed, Aug 26, 2026, 08:45 AM GMT+8；主要行情日：2026-08-24">更新：2026-08-26 08:45 GMT+8</span></small><b><span class="yellow">Mixed</span><span>rotation</span></b><div class="bar"><i style="width:52%"></i><i style="width:48%"></i></div></div>
+      <div class="breadth-card"><small>Advancing / Declining <span class="inline-update" title="页面生成：Wed, Aug 26, 2026, 10:19 AM GMT+8；主要行情日：2026-08-26">更新：2026-08-26 10:19 GMT+8</span></small><b><span class="up">333</span><span class="down">252</span></b><div class="bar"><i style="width:33.9795918367347%"></i><i style="width:25.71428571428571%"></i></div></div>
+      <div class="breadth-card"><small>30D KLCI <span class="inline-update" title="页面生成：Wed, Aug 26, 2026, 10:19 AM GMT+8；主要行情日：2026-08-26">更新：2026-08-26 10:19 GMT+8</span></small><b><span class="up">+1.72%</span><span>1,713.76</span></b><div class="bar"><i style="width:56.89943430935353%"></i><i style="width:43.10056569064647%"></i></div></div>
+      <div class="breadth-card"><small>Top Sector Turnover <span class="inline-update" title="页面生成：Wed, Aug 26, 2026, 10:19 AM GMT+8；主要行情日：2026-08-26">更新：2026-08-26 10:19 GMT+8</span></small><b><span>公用事业</span><span>RM 57.79M</span></b><div class="bar"><i style="width:64%"></i><i style="width:36%"></i></div></div>
+      <div class="breadth-card"><small>Active Counters <span class="inline-update" title="页面生成：Wed, Aug 26, 2026, 10:19 AM GMT+8；主要行情日：2026-08-26">更新：2026-08-26 10:19 GMT+8</span></small><b><span>980</span><span>stocks</span></b><div class="bar"><i style="width:58%"></i><i style="width:42%"></i></div></div>
+      <div class="breadth-card"><small>News Tone <span class="inline-update" title="页面生成：Wed, Aug 26, 2026, 10:19 AM GMT+8；主要行情日：2026-08-26">更新：2026-08-26 10:19 GMT+8</span></small><b><span class="yellow">Mixed</span><span>rotation</span></b><div class="bar"><i style="width:52%"></i><i style="width:48%"></i></div></div>
     </section>
 
     <section class="content-grid">
       <div class="tables-grid">
-        <div class="ticker-table"><div class="table-head"><span>Top Volume <small class="section-time" title="页面生成：Wed, Aug 26, 2026, 08:45 AM GMT+8；主要行情日：2026-08-24">更新：2026-08-26 08:45 GMT+8</small></span><span>Daily</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>Volume</th></tr></thead><tbody><tr>
+        <div class="ticker-table"><div class="table-head"><span>Top Volume <small class="section-time" title="页面生成：Wed, Aug 26, 2026, 10:19 AM GMT+8；主要行情日：2026-08-26">更新：2026-08-26 10:19 GMT+8</small></span><span>Daily</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>Volume</th></tr></thead><tbody><tr>
+        <td><b>NATGATE</b><span>Nationgate Holdings Berhad</span></td>
+        <td>1.71</td>
+        <td class="up">+14.77%</td>
+        <td>65.34M</td>
+      </tr><tr>
         <td><b>ZETRIX</b><span>Zetrix AI Bhd</span></td>
-        <td>0.655</td>
-        <td class="up">+0.77%</td>
-        <td>98.55M</td>
+        <td>0.665</td>
+        <td class="up">+1.53%</td>
+        <td>28.88M</td>
       </tr><tr>
-        <td><b>DNEX</b><span>Dagang NeXchange Berhad</span></td>
-        <td>0.480</td>
-        <td class="down">-5.88%</td>
-        <td>72.32M</td>
-      </tr><tr>
-        <td><b>KPJ</b><span>KPJ Healthcare Bhd.</span></td>
-        <td>2.80</td>
-        <td class="down">-10.26%</td>
-        <td>66.54M</td>
-      </tr><tr>
-        <td><b>AAGB</b><span>AirAsia Group Bhd.</span></td>
-        <td>0.780</td>
-        <td class="down">-3.70%</td>
-        <td>64.43M</td>
-      </tr><tr>
-        <td><b>NEXG</b><span>NEXG Bhd</span></td>
-        <td>0.270</td>
-        <td class="down">-15.62%</td>
-        <td>60.08M</td>
+        <td><b>NIHSIN</b><span>Ni Hsin Group Bhd</span></td>
+        <td>0.160</td>
+        <td class="up">+10.34%</td>
+        <td>22.96M</td>
       </tr><tr>
         <td><b>VS</b><span>V.S. Industry Bhd.</span></td>
         <td>0.220</td>
-        <td class="down">-4.35%</td>
-        <td>59.58M</td>
+        <td class="flat">0.00%</td>
+        <td>16.68M</td>
       </tr><tr>
-        <td><b>NATGATE</b><span>Nationgate Holdings Berhad</span></td>
-        <td>1.49</td>
-        <td class="up">+5.67%</td>
-        <td>59.50M</td>
-      </tr><tr>
-        <td><b>SIME</b><span>Sime Darby Bhd.</span></td>
-        <td>2.49</td>
-        <td class="up">+7.79%</td>
-        <td>47.03M</td>
-      </tr><tr>
-        <td><b>NIHSIN</b><span>Ni Hsin Group Bhd</span></td>
-        <td>0.145</td>
-        <td class="up">+20.83%</td>
-        <td>34.70M</td>
-      </tr><tr>
-        <td><b>D&amp;O</b><span>D&amp;O Green Technologies Bhd.</span></td>
-        <td>0.425</td>
+        <td><b>ASTEEL</b><span>ASTEEL Group Bhd</span></td>
+        <td>0.085</td>
         <td class="up">+13.33%</td>
-        <td>33.10M</td>
-      </tr></tbody></table></div>
-        <div class="ticker-table"><div class="table-head"><span>Top Turnover <small class="section-time" title="页面生成：Wed, Aug 26, 2026, 08:45 AM GMT+8；主要行情日：2026-08-24">更新：2026-08-26 08:45 GMT+8</small></span><span>Daily</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>Value</th></tr></thead><tbody><tr>
+        <td>14.73M</td>
+      </tr><tr>
+        <td><b>ELRIDGE</b><span>Elridge Energy Holdings Berhad</span></td>
+        <td>0.905</td>
+        <td class="up">+10.37%</td>
+        <td>11.20M</td>
+      </tr><tr>
+        <td><b>GIIB</b><span>GIIB Holdings Bhd</span></td>
+        <td>0.425</td>
+        <td class="up">+1.19%</td>
+        <td>10.63M</td>
+      </tr><tr>
+        <td><b>DFX</b><span>Divfex Bhd</span></td>
+        <td>0.095</td>
+        <td class="up">+11.76%</td>
+        <td>10.40M</td>
+      </tr><tr>
         <td><b>KPJ</b><span>KPJ Healthcare Bhd.</span></td>
-        <td>2.80</td>
-        <td class="down">-10.26%</td>
-        <td>RM186.32M</td>
+        <td>2.84</td>
+        <td class="up">+1.43%</td>
+        <td>10.35M</td>
+      </tr><tr>
+        <td><b>GENETEC</b><span>Genetec Technology Bhd.</span></td>
+        <td>0.355</td>
+        <td class="up">+4.41%</td>
+        <td>10.21M</td>
+      </tr></tbody></table></div>
+        <div class="ticker-table"><div class="table-head"><span>Top Turnover <small class="section-time" title="页面生成：Wed, Aug 26, 2026, 10:19 AM GMT+8；主要行情日：2026-08-26">更新：2026-08-26 10:19 GMT+8</small></span><span>Daily</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>Value</th></tr></thead><tbody><tr>
+        <td><b>NATGATE</b><span>Nationgate Holdings Berhad</span></td>
+        <td>1.71</td>
+        <td class="up">+14.77%</td>
+        <td>RM111.73M</td>
       </tr><tr>
         <td><b>MAYBANK</b><span>Malayan Banking Bhd.</span></td>
-        <td>10.56</td>
-        <td class="down">-0.38%</td>
-        <td>RM134.17M</td>
+        <td>10.58</td>
+        <td class="up">+0.19%</td>
+        <td>RM38.88M</td>
       </tr><tr>
-        <td><b>SIME</b><span>Sime Darby Bhd.</span></td>
-        <td>2.49</td>
-        <td class="up">+7.79%</td>
-        <td>RM117.10M</td>
-      </tr><tr>
-        <td><b>NATGATE</b><span>Nationgate Holdings Berhad</span></td>
-        <td>1.49</td>
-        <td class="up">+5.67%</td>
-        <td>RM88.65M</td>
-      </tr><tr>
-        <td><b>PMETAL</b><span>Press Metal Aluminium Holdings Berhad</span></td>
-        <td>7.88</td>
-        <td class="down">-0.13%</td>
-        <td>RM87.77M</td>
-      </tr><tr>
-        <td><b>CIMB</b><span>CIMB Group Holdings Bhd</span></td>
-        <td>7.96</td>
-        <td class="up">+0.13%</td>
-        <td>RM65.86M</td>
+        <td><b>KPJ</b><span>KPJ Healthcare Bhd.</span></td>
+        <td>2.84</td>
+        <td class="up">+1.43%</td>
+        <td>RM29.38M</td>
       </tr><tr>
         <td><b>ZETRIX</b><span>Zetrix AI Bhd</span></td>
-        <td>0.655</td>
-        <td class="up">+0.77%</td>
-        <td>RM64.55M</td>
+        <td>0.665</td>
+        <td class="up">+1.53%</td>
+        <td>RM19.21M</td>
+      </tr><tr>
+        <td><b>YTLPOWR</b><span>YTL Power International Bhd.</span></td>
+        <td>5.48</td>
+        <td class="up">+2.05%</td>
+        <td>RM16.55M</td>
+      </tr><tr>
+        <td><b>CIMB</b><span>CIMB Group Holdings Bhd</span></td>
+        <td>8.02</td>
+        <td class="up">+0.75%</td>
+        <td>RM15.93M</td>
+      </tr><tr>
+        <td><b>PBBANK</b><span>Public Bank Bhd</span></td>
+        <td>5.14</td>
+        <td class="up">+0.78%</td>
+        <td>RM15.37M</td>
+      </tr><tr>
+        <td><b>YTL</b><span>YTL Corp Bhd.</span></td>
+        <td>2.46</td>
+        <td class="up">+1.65%</td>
+        <td>RM14.76M</td>
       </tr><tr>
         <td><b>TENAGA</b><span>Tenaga Nasional Bhd</span></td>
-        <td>14.30</td>
-        <td class="down">-0.69%</td>
-        <td>RM58.18M</td>
+        <td>14.32</td>
+        <td class="up">+0.14%</td>
+        <td>RM14.20M</td>
       </tr><tr>
-        <td><b>WPRTS</b><span>Westports Holdings Bhd.</span></td>
-        <td>7.05</td>
-        <td class="up">+0.28%</td>
-        <td>RM54.83M</td>
-      </tr><tr>
-        <td><b>SDG</b><span>SD Guthrie Bhd</span></td>
-        <td>6.65</td>
-        <td class="up">+0.15%</td>
-        <td>RM51.01M</td>
+        <td><b>GCB</b><span>Guan Chong Bhd.</span></td>
+        <td>1.31</td>
+        <td class="up">+2.34%</td>
+        <td>RM11.28M</td>
       </tr></tbody></table></div>
-        <div class="ticker-table"><div class="table-head"><span>Top Gainers <small class="section-time" title="页面生成：Wed, Aug 26, 2026, 08:45 AM GMT+8；主要行情日：2026-08-24">更新：2026-08-26 08:45 GMT+8</small></span><span>Value</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>RM</th></tr></thead><tbody><tr>
+        <div class="ticker-table"><div class="table-head"><span>Top Gainers <small class="section-time" title="页面生成：Wed, Aug 26, 2026, 10:19 AM GMT+8；主要行情日：2026-08-26">更新：2026-08-26 10:19 GMT+8</small></span><span>Value</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>RM</th></tr></thead><tbody><tr>
+        <td><b>MPI</b><span>Malaysian Pacific Industries Bhd.</span></td>
+        <td>42.08</td>
+        <td class="up">+1.40%</td>
+        <td>0.580</td>
+      </tr><tr>
         <td><b>PETDAG</b><span>Petronas Dagangan Bhd.</span></td>
-        <td>20.00</td>
-        <td class="up">+1.94%</td>
-        <td>0.380</td>
+        <td>20.50</td>
+        <td class="up">+2.50%</td>
+        <td>0.500</td>
       </tr><tr>
-        <td><b>MISC</b><span>MISC Bhd</span></td>
-        <td>8.58</td>
-        <td class="up">+4.25%</td>
-        <td>0.350</td>
+        <td><b>ALLIANZ</b><span>Allianz Malaysia Bhd.</span></td>
+        <td>22.02</td>
+        <td class="up">+1.47%</td>
+        <td>0.320</td>
       </tr><tr>
-        <td><b>SWKPLNT</b><span>Sarawak Plantation Bhd.</span></td>
-        <td>4.82</td>
-        <td class="up">+6.17%</td>
-        <td>0.280</td>
+        <td><b>HLIND</b><span>Hong Leong Industries Bhd.</span></td>
+        <td>17.76</td>
+        <td class="up">+1.37%</td>
+        <td>0.240</td>
       </tr><tr>
-        <td><b>KLK</b><span>Kuala Lumpur Kepong Bhd.</span></td>
-        <td>21.92</td>
-        <td class="up">+1.29%</td>
-        <td>0.280</td>
-      </tr><tr>
-        <td><b>CEPCO</b><span>Concrete Engineering Products Bhd.</span></td>
-        <td>3.90</td>
-        <td class="up">+7.14%</td>
-        <td>0.260</td>
+        <td><b>NATGATE</b><span>Nationgate Holdings Berhad</span></td>
+        <td>1.71</td>
+        <td class="up">+14.77%</td>
+        <td>0.220</td>
       </tr><tr>
         <td><b>NESTLE</b><span>Nestle (Malaysia) Bhd.</span></td>
-        <td>104.00</td>
+        <td>104.20</td>
         <td class="up">+0.19%</td>
         <td>0.200</td>
       </tr><tr>
@@ -465,335 +465,335 @@
         <td class="up">+0.63%</td>
         <td>0.200</td>
       </tr><tr>
-        <td><b>SIME</b><span>Sime Darby Bhd.</span></td>
-        <td>2.49</td>
-        <td class="up">+7.79%</td>
-        <td>0.180</td>
+        <td><b>KGB</b><span>Kelington Group Bhd.</span></td>
+        <td>8.48</td>
+        <td class="up">+1.44%</td>
+        <td>0.120</td>
       </tr><tr>
-        <td><b>SUNCON</b><span>Sunway Construction Group Bhd.</span></td>
-        <td>8.08</td>
-        <td class="up">+2.28%</td>
-        <td>0.180</td>
+        <td><b>CHB</b><span>Critical Holdings Bhd.</span></td>
+        <td>1.94</td>
+        <td class="up">+6.59%</td>
+        <td>0.120</td>
       </tr><tr>
-        <td><b>IOICORP</b><span>IOI Corporation Berhad</span></td>
-        <td>4.81</td>
-        <td class="up">+2.34%</td>
-        <td>0.110</td>
+        <td><b>PETGAS</b><span>Petronas Gas Bhd.</span></td>
+        <td>17.72</td>
+        <td class="up">+0.68%</td>
+        <td>0.120</td>
       </tr></tbody></table></div>
-        <div class="ticker-table"><div class="table-head"><span>Top Losers <small class="section-time" title="页面生成：Wed, Aug 26, 2026, 08:45 AM GMT+8；主要行情日：2026-08-24">更新：2026-08-26 08:45 GMT+8</small></span><span>Value</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>RM</th></tr></thead><tbody><tr>
-        <td><b>MPI</b><span>Malaysian Pacific Industries Bhd.</span></td>
-        <td>41.50</td>
-        <td class="down">-3.94%</td>
-        <td>-1.700</td>
+        <div class="ticker-table"><div class="table-head"><span>Top Losers <small class="section-time" title="页面生成：Wed, Aug 26, 2026, 10:19 AM GMT+8；主要行情日：2026-08-26">更新：2026-08-26 10:19 GMT+8</small></span><span>Value</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>RM</th></tr></thead><tbody><tr>
+        <td><b>UTDPLT</b><span>United Plantations Bhd.</span></td>
+        <td>31.64</td>
+        <td class="down">-1.49%</td>
+        <td>-0.480</td>
       </tr><tr>
-        <td><b>ALLIANZ</b><span>Allianz Malaysia Bhd.</span></td>
-        <td>21.70</td>
-        <td class="down">-2.60%</td>
-        <td>-0.580</td>
+        <td><b>BKAWAN</b><span>Batu Kawan Bhd.</span></td>
+        <td>20.62</td>
+        <td class="down">-1.81%</td>
+        <td>-0.380</td>
+      </tr><tr>
+        <td><b>BLDPLNT</b><span>BLD Plantation Bhd.</span></td>
+        <td>14.64</td>
+        <td class="down">-2.40%</td>
+        <td>-0.360</td>
       </tr><tr>
         <td><b>UMSINT</b><span>UMS Integration Limited</span></td>
         <td>8.29</td>
         <td class="down">-4.05%</td>
         <td>-0.350</td>
       </tr><tr>
-        <td><b>KPJ</b><span>KPJ Healthcare Bhd.</span></td>
-        <td>2.80</td>
-        <td class="down">-10.26%</td>
-        <td>-0.320</td>
+        <td><b>F&amp;N</b><span>Fraser &amp; Neave Holdings Bhd.</span></td>
+        <td>26.30</td>
+        <td class="down">-0.90%</td>
+        <td>-0.240</td>
       </tr><tr>
-        <td><b>KGB</b><span>Kelington Group Bhd.</span></td>
-        <td>8.36</td>
-        <td class="down">-2.90%</td>
-        <td>-0.250</td>
+        <td><b>FAREAST</b><span>Far East Holdings Bhd.</span></td>
+        <td>3.72</td>
+        <td class="down">-4.86%</td>
+        <td>-0.190</td>
       </tr><tr>
-        <td><b>UWC</b><span>UWC Bhd.</span></td>
-        <td>6.49</td>
-        <td class="down">-3.71%</td>
-        <td>-0.250</td>
-      </tr><tr>
-        <td><b>RANHILL</b><span>Ranhill Utilities Bhd.</span></td>
-        <td>2.36</td>
-        <td class="down">-7.09%</td>
-        <td>-0.180</td>
-      </tr><tr>
-        <td><b>PENTA</b><span>Pentamaster Corp. Bhd.</span></td>
-        <td>5.17</td>
-        <td class="down">-3.36%</td>
-        <td>-0.180</td>
-      </tr><tr>
-        <td><b>MI</b><span>Mi Technovation Bhd.</span></td>
-        <td>6.07</td>
-        <td class="down">-2.88%</td>
-        <td>-0.180</td>
-      </tr><tr>
-        <td><b>BIPORT</b><span>Bintulu Port Holdings Bhd.</span></td>
-        <td>5.34</td>
-        <td class="down">-2.91%</td>
+        <td><b>CEPCO</b><span>Concrete Engineering Products Bhd.</span></td>
+        <td>3.74</td>
+        <td class="down">-4.10%</td>
         <td>-0.160</td>
+      </tr><tr>
+        <td><b>TAANN</b><span>Ta Ann Holdings Bhd.</span></td>
+        <td>6.14</td>
+        <td class="down">-2.38%</td>
+        <td>-0.150</td>
+      </tr><tr>
+        <td><b>HLBANK</b><span>Hong Leong Bank Bhd</span></td>
+        <td>22.84</td>
+        <td class="down">-0.52%</td>
+        <td>-0.120</td>
+      </tr><tr>
+        <td><b>SUNCON</b><span>Sunway Construction Group Bhd.</span></td>
+        <td>7.97</td>
+        <td class="down">-1.36%</td>
+        <td>-0.110</td>
       </tr></tbody></table></div>
       </div>
       <div class="right-stack">
         <div class="panel">
-        <div class="section-title"><h2>Sector Heat Map</h2><small class="section-time" title="页面生成：Wed, Aug 26, 2026, 08:45 AM GMT+8；主要行情日：2026-08-24">更新：2026-08-26 08:45 GMT+8</small></div>
+        <div class="section-title"><h2>Sector Heat Map</h2><small class="section-time" title="页面生成：Wed, Aug 26, 2026, 10:19 AM GMT+8；主要行情日：2026-08-26">更新：2026-08-26 10:19 GMT+8</small></div>
           <div class="heatmap"><section class="heat-sector">
-        <header><b>TRANSPORTATION &amp; LOGISTICS</b><span class="up">+2.10%</span></header>
-        <div class="heat-sub">交通与物流 · 35 counters · RM 161.25M</div>
-        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:46.76473240957931%;background:hsl(145 72% 28.64011379800852%);" title="Westports Holdings Bhd. · Transportation &amp; Logistics">
-            <b>WPRTS</b><span>+0.28%</span>
-          </div><div class="heat-tile" style="flex-basis:46.64386886859971%;background:hsl(356 68% 36.33333333333334%);" title="AirAsia Group Bhd. · Transportation &amp; Logistics">
-            <b>AAGB</b><span>-3.70%</span>
-          </div><div class="heat-tile" style="flex-basis:45.80558689672082%;background:hsl(145 72% 38.465116279069775%);" title="MTT Shipping &amp; Logistics Bhd. · Transportation &amp; Logistics">
-            <b>MTTSL</b><span>+4.65%</span>
-          </div><div class="heat-tile" style="flex-basis:45.40221298199409%;background:hsl(145 72% 37.56865127582016%);" title="MISC Bhd · Transportation &amp; Logistics">
-            <b>MISC</b><span>+4.25%</span>
-          </div><div class="heat-tile" style="flex-basis:43.04236229889743%;background:#3f4959;" title="Capital A Berhad · Transportation &amp; Logistics">
-            <b>CAPITALA</b><span>0.00%</span>
-          </div><div class="heat-tile" style="flex-basis:41.442739094144436%;background:#3f4959;" title="Perak Transit Bhd. · Transportation &amp; Logistics">
-            <b>PTRANS</b><span>0.00%</span>
-          </div><div class="heat-tile" style="flex-basis:40.90864394557672%;background:hsl(145 72% 30.542372881355934%);" title="Hi Mobility Bhd. · Transportation &amp; Logistics">
-            <b>HI</b><span>+1.13%</span>
-          </div><div class="heat-tile" style="flex-basis:39.916567129072654%;background:#3f4959;" title="Pos Malaysia Bhd. · Transportation &amp; Logistics">
-            <b>POS</b><span>0.00%</span>
+        <header><b>UTILITIES</b><span class="up">+0.94%</span></header>
+        <div class="heat-sub">公用事业 · 16 counters · RM 57.79M</div>
+        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:45.10039608493866%;background:hsl(145 72% 32.60893854748605%);" title="YTL Power International Bhd. · Utilities">
+            <b>YTLPOWR</b><span>+2.05%</span>
+          </div><div class="heat-tile" style="flex-basis:44.94153951421508%;background:hsl(145 72% 31.719008264462815%);" title="YTL Corp Bhd. · Utilities">
+            <b>YTL</b><span>+1.65%</span>
+          </div><div class="heat-tile" style="flex-basis:44.8871543568421%;background:hsl(145 72% 28.31468531468531%);" title="Tenaga Nasional Bhd · Utilities">
+            <b>TENAGA</b><span>+0.14%</span>
+          </div><div class="heat-tile" style="flex-basis:43.43255974402197%;background:hsl(145 72% 34.284916201117326%);" title="CBH Engineering Holding Berhad · Utilities">
+            <b>CBHB</b><span>+2.79%</span>
+          </div><div class="heat-tile" style="flex-basis:42.84981720359713%;background:hsl(145 72% 38.48728813559325%);" title="Ranhill Utilities Bhd. · Utilities">
+            <b>RANHILL</b><span>+4.66%</span>
+          </div><div class="heat-tile" style="flex-basis:42.5576491212778%;background:hsl(145 72% 29.534090909090878%);" title="Petronas Gas Bhd. · Utilities">
+            <b>PETGAS</b><span>+0.68%</span>
+          </div><div class="heat-tile" style="flex-basis:40.41453845028185%;background:hsl(356 68% 29.54109589041096%);" title="Cypark Resources Bhd. · Utilities">
+            <b>CYPARK</b><span>-0.68%</span>
+          </div><div class="heat-tile" style="flex-basis:39.53504629416321%;background:hsl(145 72% 28.90725806451615%);" title="Gas Malaysia Bhd. · Utilities">
+            <b>GASMSIA</b><span>+0.40%</span>
           </div></div>
       </section><section class="heat-sector">
-        <header><b>ENERGY</b><span class="up">+0.75%</span></header>
-        <div class="heat-sub">能源 · 65 counters · RM 96.59M</div>
-        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:45.40535783169136%;background:hsl(356 68% 29.13065326633166%);" title="Dialog Group Bhd. · Energy">
-            <b>DIALOG</b><span>-0.50%</span>
-          </div><div class="heat-tile" style="flex-basis:44.57936211614782%;background:hsl(145 72% 31.426395939086298%);" title="Hengyuan Refining Company Bhd · Energy">
-            <b>HENGYUAN</b><span>+1.52%</span>
-          </div><div class="heat-tile" style="flex-basis:44.52220044437871%;background:hsl(145 72% 34.78391959798993%);" title="Yinson Holdings Bhd. · Energy">
-            <b>YINSON</b><span>+3.02%</span>
-          </div><div class="heat-tile" style="flex-basis:44.3134472071969%;background:#3f4959;" title="Jaya Tiasa Holdings Bhd. · Energy">
-            <b>JTIASA</b><span>0.00%</span>
-          </div><div class="heat-tile" style="flex-basis:43.85233052316816%;background:hsl(145 72% 46%);" title="P.A. Resources Berhad · Energy">
-            <b>PA</b><span>+9.52%</span>
-          </div><div class="heat-tile" style="flex-basis:43.60643302550716%;background:hsl(356 68% 32.5%);" title="Velesto Energy Bhd. · Energy">
-            <b>VELESTO</b><span>-2.00%</span>
-          </div><div class="heat-tile" style="flex-basis:43.47320753925355%;background:hsl(145 72% 32.09090909090909%);" title="WTK Holdings Bhd. · Energy">
-            <b>WTK</b><span>+1.82%</span>
-          </div><div class="heat-tile" style="flex-basis:43.20174391344907%;background:hsl(356 68% 31.169014084507022%);" title="Hibiscus Petroleum Bhd. · Energy">
-            <b>HIBISCS</b><span>-1.41%</span>
+        <header><b>HEALTH CARE</b><span class="up">+0.91%</span></header>
+        <div class="heat-sub">医疗保健 · 32 counters · RM 43.52M</div>
+        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:45.897998062258694%;background:hsl(145 72% 31.21428571428572%);" title="KPJ Healthcare Bhd. · Health Care">
+            <b>KPJ</b><span>+1.43%</span>
+          </div><div class="heat-tile" style="flex-basis:43.33670275800674%;background:hsl(145 72% 29.046511627907%);" title="Sunway Healthcare Holdings Berhad · Health Care">
+            <b>SUNMED</b><span>+0.47%</span>
+          </div><div class="heat-tile" style="flex-basis:42.38841977752239%;background:hsl(145 72% 30.484662576687114%);" title="IHH Healthcare Bhd. · Health Care">
+            <b>IHH</b><span>+1.10%</span>
+          </div><div class="heat-tile" style="flex-basis:41.998032008759566%;background:hsl(145 72% 30.295918367346943%);" title="Hartalega Holdings Bhd. · Health Care">
+            <b>HARTA</b><span>+1.02%</span>
+          </div><div class="heat-tile" style="flex-basis:41.70465204865104%;background:hsl(145 72% 31.62903225806452%);" title="Supermax Corp. Bhd. · Health Care">
+            <b>SUPERMX</b><span>+1.61%</span>
+          </div><div class="heat-tile" style="flex-basis:41.33043114704457%;background:hsl(145 72% 29.691729323308273%);" title="Top Glove Corporation Bhd. · Health Care">
+            <b>TOPGLOV</b><span>+0.75%</span>
+          </div><div class="heat-tile" style="flex-basis:40.96931879381213%;background:hsl(145 72% 32.09090909090909%);" title="Kossan Rubber Industries Bhd. · Health Care">
+            <b>KOSSAN</b><span>+1.82%</span>
+          </div><div class="heat-tile" style="flex-basis:40.380339588654955%;background:hsl(145 72% 45.30769230769229%);" title="Cengild Medical Bhd. · Health Care">
+            <b>CENGILD</b><span>+7.69%</span>
           </div></div>
       </section><section class="heat-sector">
-        <header><b>PLANTATION</b><span class="up">+0.72%</span></header>
-        <div class="heat-sub">种植 · 57 counters · RM 163.58M</div>
-        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:46.66451937561662%;background:hsl(145 72% 28.33885542168677%);" title="SD Guthrie Bhd · Plantation">
-            <b>SDG</b><span>+0.15%</span>
-          </div><div class="heat-tile" style="flex-basis:45.631220899727296%;background:hsl(145 72% 33.265957446808486%);" title="IOI Corporation Berhad · Plantation">
-            <b>IOICORP</b><span>+2.34%</span>
-          </div><div class="heat-tile" style="flex-basis:45.26063986551287%;background:hsl(356 68% 36.07692307692308%);" title="Johor Plantations Group Bhd · Plantation">
-            <b>JPG</b><span>-3.59%</span>
-          </div><div class="heat-tile" style="flex-basis:45.22429561362047%;background:hsl(356 68% 28.27985074626865%);" title="United Plantations Bhd. · Plantation">
-            <b>UTDPLT</b><span>-0.12%</span>
-          </div><div class="heat-tile" style="flex-basis:44.2711201113849%;background:hsl(145 72% 30.9112754158965%);" title="Kuala Lumpur Kepong Bhd. · Plantation">
-            <b>KLK</b><span>+1.29%</span>
-          </div><div class="heat-tile" style="flex-basis:43.61978663602021%;background:hsl(145 72% 29.371951219512198%);" title="XL Holdings Bhd · Plantation">
-            <b>XL</b><span>+0.61%</span>
-          </div><div class="heat-tile" style="flex-basis:43.55129495685797%;background:hsl(145 72% 36.45864661654132%);" title="TSH Resources Bhd. · Plantation">
-            <b>TSH</b><span>+3.76%</span>
-          </div><div class="heat-tile" style="flex-basis:43.178083390048954%;background:hsl(145 72% 41.87665198237887%);" title="Sarawak Plantation Bhd. · Plantation">
-            <b>SWKPLNT</b><span>+6.17%</span>
+        <header><b>TECHNOLOGY</b><span class="up">+0.86%</span></header>
+        <div class="heat-sub">科技 · 110 counters · RM 181.87M</div>
+        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:47.75419692720406%;background:hsl(145 72% 46%);" title="Nationgate Holdings Berhad · Technology">
+            <b>NATGATE</b><span>+14.77%</span>
+          </div><div class="heat-tile" style="flex-basis:45.307156798298294%;background:hsl(145 72% 31.4351145038168%);" title="Zetrix AI Bhd · Technology">
+            <b>ZETRIX</b><span>+1.53%</span>
+          </div><div class="heat-tile" style="flex-basis:43.55761455354522%;background:hsl(145 72% 32.32692307692306%);" title="Greatech Technology Bhd. · Technology">
+            <b>GREATEC</b><span>+1.92%</span>
+          </div><div class="heat-tile" style="flex-basis:43.55562501582838%;background:hsl(145 72% 29.991150442477878%);" title="Inari Amertron Berhad · Technology">
+            <b>INARI</b><span>+0.88%</span>
+          </div><div class="heat-tile" style="flex-basis:42.989830872675505%;background:hsl(145 72% 37.92647058823526%);" title="Genetec Technology Bhd. · Technology">
+            <b>GENETEC</b><span>+4.41%</span>
+          </div><div class="heat-tile" style="flex-basis:42.803027031253976%;background:hsl(145 72% 32.68750000000001%);" title="Dagang NeXchange Berhad · Technology">
+            <b>DNEX</b><span>+2.08%</span>
+          </div><div class="heat-tile" style="flex-basis:42.54361318705442%;background:hsl(145 72% 30.647058823529413%);" title="D&amp;O Green Technologies Bhd. · Technology">
+            <b>D&amp;O</b><span>+1.18%</span>
+          </div><div class="heat-tile" style="flex-basis:41.960085674186644%;background:hsl(145 72% 32.27215189873418%);" title="Aurelius Technologies Bhd. · Technology">
+            <b>ATECH</b><span>+1.90%</span>
+          </div></div>
+      </section><section class="heat-sector">
+        <header><b>TELECOMMUNICATIONS &amp; MEDIA</b><span class="up">+0.55%</span></header>
+        <div class="heat-sub">电讯与媒体 · 16 counters · RM 13.08M</div>
+        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:44.030598815766524%;background:hsl(356 68% 30.57633587786262%);" title="Telekom Malaysia Bhd. · Telecommunications &amp; Media">
+            <b>TM</b><span>-1.15%</span>
+          </div><div class="heat-tile" style="flex-basis:41.86484347662973%;background:#3f4959;" title="Axiata Group Bhd. · Telecommunications &amp; Media">
+            <b>AXIATA</b><span>0.00%</span>
+          </div><div class="heat-tile" style="flex-basis:41.86358191380123%;background:hsl(145 72% 32.7244094488189%);" title="Maxis Bhd. · Telecommunications &amp; Media">
+            <b>MAXIS</b><span>+2.10%</span>
+          </div><div class="heat-tile" style="flex-basis:41.08743887024019%;background:hsl(145 72% 30.36013986013988%);" title="CelcomDigi Berhad · Telecommunications &amp; Media">
+            <b>CDB</b><span>+1.05%</span>
+          </div><div class="heat-tile" style="flex-basis:40.57302799643412%;background:hsl(145 72% 38.71428571428572%);" title="REDtone Digital Berhad · Telecommunications &amp; Media">
+            <b>REDTONE</b><span>+4.76%</span>
+          </div><div class="heat-tile" style="flex-basis:39.5314127859003%;background:hsl(145 72% 28.749999999999986%);" title="TIME dotCom Bhd. · Telecommunications &amp; Media">
+            <b>TIMECOM</b><span>+0.33%</span>
+          </div><div class="heat-tile" style="flex-basis:38.24344262913623%;background:#3f4959;" title="Silver Ridge Holdings Bhd. · Telecommunications &amp; Media">
+            <b>SRIDGE</b><span>0.00%</span>
+          </div><div class="heat-tile" style="flex-basis:37.6747619796503%;background:hsl(145 72% 30.083333333333336%);" title="SRKK AI Berhad · Telecommunications &amp; Media">
+            <b>SRKKAI</b><span>+0.93%</span>
+          </div></div>
+      </section><section class="heat-sector">
+        <header><b>PROPERTY</b><span class="up">+0.52%</span></header>
+        <div class="heat-sub">产业/房地产 · 97 counters · RM 28.73M</div>
+        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:44.04967274727758%;background:hsl(145 72% 41.63636363636361%);" title="Sime Darby Property Bhd. · Property">
+            <b>SIMEPROP</b><span>+6.06%</span>
+          </div><div class="heat-tile" style="flex-basis:42.36817111397403%;background:#3f4959;" title="Mah Sing Group Bhd. · Property">
+            <b>MAHSING</b><span>0.00%</span>
+          </div><div class="heat-tile" style="flex-basis:42.35793022992509%;background:hsl(145 72% 28.43859649122806%);" title="Sunway Bhd. · Property">
+            <b>SUNWAY</b><span>+0.19%</span>
+          </div><div class="heat-tile" style="flex-basis:42.01404333009508%;background:hsl(356 68% 29.584507042253524%);" title="Nextgreen Global Bhd · Property">
+            <b>NGGB</b><span>-0.70%</span>
+          </div><div class="heat-tile" style="flex-basis:41.84044520893117%;background:hsl(145 72% 29.300578034682083%);" title="Central Global Bhd · Property">
+            <b>CGB</b><span>+0.58%</span>
+          </div><div class="heat-tile" style="flex-basis:41.77489015090122%;background:hsl(356 68% 33.11363636363637%);" title="Tanco Holdings Bhd. · Property">
+            <b>TANCO</b><span>-2.27%</span>
+          </div><div class="heat-tile" style="flex-basis:41.43308119892188%;background:#3f4959;" title="Tropicana Corp. Bhd. · Property">
+            <b>TROP</b><span>0.00%</span>
+          </div><div class="heat-tile" style="flex-basis:41.3740802170594%;background:hsl(145 72% 28.735294117647044%);" title="MNRB Holdings Bhd. · Property">
+            <b>MNRB</b><span>+0.33%</span>
+          </div></div>
+      </section><section class="heat-sector">
+        <header><b>CONSUMER PRODUCTS &amp; SERVICES</b><span class="up">+0.43%</span></header>
+        <div class="heat-sub">消费产品与服务 · 151 counters · RM 36.82M</div>
+        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:44.567907588239066%;background:hsl(145 72% 33.27343750000001%);" title="Guan Chong Bhd. · Consumer Products &amp; Services">
+            <b>GCB</b><span>+2.34%</span>
+          </div><div class="heat-tile" style="flex-basis:43.00843318179908%;background:hsl(145 72% 46%);" title="Ni Hsin Group Bhd · Consumer Products &amp; Services">
+            <b>NIHSIN</b><span>+10.34%</span>
+          </div><div class="heat-tile" style="flex-basis:42.725144831863275%;background:hsl(145 72% 35.71428571428572%);" title="EG Industries Bhd. · Consumer Products &amp; Services">
+            <b>EG</b><span>+3.43%</span>
+          </div><div class="heat-tile" style="flex-basis:41.97009500534591%;background:hsl(145 72% 35.18085106382979%);" title="Exsim Hospitality Bhd · Consumer Products &amp; Services">
+            <b>EXSIMHB</b><span>+3.19%</span>
+          </div><div class="heat-tile" style="flex-basis:41.956719305851486%;background:hsl(145 72% 28.27915632754342%);" title="Heineken Malaysia Bhd. · Consumer Products &amp; Services">
+            <b>HEIM</b><span>+0.12%</span>
+          </div><div class="heat-tile" style="flex-basis:41.72324606082233%;background:hsl(145 72% 29.97947214076245%);" title="99 Speed Mart Retail Holdings Bhd · Consumer Products &amp; Services">
+            <b>99SMART</b><span>+0.88%</span>
+          </div><div class="heat-tile" style="flex-basis:41.408457472478766%;background:hsl(145 72% 29.081730769230745%);" title="Genting Bhd. · Consumer Products &amp; Services">
+            <b>GENTING</b><span>+0.48%</span>
+          </div><div class="heat-tile" style="flex-basis:41.2148462503352%;background:hsl(145 72% 28.432692307692314%);" title="Nestle (Malaysia) Bhd. · Consumer Products &amp; Services">
+            <b>NESTLE</b><span>+0.19%</span>
+          </div></div>
+      </section><section class="heat-sector">
+        <header><b>CONSTRUCTION</b><span class="up">+0.40%</span></header>
+        <div class="heat-sub">建筑 · 82 counters · RM 32.44M</div>
+        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:43.85468879470032%;background:hsl(145 72% 29.548165137614646%);" title="Gamuda Bhd. · Construction">
+            <b>GAMUDA</b><span>+0.69%</span>
+          </div><div class="heat-tile" style="flex-basis:43.40884100621044%;background:hsl(356 68% 31.063118811881196%);" title="Sunway Construction Group Bhd. · Construction">
+            <b>SUNCON</b><span>-1.36%</span>
+          </div><div class="heat-tile" style="flex-basis:42.99190026740527%;background:hsl(145 72% 29.612903225806452%);" title="IJM Corporation Berhad · Construction">
+            <b>IJM</b><span>+0.72%</span>
+          </div><div class="heat-tile" style="flex-basis:42.331195076425246%;background:hsl(356 68% 30.647058823529413%);" title="Kinergy Advancement Bhd · Construction">
+            <b>KINERGY</b><span>-1.18%</span>
+          </div><div class="heat-tile" style="flex-basis:42.13141370234362%;background:hsl(145 72% 31.229665071770363%);" title="Kelington Group Bhd. · Construction">
+            <b>KGB</b><span>+1.44%</span>
+          </div><div class="heat-tile" style="flex-basis:41.66206351675412%;background:hsl(356 68% 29.849315068493137%);" title="MN Holdings Bhd. · Construction">
+            <b>MNHLDG</b><span>-0.82%</span>
+          </div><div class="heat-tile" style="flex-basis:41.42799050156505%;background:hsl(356 68% 31.62903225806452%);" title="Sum Technology Berhad · Construction">
+            <b>SUM</b><span>-1.61%</span>
+          </div><div class="heat-tile" style="flex-basis:41.20680002273237%;background:hsl(145 72% 32.560810810810814%);" title="EI Power Berhad · Construction">
+            <b>EIPOWER</b><span>+2.03%</span>
+          </div></div>
+      </section><section class="heat-sector">
+        <header><b>FINANCIAL SERVICES</b><span class="up">+0.31%</span></header>
+        <div class="heat-sub">金融服务 · 25 counters · RM 84.64M</div>
+        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:46.28721545118567%;background:hsl(145 72% 28.426136363636356%);" title="Malayan Banking Bhd. · Financial Services">
+            <b>MAYBANK</b><span>+0.19%</span>
+          </div><div class="heat-tile" style="flex-basis:45.04745126274352%;background:hsl(145 72% 29.695979899497477%);" title="CIMB Group Holdings Bhd · Financial Services">
+            <b>CIMB</b><span>+0.75%</span>
+          </div><div class="heat-tile" style="flex-basis:44.9976945024851%;background:hsl(145 72% 29.764705882352942%);" title="Public Bank Bhd · Financial Services">
+            <b>PBBANK</b><span>+0.78%</span>
+          </div><div class="heat-tile" style="flex-basis:43.5432739382675%;background:hsl(356 68% 28.633802816901394%);" title="AMMB Holdings Bhd. · Financial Services">
+            <b>AMBANK</b><span>-0.28%</span>
+          </div><div class="heat-tile" style="flex-basis:42.72185030086463%;background:hsl(356 68% 28.522041763341058%);" title="RHB Bank Bhd. · Financial Services">
+            <b>RHBBANK</b><span>-0.23%</span>
+          </div><div class="heat-tile" style="flex-basis:42.04118549714552%;background:hsl(356 68% 29.17595818815332%);" title="Hong Leong Bank Bhd · Financial Services">
+            <b>HLBANK</b><span>-0.52%</span>
+          </div><div class="heat-tile" style="flex-basis:42.026179845473536%;background:hsl(145 72% 29.20837808807731%);" title="Hong Leong Financial Group Bhd. · Financial Services">
+            <b>HLFG</b><span>+0.54%</span>
+          </div><div class="heat-tile" style="flex-basis:40.367125038924684%;background:#3f4959;" title="Affin Bank Bhd. · Financial Services">
+            <b>AFFIN</b><span>0.00%</span>
           </div></div>
       </section><section class="heat-sector">
         <header><b>INDUSTRIAL PRODUCTS &amp; SERVICES</b><span class="up">+0.23%</span></header>
-        <div class="heat-sub">工业产品与服务 · 257 counters · RM 552.41M</div>
-        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:47.81939942700138%;background:hsl(145 72% 45.53246753246755%);" title="Sime Darby Bhd. · Industrial Products &amp; Services">
-            <b>SIME</b><span>+7.79%</span>
-          </div><div class="heat-tile" style="flex-basis:47.41862954637773%;background:hsl(356 68% 28.28517110266159%);" title="Press Metal Aluminium Holdings Berhad · Industrial Products &amp; Services">
-            <b>PMETAL</b><span>-0.13%</span>
-          </div><div class="heat-tile" style="flex-basis:46.0803149117703%;background:#3f4959;" title="PETRONAS Chemicals Group Bhd. · Industrial Products &amp; Services">
-            <b>PCHEM</b><span>0.00%</span>
-          </div><div class="heat-tile" style="flex-basis:46.048370821339134%;background:hsl(145 72% 32.477611940298516%);" title="Mega Fortris Berhad · Industrial Products &amp; Services">
-            <b>MEGAFB</b><span>+1.99%</span>
-          </div><div class="heat-tile" style="flex-basis:45.87362272815493%;background:hsl(356 68% 36.345697329376854%);" title="UWC Bhd. · Industrial Products &amp; Services">
-            <b>UWC</b><span>-3.71%</span>
-          </div><div class="heat-tile" style="flex-basis:45.225590875412436%;background:hsl(356 68% 34.057692307692335%);" title="Southern Cable Group Bhd. · Industrial Products &amp; Services">
-            <b>SCGBHD</b><span>-2.69%</span>
-          </div><div class="heat-tile" style="flex-basis:44.93752627574877%;background:hsl(356 68% 32.5%);" title="MR. D.I.Y. Group (M) Bhd. · Industrial Products &amp; Services">
-            <b>MRDIY</b><span>-2.00%</span>
-          </div><div class="heat-tile" style="flex-basis:44.77605784699167%;background:hsl(356 68% 37.78260869565218%);" title="V.S. Industry Bhd. · Industrial Products &amp; Services">
-            <b>VS</b><span>-4.35%</span>
+        <div class="heat-sub">工业产品与服务 · 269 counters · RM 84.58M</div>
+        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:44.41864903632374%;background:hsl(145 72% 46%);" title="Elridge Energy Holdings Berhad · Industrial Products &amp; Services">
+            <b>ELRIDGE</b><span>+10.37%</span>
+          </div><div class="heat-tile" style="flex-basis:43.67352001397727%;background:hsl(145 72% 29.14213197969543%);" title="Press Metal Aluminium Holdings Berhad · Industrial Products &amp; Services">
+            <b>PMETAL</b><span>+0.51%</span>
+          </div><div class="heat-tile" style="flex-basis:43.65558088438135%;background:hsl(145 72% 29.09756097560978%);" title="Mega Fortris Berhad · Industrial Products &amp; Services">
+            <b>MEGAFB</b><span>+0.49%</span>
+          </div><div class="heat-tile" style="flex-basis:43.29563335367415%;background:hsl(145 72% 30.67857142857143%);" title="GIIB Holdings Bhd · Industrial Products &amp; Services">
+            <b>GIIB</b><span>+1.19%</span>
+          </div><div class="heat-tile" style="flex-basis:43.192589888877535%;background:hsl(145 72% 36.910891089108915%);" title="Cahya Mata Sarawak Bhd. · Industrial Products &amp; Services">
+            <b>CMSB</b><span>+3.96%</span>
+          </div><div class="heat-tile" style="flex-basis:43.0068299166292%;background:#3f4959;" title="V.S. Industry Bhd. · Industrial Products &amp; Services">
+            <b>VS</b><span>0.00%</span>
+          </div><div class="heat-tile" style="flex-basis:42.934350068548056%;background:hsl(145 72% 31.947368421052637%);" title="CPE Technology Bhd · Industrial Products &amp; Services">
+            <b>CPETECH</b><span>+1.75%</span>
+          </div><div class="heat-tile" style="flex-basis:42.92253087335862%;background:hsl(145 72% 28.903614457831306%);" title="Sime Darby Bhd. · Industrial Products &amp; Services">
+            <b>SIME</b><span>+0.40%</span>
           </div></div>
       </section><section class="heat-sector">
-        <header><b>REAL ESTATE INVESTMENT TRUSTS</b><span class="up">+0.22%</span></header>
-        <div class="heat-sub">REITs · 20 counters · RM 24.31M</div>
-        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:44.99122329481298%;background:#3f4959;" title="Sunway Real Estate Investment Trust · Real Estate Investment Trusts">
-            <b>SUNREIT</b><span>0.00%</span>
-          </div><div class="heat-tile" style="flex-basis:41.89881527027366%;background:#3f4959;" title="IGB Real Estate Investment Trust · Real Estate Investment Trusts">
-            <b>IGBREIT</b><span>0.00%</span>
-          </div><div class="heat-tile" style="flex-basis:41.8508541743483%;background:hsl(145 72% 28.51843317972349%);" title="KLCC Property Holdings Bhd. · Real Estate Investment Trusts">
-            <b>KLCC</b><span>+0.23%</span>
-          </div><div class="heat-tile" style="flex-basis:41.268037361447654%;background:hsl(356 68% 29.315789473684212%);" title="KIP Real Estate Investment Trust · Real Estate Investment Trusts">
-            <b>KIPREIT</b><span>-0.58%</span>
-          </div><div class="heat-tile" style="flex-basis:40.8920473292401%;background:hsl(356 68% 31.26086956521736%);" title="SENTRAL REIT · Real Estate Investment Trusts">
-            <b>SENTRAL</b><span>-1.45%</span>
-          </div><div class="heat-tile" style="flex-basis:40.82844488094922%;background:hsl(145 72% 29.339285714285715%);" title="Pavilion Real Estate Investment Trust · Real Estate Investment Trusts">
-            <b>PAVREIT</b><span>+0.60%</span>
-          </div><div class="heat-tile" style="flex-basis:40.81602642683199%;background:hsl(145 72% 30.368421052631582%);" title="Axis Real Estate Investment Trust · Real Estate Investment Trusts">
-            <b>AXREIT</b><span>+1.05%</span>
-          </div><div class="heat-tile" style="flex-basis:40.02401882193938%;background:#3f4959;" title="Capitaland Malaysia Trust · Real Estate Investment Trusts">
-            <b>CLMT</b><span>0.00%</span>
+        <header><b>ENERGY</b><span class="down">-0.17%</span></header>
+        <div class="heat-sub">能源 · 68 counters · RM 15.49M</div>
+        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:43.419065117281306%;background:hsl(356 68% 35.87500000000001%);" title="Hengyuan Refining Company Bhd · Energy">
+            <b>HENGYUAN</b><span>-3.50%</span>
+          </div><div class="heat-tile" style="flex-basis:41.55704541455704%;background:hsl(356 68% 33.35714285714289%);" title="Hibiscus Petroleum Bhd. · Energy">
+            <b>HIBISCS</b><span>-2.38%</span>
+          </div><div class="heat-tile" style="flex-basis:41.34381102293007%;background:hsl(145 72% 45.30769230769232%);" title="Lion Industries Corp. Bhd. · Energy">
+            <b>LIONIND</b><span>+7.69%</span>
+          </div><div class="heat-tile" style="flex-basis:41.33857313976533%;background:hsl(145 72% 36.33333333333331%);" title="Aumas Resources Bhd · Energy">
+            <b>AUMAS</b><span>+3.70%</span>
+          </div><div class="heat-tile" style="flex-basis:41.150072578314436%;background:#3f4959;" title="P.A. Resources Berhad · Energy">
+            <b>PA</b><span>0.00%</span>
+          </div><div class="heat-tile" style="flex-basis:40.81955039176546%;background:hsl(145 72% 30.195121951219512%);" title="Yinson Holdings Bhd. · Energy">
+            <b>YINSON</b><span>+0.98%</span>
+          </div><div class="heat-tile" style="flex-basis:40.81373820511978%;background:hsl(356 68% 30.272727272727273%);" title="Dialog Group Bhd. · Energy">
+            <b>DIALOG</b><span>-1.01%</span>
+          </div><div class="heat-tile" style="flex-basis:40.23573085358994%;background:hsl(356 68% 30.960526315789476%);" title="Dayang Enterprise Holdings Bhd. · Energy">
+            <b>DAYANG</b><span>-1.32%</span>
           </div></div>
       </section><section class="heat-sector">
-        <header><b>TELECOMMUNICATIONS &amp; MEDIA</b><span class="up">+0.19%</span></header>
-        <div class="heat-sub">电讯与媒体 · 16 counters · RM 65.91M</div>
-        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:46.08301423647232%;background:hsl(145 72% 30.606177606177628%);" title="Telekom Malaysia Bhd. · Telecommunications &amp; Media">
-            <b>TM</b><span>+1.16%</span>
-          </div><div class="heat-tile" style="flex-basis:44.39792356423797%;background:hsl(145 72% 29.19047619047619%);" title="Axiata Group Bhd. · Telecommunications &amp; Media">
-            <b>AXIATA</b><span>+0.53%</span>
-          </div><div class="heat-tile" style="flex-basis:44.165261397554545%;background:hsl(356 68% 31.10344827586207%);" title="CelcomDigi Berhad · Telecommunications &amp; Media">
-            <b>CDB</b><span>-1.38%</span>
-          </div><div class="heat-tile" style="flex-basis:44.048917929809775%;background:hsl(356 68% 28.374376039933438%);" title="TIME dotCom Bhd. · Telecommunications &amp; Media">
-            <b>TIMECOM</b><span>-0.17%</span>
-          </div><div class="heat-tile" style="flex-basis:42.72431206948809%;background:hsl(145 72% 29.7857142857143%);" title="Maxis Bhd. · Telecommunications &amp; Media">
-            <b>MAXIS</b><span>+0.79%</span>
-          </div><div class="heat-tile" style="flex-basis:41.35845527209558%;background:hsl(145 72% 31.000000000000004%);" title="Reach Ten Holdings Berhad · Telecommunications &amp; Media">
-            <b>REACHTEN</b><span>+1.33%</span>
-          </div><div class="heat-tile" style="flex-basis:41.15139152117518%;background:hsl(356 68% 36.03571428571429%);" title="SRKK AI Berhad · Telecommunications &amp; Media">
-            <b>SRKKAI</b><span>-3.57%</span>
-          </div><div class="heat-tile" style="flex-basis:40.15734440746657%;background:hsl(145 72% 31.62903225806452%);" title="REDtone Digital Berhad · Telecommunications &amp; Media">
-            <b>REDTONE</b><span>+1.61%</span>
+        <header><b>TRANSPORTATION &amp; LOGISTICS</b><span class="down">-0.28%</span></header>
+        <div class="heat-sub">交通与物流 · 35 counters · RM 20.36M</div>
+        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:43.95343600805803%;background:hsl(145 72% 36.65384615384616%);" title="AirAsia Group Bhd. · Transportation &amp; Logistics">
+            <b>AAGB</b><span>+3.85%</span>
+          </div><div class="heat-tile" style="flex-basis:43.85481326907886%;background:hsl(145 72% 31.333333333333336%);" title="MTT Shipping &amp; Logistics Bhd. · Transportation &amp; Logistics">
+            <b>MTTSL</b><span>+1.48%</span>
+          </div><div class="heat-tile" style="flex-basis:42.67895457506173%;background:hsl(356 68% 30.0979020979021%);" title="MISC Bhd · Transportation &amp; Logistics">
+            <b>MISC</b><span>-0.93%</span>
+          </div><div class="heat-tile" style="flex-basis:41.291486563941874%;background:hsl(145 72% 35.03125000000001%);" title="Capital A Berhad · Transportation &amp; Logistics">
+            <b>CAPITALA</b><span>+3.13%</span>
+          </div><div class="heat-tile" style="flex-basis:40.880108059210386%;background:hsl(356 68% 28.638297872340413%);" title="Westports Holdings Bhd. · Transportation &amp; Logistics">
+            <b>WPRTS</b><span>-0.28%</span>
+          </div><div class="heat-tile" style="flex-basis:40.32335340859146%;background:#3f4959;" title="Hi Mobility Bhd. · Transportation &amp; Logistics">
+            <b>HI</b><span>0.00%</span>
+          </div><div class="heat-tile" style="flex-basis:38.59944349037557%;background:#3f4959;" title="Avangaad Bhd · Transportation &amp; Logistics">
+            <b>AVANGAAD</b><span>0.00%</span>
+          </div><div class="heat-tile" style="flex-basis:38.2131015924125%;background:#3f4959;" title="Shin Yang Group Bhd · Transportation &amp; Logistics">
+            <b>SYGROUP</b><span>0.00%</span>
           </div></div>
       </section><section class="heat-sector">
-        <header><b>FINANCIAL SERVICES</b><span class="up">+0.03%</span></header>
-        <div class="heat-sub">金融服务 · 25 counters · RM 324.76M</div>
-        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:48.00850910999913%;background:hsl(356 68% 28.849056603773565%);" title="Malayan Banking Bhd. · Financial Services">
-            <b>MAYBANK</b><span>-0.38%</span>
-          </div><div class="heat-tile" style="flex-basis:47.0194938892828%;background:hsl(145 72% 28.283018867924522%);" title="CIMB Group Holdings Bhd · Financial Services">
-            <b>CIMB</b><span>+0.13%</span>
-          </div><div class="heat-tile" style="flex-basis:46.40411503621735%;background:#3f4959;" title="AMMB Holdings Bhd. · Financial Services">
-            <b>AMBANK</b><span>0.00%</span>
-          </div><div class="heat-tile" style="flex-basis:45.93175163856648%;background:hsl(145 72% 28.44204322200392%);" title="Public Bank Bhd · Financial Services">
-            <b>PBBANK</b><span>+0.20%</span>
-          </div><div class="heat-tile" style="flex-basis:45.420510964212895%;background:hsl(145 72% 28.523255813953476%);" title="RHB Bank Bhd. · Financial Services">
-            <b>RHBBANK</b><span>+0.23%</span>
-          </div><div class="heat-tile" style="flex-basis:43.64222658750475%;background:hsl(145 72% 28.792253521126792%);" title="Bursa Malaysia Bhd. · Financial Services">
-            <b>BURSA</b><span>+0.35%</span>
-          </div><div class="heat-tile" style="flex-basis:43.41791979012563%;background:hsl(356 68% 29.5929203539823%);" title="AEON Credit Service (M) Bhd. · Financial Services">
-            <b>AEONCR</b><span>-0.71%</span>
-          </div><div class="heat-tile" style="flex-basis:43.25864421725743%;background:hsl(356 68% 28.945378151260485%);" title="Alliance Bank Malaysia Bhd. · Financial Services">
-            <b>ABMB</b><span>-0.42%</span>
+        <header><b>PLANTATION</b><span class="down">-0.43%</span></header>
+        <div class="heat-sub">种植 · 59 counters · RM 23.50M</div>
+        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:43.74273423064213%;background:hsl(145 72% 29.691729323308266%);" title="SD Guthrie Bhd · Plantation">
+            <b>SDG</b><span>+0.75%</span>
+          </div><div class="heat-tile" style="flex-basis:42.52117095585018%;background:hsl(356 68% 29.403326403326375%);" title="IOI Corporation Berhad · Plantation">
+            <b>IOICORP</b><span>-0.62%</span>
+          </div><div class="heat-tile" style="flex-basis:42.494114697951375%;background:hsl(356 68% 31.36239103362389%);" title="United Plantations Bhd. · Plantation">
+            <b>UTDPLT</b><span>-1.49%</span>
+          </div><div class="heat-tile" style="flex-basis:42.248841593222515%;background:hsl(356 68% 28.615875912408782%);" title="Kuala Lumpur Kepong Bhd. · Plantation">
+            <b>KLK</b><span>-0.27%</span>
+          </div><div class="heat-tile" style="flex-basis:41.952591729401675%;background:hsl(356 68% 30.393617021276572%);" title="Johor Plantations Group Bhd · Plantation">
+            <b>JPG</b><span>-1.06%</span>
+          </div><div class="heat-tile" style="flex-basis:41.50728521215425%;background:hsl(356 68% 29.750972762645915%);" title="PPB Group Bhd. · Plantation">
+            <b>PPB</b><span>-0.78%</span>
+          </div><div class="heat-tile" style="flex-basis:41.096005256840854%;background:hsl(356 68% 29.63043478260866%);" title="TSH Resources Bhd. · Plantation">
+            <b>TSH</b><span>-0.72%</span>
+          </div><div class="heat-tile" style="flex-basis:40.97737000182669%;background:#3f4959;" title="XL Holdings Bhd · Plantation">
+            <b>XL</b><span>0.00%</span>
           </div></div>
       </section><section class="heat-sector">
-        <header><b>PROPERTY</b><span class="down">-0.13%</span></header>
-        <div class="heat-sub">产业/房地产 · 91 counters · RM 106.54M</div>
-        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:45.028547921635294%;background:hsl(356 68% 29.293103448275865%);" title="Central Global Bhd · Property">
-            <b>CGB</b><span>-0.57%</span>
-          </div><div class="heat-tile" style="flex-basis:44.6589645493034%;background:hsl(145 72% 30.214566929133852%);" title="Sunway Bhd. · Property">
-            <b>SUNWAY</b><span>+0.98%</span>
-          </div><div class="heat-tile" style="flex-basis:44.40819445189955%;background:hsl(145 72% 36.38983050847457%);" title="MNRB Holdings Bhd. · Property">
-            <b>MNRB</b><span>+3.73%</span>
-          </div><div class="heat-tile" style="flex-basis:44.16430307428547%;background:hsl(356 68% 31.813559322033903%);" title="Mah Sing Group Bhd. · Property">
-            <b>MAHSING</b><span>-1.69%</span>
-          </div><div class="heat-tile" style="flex-basis:44.097478808562386%;background:#3f4959;" title="Sime Darby Property Bhd. · Property">
-            <b>SIMEPROP</b><span>0.00%</span>
-          </div><div class="heat-tile" style="flex-basis:43.830538245607855%;background:hsl(145 72% 30.743902439024392%);" title="S P Setia Bhd. · Property">
-            <b>SPSETIA</b><span>+1.22%</span>
-          </div><div class="heat-tile" style="flex-basis:43.36628530998737%;background:hsl(356 68% 33.487804878048784%);" title="Tropicana Corp. Bhd. · Property">
-            <b>TROP</b><span>-2.44%</span>
-          </div><div class="heat-tile" style="flex-basis:43.268089373648955%;background:hsl(356 68% 31.937499999999993%);" title="IOI Properties Group Bhd. · Property">
-            <b>IOIPG</b><span>-1.75%</span>
-          </div></div>
-      </section><section class="heat-sector">
-        <header><b>CONSUMER PRODUCTS &amp; SERVICES</b><span class="down">-0.20%</span></header>
-        <div class="heat-sub">消费产品与服务 · 149 counters · RM 138.89M</div>
-        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:45.192438831037904%;background:hsl(356 68% 30.608695652173914%);" title="99 Speed Mart Retail Holdings Bhd · Consumer Products &amp; Services">
-            <b>99SMART</b><span>-1.16%</span>
-          </div><div class="heat-tile" style="flex-basis:44.90084156449586%;background:hsl(145 72% 29.551724137931036%);" title="Eco-Shop Marketing Berhad · Consumer Products &amp; Services">
-            <b>ECOSHOP</b><span>+0.69%</span>
-          </div><div class="heat-tile" style="flex-basis:44.592611825097634%;background:hsl(356 68% 30.142857142857146%);" title="Genting Bhd. · Consumer Products &amp; Services">
-            <b>GENTING</b><span>-0.95%</span>
-          </div><div class="heat-tile" style="flex-basis:44.27134065436185%;background:hsl(356 68% 46%);" title="Empire Premium Food Bhd. · Consumer Products &amp; Services">
-            <b>EMPIRE</b><span>-10.19%</span>
-          </div><div class="heat-tile" style="flex-basis:44.230748508661534%;background:hsl(145 72% 35.25806451612904%);" title="Guan Chong Bhd. · Consumer Products &amp; Services">
-            <b>GCB</b><span>+3.23%</span>
-          </div><div class="heat-tile" style="flex-basis:44.01692015655266%;background:hsl(145 72% 30.601156069364166%);" title="EG Industries Bhd. · Consumer Products &amp; Services">
-            <b>EG</b><span>+1.16%</span>
-          </div><div class="heat-tile" style="flex-basis:43.9760935658209%;background:hsl(145 72% 28.615595075239412%);" title="Carlsberg Brewery Malaysia Bhd. · Consumer Products &amp; Services">
-            <b>CARLSBG</b><span>+0.27%</span>
-          </div><div class="heat-tile" style="flex-basis:43.6215558073672%;background:hsl(356 68% 28.556930693069294%);" title="Heineken Malaysia Bhd. · Consumer Products &amp; Services">
-            <b>HEIM</b><span>-0.25%</span>
-          </div></div>
-      </section><section class="heat-sector">
-        <header><b>CONSTRUCTION</b><span class="down">-0.57%</span></header>
-        <div class="heat-sub">建筑 · 79 counters · RM 221.55M</div>
-        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:46.356264546697716%;background:hsl(356 68% 31.054298642533915%);" title="Gamuda Bhd. · Construction">
-            <b>GAMUDA</b><span>-1.36%</span>
-          </div><div class="heat-tile" style="flex-basis:46.06932344296441%;background:hsl(356 68% 34.53310104529616%);" title="Kelington Group Bhd. · Construction">
-            <b>KGB</b><span>-2.90%</span>
-          </div><div class="heat-tile" style="flex-basis:45.48243455316514%;background:hsl(356 68% 30.39361702127658%);" title="IJM Corporation Berhad · Construction">
-            <b>IJM</b><span>-1.06%</span>
-          </div><div class="heat-tile" style="flex-basis:45.391282974907995%;background:hsl(145 72% 33.126582278481%);" title="Sunway Construction Group Bhd. · Construction">
-            <b>SUNCON</b><span>+2.28%</span>
-          </div><div class="heat-tile" style="flex-basis:45.32996535887462%;background:hsl(356 68% 29.22615803814714%);" title="MN Holdings Bhd. · Construction">
-            <b>MNHLDG</b><span>-0.54%</span>
-          </div><div class="heat-tile" style="flex-basis:44.29259742262268%;background:#3f4959;" title="SFP Tech Holdings Bhd · Construction">
-            <b>SFPTECH</b><span>0.00%</span>
-          </div><div class="heat-tile" style="flex-basis:44.25893380063401%;background:hsl(356 68% 40.02290076335879%);" title="Sum Technology Berhad · Construction">
-            <b>SUM</b><span>-5.34%</span>
-          </div><div class="heat-tile" style="flex-basis:43.901937620942846%;background:hsl(356 68% 39.53846153846155%);" title="EI Power Berhad · Construction">
-            <b>EIPOWER</b><span>-5.13%</span>
-          </div></div>
-      </section><section class="heat-sector">
-        <header><b>UTILITIES</b><span class="down">-0.95%</span></header>
-        <div class="heat-sub">公用事业 · 16 counters · RM 188.70M</div>
-        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:46.847333460455616%;background:hsl(356 68% 29.562499999999993%);" title="Tenaga Nasional Bhd · Utilities">
-            <b>TENAGA</b><span>-0.69%</span>
-          </div><div class="heat-tile" style="flex-basis:46.48799559293611%;background:hsl(356 68% 34.325301204819304%);" title="YTL Corp Bhd. · Utilities">
-            <b>YTL</b><span>-2.81%</span>
-          </div><div class="heat-tile" style="flex-basis:46.19230210503471%;background:hsl(356 68% 29.25000000000001%);" title="YTL Power International Bhd. · Utilities">
-            <b>YTLPOWR</b><span>-0.56%</span>
-          </div><div class="heat-tile" style="flex-basis:45.463868743583824%;background:hsl(356 68% 43.94488188976379%);" title="Ranhill Utilities Bhd. · Utilities">
-            <b>RANHILL</b><span>-7.09%</span>
-          </div><div class="heat-tile" style="flex-basis:44.69210675429082%;background:hsl(145 72% 34.46551724137932%);" title="CBH Engineering Holding Berhad · Utilities">
-            <b>CBHB</b><span>+2.87%</span>
-          </div><div class="heat-tile" style="flex-basis:43.632193345518196%;background:#3f4959;" title="Petronas Gas Bhd. · Utilities">
-            <b>PETGAS</b><span>0.00%</span>
-          </div><div class="heat-tile" style="flex-basis:42.5177544596706%;background:hsl(356 68% 36.881578947368425%);" title="Cypark Resources Bhd. · Utilities">
-            <b>CYPARK</b><span>-3.95%</span>
-          </div><div class="heat-tile" style="flex-basis:42.22357413731348%;background:hsl(356 68% 34.17647058823528%);" title="Gas Malaysia Bhd. · Utilities">
-            <b>GASMSIA</b><span>-2.75%</span>
-          </div></div>
-      </section><section class="heat-sector">
-        <header><b>TECHNOLOGY</b><span class="down">-1.18%</span></header>
-        <div class="heat-sub">科技 · 110 counters · RM 551.96M</div>
-        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:47.432608305989206%;background:hsl(145 72% 40.76595744680852%);" title="Nationgate Holdings Berhad · Technology">
-            <b>NATGATE</b><span>+5.67%</span>
-          </div><div class="heat-tile" style="flex-basis:46.99170016489678%;background:hsl(145 72% 29.730769230769234%);" title="Zetrix AI Bhd · Technology">
-            <b>ZETRIX</b><span>+0.77%</span>
-          </div><div class="heat-tile" style="flex-basis:46.6485123762475%;background:hsl(356 68% 36.85416666666668%);" title="Malaysian Pacific Industries Bhd. · Technology">
-            <b>MPI</b><span>-3.94%</span>
-          </div><div class="heat-tile" style="flex-basis:46.12960273880594%;background:hsl(356 68% 41.23529411764707%);" title="Dagang NeXchange Berhad · Technology">
-            <b>DNEX</b><span>-5.88%</span>
-          </div><div class="heat-tile" style="flex-basis:46.126943673246856%;background:hsl(356 68% 32.24528301886791%);" title="Greatech Technology Bhd. · Technology">
-            <b>GREATEC</b><span>-1.89%</span>
-          </div><div class="heat-tile" style="flex-basis:45.966111982573665%;background:hsl(356 68% 29.24309392265195%);" title="Vitrox Corp. Bhd. · Technology">
-            <b>VITROX</b><span>-0.55%</span>
-          </div><div class="heat-tile" style="flex-basis:45.43327835960233%;background:hsl(356 68% 28.991189427312797%);" title="Inari Amertron Berhad · Technology">
-            <b>INARI</b><span>-0.44%</span>
-          </div><div class="heat-tile" style="flex-basis:45.376862232836444%;background:hsl(356 68% 28.723472668810274%);" title="Skyechip Berhad · Technology">
-            <b>SKYECHIP</b><span>-0.32%</span>
-          </div></div>
-      </section><section class="heat-sector">
-        <header><b>HEALTH CARE</b><span class="down">-1.39%</span></header>
-        <div class="heat-sub">医疗保健 · 31 counters · RM 274.84M</div>
-        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:48.464806154637444%;background:hsl(356 68% 46%);" title="KPJ Healthcare Bhd. · Health Care">
-            <b>KPJ</b><span>-10.26%</span>
-          </div><div class="heat-tile" style="flex-basis:45.94738213339649%;background:hsl(145 72% 32.2654028436019%);" title="Sunway Healthcare Holdings Berhad · Health Care">
-            <b>SUNMED</b><span>+1.90%</span>
-          </div><div class="heat-tile" style="flex-basis:44.61005582647048%;background:hsl(356 68% 31.532608695652147%);" title="IHH Healthcare Bhd. · Health Care">
-            <b>IHH</b><span>-1.57%</span>
-          </div><div class="heat-tile" style="flex-basis:44.4855789948341%;background:#3f4959;" title="Top Glove Corporation Bhd. · Health Care">
-            <b>TOPGLOV</b><span>0.00%</span>
-          </div><div class="heat-tile" style="flex-basis:44.410927137868455%;background:hsl(145 72% 46%);" title="Supermax Corp. Bhd. · Health Care">
-            <b>SUPERMX</b><span>+16.98%</span>
-          </div><div class="heat-tile" style="flex-basis:44.32693406251474%;background:hsl(356 68% 33.97345132743359%);" title="Kossan Rubber Industries Bhd. · Health Care">
-            <b>KOSSAN</b><span>-2.65%</span>
-          </div><div class="heat-tile" style="flex-basis:43.66129821028608%;background:hsl(145 72% 29.89075630252101%);" title="Pharmaniaga Bhd. · Health Care">
-            <b>PHARMA</b><span>+0.84%</span>
-          </div><div class="heat-tile" style="flex-basis:43.6342144776088%;background:#3f4959;" title="Hartalega Holdings Bhd. · Health Care">
-            <b>HARTA</b><span>0.00%</span>
+        <header><b>REAL ESTATE INVESTMENT TRUSTS</b><span class="down">-0.70%</span></header>
+        <div class="heat-sub">REITs · 20 counters · RM 2.88M</div>
+        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:41.88455331030717%;background:hsl(356 68% 30.045454545454547%);" title="Sunway Real Estate Investment Trust · Real Estate Investment Trusts">
+            <b>SUNREIT</b><span>-0.91%</span>
+          </div><div class="heat-tile" style="flex-basis:39.06124747586948%;background:hsl(145 72% 29.323529411764707%);" title="KIP Real Estate Investment Trust · Real Estate Investment Trusts">
+            <b>KIPREIT</b><span>+0.59%</span>
+          </div><div class="heat-tile" style="flex-basis:38.94413898251163%;background:hsl(356 68% 32.703832752613245%);" title="IGB Real Estate Investment Trust · Real Estate Investment Trusts">
+            <b>IGBREIT</b><span>-2.09%</span>
+          </div><div class="heat-tile" style="flex-basis:38.701630721981545%;background:#3f4959;" title="IGB Commercial Real Estate Investment Trust · Real Estate Investment Trusts">
+            <b>IGBCR</b><span>0.00%</span>
+          </div><div class="heat-tile" style="flex-basis:38.6111400094271%;background:hsl(356 68% 29.331360946745562%);" title="Pavilion Real Estate Investment Trust · Real Estate Investment Trusts">
+            <b>PAVREIT</b><span>-0.59%</span>
+          </div><div class="heat-tile" style="flex-basis:38.40332942724146%;background:hsl(356 68% 28.517241379310335%);" title="KLCC Property Holdings Bhd. · Real Estate Investment Trusts">
+            <b>KLCC</b><span>-0.23%</span>
+          </div><div class="heat-tile" style="flex-basis:38.1423892555964%;background:hsl(145 72% 29.90677966101695%);" title="Capitaland Malaysia Trust · Real Estate Investment Trusts">
+            <b>CLMT</b><span>+0.85%</span>
+          </div><div class="heat-tile" style="flex-basis:37.45102074988761%;background:#3f4959;" title="Hektar Real Estate Investment Trust · Real Estate Investment Trusts">
+            <b>HEKTAR</b><span>0.00%</span>
           </div></div>
       </section></div>
           <div class="heat-legend">
@@ -810,56 +810,56 @@
 
     <section>
       <div class="panel">
-        <div class="section-title"><h2>Top 5 Bursa Sector · 1D 走势</h2><small class="section-time" title="页面生成：Wed, Aug 26, 2026, 08:45 AM GMT+8；主要行情日：2026-08-24">更新：2026-08-26 08:45 GMT+8</small></div>
+        <div class="section-title"><h2>Top 5 Bursa Sector · 1D 走势</h2><small class="section-time" title="页面生成：Wed, Aug 26, 2026, 10:19 AM GMT+8；主要行情日：2026-08-26">更新：2026-08-26 10:19 GMT+8</small></div>
         <div class="sector-grid"><article class="sector-card">
         <div class="sector-title">
-          <div><b>1. TRANSPORTATION &amp; LOGISTICS</b><span>交通与物流 · 35 counters</span></div>
-          <strong class="up"><small>加权涨跌</small>+2.10%</strong>
+          <div><b>1. UTILITIES</b><span>公用事业 · 16 counters</span></div>
+          <strong class="up"><small>加权涨跌</small>+0.94%</strong>
         </div>
-        <canvas class="spark" data-series="[0,0.08,0.51,0.64,0.95,1.44,1.4,1.78,1.79,1.79,1.76,1.55,1.47,1.27,1.19,1.2,1.25,2.1]"></canvas>
+        <canvas class="spark" data-series="[0,0.03,0.09,0.19,0.31,0.44,0.62,0.63,0.74,0.92,0.86,0.83,0.64,0.64,0.74,0.67,0.47,0.94]"></canvas>
         <div class="sector-meta">
-          <span>Turnover RM 161.25M</span>
-          <span>13 Adv / 10 Dec</span>
+          <span>Turnover RM 57.79M</span>
+          <span>10 Adv / 3 Dec</span>
         </div>
       </article><article class="sector-card">
         <div class="sector-title">
-          <div><b>2. ENERGY</b><span>能源 · 65 counters</span></div>
-          <strong class="up"><small>加权涨跌</small>+0.75%</strong>
+          <div><b>2. HEALTH CARE</b><span>医疗保健 · 32 counters</span></div>
+          <strong class="up"><small>加权涨跌</small>+0.91%</strong>
         </div>
-        <canvas class="spark" data-series="[0,0.32,0.14,0.05,-0.01,-0.01,-0.08,-0.06,0.06,0.03,0.17,0.3,0.42,0.53,0.81,0.74,0.98,0.75]"></canvas>
+        <canvas class="spark" data-series="[0,0.28,0.36,0.41,0.62,0.5,0.71,0.53,0.61,0.51,0.4,0.49,0.31,0.41,0.35,0.36,0.5,0.91]"></canvas>
         <div class="sector-meta">
-          <span>Turnover RM 96.59M</span>
-          <span>29 Adv / 18 Dec</span>
+          <span>Turnover RM 43.52M</span>
+          <span>12 Adv / 4 Dec</span>
         </div>
       </article><article class="sector-card">
         <div class="sector-title">
-          <div><b>3. PLANTATION</b><span>种植 · 57 counters</span></div>
-          <strong class="up"><small>加权涨跌</small>+0.72%</strong>
+          <div><b>3. TECHNOLOGY</b><span>科技 · 110 counters</span></div>
+          <strong class="up"><small>加权涨跌</small>+0.86%</strong>
         </div>
-        <canvas class="spark" data-series="[0,-0.07,-0.07,-0.13,-0.18,-0.13,0.06,0.17,0.09,0.41,0.52,0.67,0.74,0.75,0.85,1.07,1.11,0.72]"></canvas>
+        <canvas class="spark" data-series="[0,-0.32,-0.2,-0.13,-0.19,-0.12,0.16,0.11,0.32,0.61,0.74,0.78,0.79,1.02,0.94,1.09,1.09,0.86]"></canvas>
         <div class="sector-meta">
-          <span>Turnover RM 163.58M</span>
-          <span>24 Adv / 15 Dec</span>
+          <span>Turnover RM 181.87M</span>
+          <span>50 Adv / 16 Dec</span>
         </div>
       </article><article class="sector-card">
         <div class="sector-title">
-          <div><b>4. INDUSTRIAL PRODUCTS &amp; SERVICES</b><span>工业产品与服务 · 257 counters</span></div>
-          <strong class="up"><small>加权涨跌</small>+0.23%</strong>
+          <div><b>4. TELECOMMUNICATIONS &amp; MEDIA</b><span>电讯与媒体 · 16 counters</span></div>
+          <strong class="up"><small>加权涨跌</small>+0.55%</strong>
         </div>
-        <canvas class="spark" data-series="[0,0.22,0.43,0.23,0.37,0.4,0.33,0.16,0.32,-0.03,0.05,0.01,-0.21,-0.28,-0.07,-0.14,0.08,0.23]"></canvas>
+        <canvas class="spark" data-series="[0,0.39,0.32,0.39,0.27,0.21,0.06,-0.05,0.03,0.09,-0.08,-0.02,0.01,0.13,0.25,0.51,0.64,0.55]"></canvas>
         <div class="sector-meta">
-          <span>Turnover RM 552.41M</span>
-          <span>68 Adv / 101 Dec</span>
+          <span>Turnover RM 13.08M</span>
+          <span>6 Adv / 2 Dec</span>
         </div>
       </article><article class="sector-card">
         <div class="sector-title">
-          <div><b>5. REAL ESTATE INVESTMENT TRUSTS</b><span>REITs · 20 counters</span></div>
-          <strong class="up"><small>加权涨跌</small>+0.22%</strong>
+          <div><b>5. PROPERTY</b><span>产业/房地产 · 97 counters</span></div>
+          <strong class="up"><small>加权涨跌</small>+0.52%</strong>
         </div>
-        <canvas class="spark" data-series="[0,-0.06,-0.1,-0.34,-0.18,-0.38,-0.32,-0.07,-0.12,0.13,0.19,0.25,0.46,0.4,0.58,0.44,0.46,0.22]"></canvas>
+        <canvas class="spark" data-series="[0,0.3,0.36,0.36,0.2,0.11,0.09,0.18,0.1,-0.12,-0.09,0.05,-0.09,0.07,0.28,0.31,0.53,0.52]"></canvas>
         <div class="sector-meta">
-          <span>Turnover RM 24.31M</span>
-          <span>7 Adv / 6 Dec</span>
+          <span>Turnover RM 28.73M</span>
+          <span>25 Adv / 31 Dec</span>
         </div>
       </article></div>
         <p class="source-line">此处 Top 5 sector 按 Bursa Malaysia sector classification 大类归并后，以市值加权涨跌幅由强到弱排序；右上角百分比 = 市值加权 sector 当天涨跌幅；底部 Adv / Dec = 该板块上涨/下跌家数；Turnover = 板块成分股成交额合计。</p>
@@ -868,433 +868,82 @@
 
     <section>
       <div class="panel">
-        <div class="section-title"><h2>各 Bursa Sector 量化候选股与股价</h2><small class="section-time" title="页面生成：Wed, Aug 26, 2026, 08:45 AM GMT+8；主要行情日：2026-08-24">更新：2026-08-26 08:45 GMT+8</small></div>
+        <div class="section-title"><h2>各 Bursa Sector 量化候选股与股价</h2><small class="section-time" title="页面生成：Wed, Aug 26, 2026, 10:19 AM GMT+8；主要行情日：2026-08-26">更新：2026-08-26 10:19 GMT+8</small></div>
         <div class="recommendations"><div class="recommend-block">
-        <div class="recommend-head">
-          <div>
-            <b>TRANSPORTATION &amp; LOGISTICS</b>
-            <span>交通与物流 · 35 counters</span>
-          </div>
-          <em class="up">+2.10%</em>
-        </div>
-        <table>
-          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
-          <tbody>
-          <tr>
-                <td><b>MISC</b><span>MISC Bhd</span></td>
-                <td>8.58</td>
-                <td class="up">+4.25%</td>
-                <td>50.3</td>
-              </tr><tr>
-                <td><b>PBSB</b><span>PBS Bhd</span></td>
-                <td>0.130</td>
-                <td class="up">+8.33%</td>
-                <td>48.0</td>
-              </tr><tr>
-                <td><b>WPRTS</b><span>Westports Holdings Bhd.</span></td>
-                <td>7.05</td>
-                <td class="up">+0.28%</td>
-                <td>45.5</td>
-              </tr><tr>
-                <td><b>MTTSL</b><span>MTT Shipping &amp; Logistics Bhd.</span></td>
-                <td>1.35</td>
-                <td class="up">+4.65%</td>
-                <td>42.4</td>
-              </tr><tr>
-                <td><b>HARBOUR</b><span>Harbour-Link Group Bhd.</span></td>
-                <td>1.34</td>
-                <td class="up">+3.08%</td>
-                <td>38.7</td>
-              </tr>
-          </tbody>
-        </table>
-      </div><div class="recommend-block">
-        <div class="recommend-head">
-          <div>
-            <b>ENERGY</b>
-            <span>能源 · 65 counters</span>
-          </div>
-          <em class="up">+0.75%</em>
-        </div>
-        <table>
-          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
-          <tbody>
-          <tr>
-                <td><b>PA</b><span>P.A. Resources Berhad</span></td>
-                <td>0.230</td>
-                <td class="up">+9.52%</td>
-                <td>54.0</td>
-              </tr><tr>
-                <td><b>CEPCO</b><span>Concrete Engineering Products Bhd.</span></td>
-                <td>3.90</td>
-                <td class="up">+7.14%</td>
-                <td>52.5</td>
-              </tr><tr>
-                <td><b>HENGYUAN</b><span>Hengyuan Refining Company Bhd</span></td>
-                <td>2.00</td>
-                <td class="up">+1.52%</td>
-                <td>48.4</td>
-              </tr><tr>
-                <td><b>AUMAS</b><span>Aumas Resources Bhd</span></td>
-                <td>0.405</td>
-                <td class="up">+8.00%</td>
-                <td>47.5</td>
-              </tr><tr>
-                <td><b>YINSON</b><span>Yinson Holdings Bhd.</span></td>
-                <td>2.05</td>
-                <td class="up">+3.02%</td>
-                <td>44.7</td>
-              </tr>
-          </tbody>
-        </table>
-      </div><div class="recommend-block">
-        <div class="recommend-head">
-          <div>
-            <b>PLANTATION</b>
-            <span>种植 · 57 counters</span>
-          </div>
-          <em class="up">+0.72%</em>
-        </div>
-        <table>
-          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
-          <tbody>
-          <tr>
-                <td><b>TAANN</b><span>Ta Ann Holdings Bhd.</span></td>
-                <td>6.29</td>
-                <td class="up">+1.78%</td>
-                <td>48.9</td>
-              </tr><tr>
-                <td><b>IOICORP</b><span>IOI Corporation Berhad</span></td>
-                <td>4.81</td>
-                <td class="up">+2.34%</td>
-                <td>48.2</td>
-              </tr><tr>
-                <td><b>SOP</b><span>Sarawak Oil Palms Bhd.</span></td>
-                <td>5.63</td>
-                <td class="up">+1.26%</td>
-                <td>47.5</td>
-              </tr><tr>
-                <td><b>MSM</b><span>MSM Malaysia Holdings Bhd.</span></td>
-                <td>0.740</td>
-                <td class="up">+17.46%</td>
-                <td>46.6</td>
-              </tr><tr>
-                <td><b>SWKPLNT</b><span>Sarawak Plantation Bhd.</span></td>
-                <td>4.82</td>
-                <td class="up">+6.17%</td>
-                <td>46.0</td>
-              </tr>
-          </tbody>
-        </table>
-      </div><div class="recommend-block">
-        <div class="recommend-head">
-          <div>
-            <b>INDUSTRIAL PRODUCTS &amp; SERVICES</b>
-            <span>工业产品与服务 · 257 counters</span>
-          </div>
-          <em class="up">+0.23%</em>
-        </div>
-        <table>
-          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
-          <tbody>
-          <tr>
-                <td><b>COMPUGT</b><span>Compugates Holdings Bhd.</span></td>
-                <td>0.020</td>
-                <td class="up">+33.33%</td>
-                <td>59.2</td>
-              </tr><tr>
-                <td><b>XPB</b><span>Express Powerr Solutions (M) Berhad</span></td>
-                <td>0.195</td>
-                <td class="up">+14.71%</td>
-                <td>53.4</td>
-              </tr><tr>
-                <td><b>AMBEST</b><span>Ambest Group Berhad</span></td>
-                <td>1.15</td>
-                <td class="down">-0.86%</td>
-                <td>52.7</td>
-              </tr><tr>
-                <td><b>CPETECH</b><span>CPE Technology Bhd</span></td>
-                <td>1.14</td>
-                <td class="up">+7.55%</td>
-                <td>52.4</td>
-              </tr><tr>
-                <td><b>SIME</b><span>Sime Darby Bhd.</span></td>
-                <td>2.49</td>
-                <td class="up">+7.79%</td>
-                <td>51.2</td>
-              </tr>
-          </tbody>
-        </table>
-      </div><div class="recommend-block">
-        <div class="recommend-head">
-          <div>
-            <b>REAL ESTATE INVESTMENT TRUSTS</b>
-            <span>REITs · 20 counters</span>
-          </div>
-          <em class="up">+0.22%</em>
-        </div>
-        <table>
-          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
-          <tbody>
-          <tr>
-                <td><b>IGBREIT</b><span>IGB Real Estate Investment Trust</span></td>
-                <td>2.87</td>
-                <td class="up">0.00%</td>
-                <td>41.5</td>
-              </tr><tr>
-                <td><b>HEKTAR</b><span>Hektar Real Estate Investment Trust</span></td>
-                <td>0.485</td>
-                <td class="up">+1.04%</td>
-                <td>38.8</td>
-              </tr><tr>
-                <td><b>AMEREIT</b><span>AME Real Estate Investment Trust</span></td>
-                <td>1.57</td>
-                <td class="up">+4.67%</td>
-                <td>37.1</td>
-              </tr><tr>
-                <td><b>AXREIT</b><span>Axis Real Estate Investment Trust</span></td>
-                <td>1.92</td>
-                <td class="up">+1.05%</td>
-                <td>36.0</td>
-              </tr><tr>
-                <td><b>ALSREIT</b><span>Al-Salam Real Estate Investment Trust</span></td>
-                <td>0.595</td>
-                <td class="up">+0.85%</td>
-                <td>35.2</td>
-              </tr>
-          </tbody>
-        </table>
-      </div><div class="recommend-block">
-        <div class="recommend-head">
-          <div>
-            <b>TELECOMMUNICATIONS &amp; MEDIA</b>
-            <span>电讯与媒体 · 16 counters</span>
-          </div>
-          <em class="up">+0.19%</em>
-        </div>
-        <table>
-          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
-          <tbody>
-          <tr>
-                <td><b>MAXIS</b><span>Maxis Bhd.</span></td>
-                <td>3.81</td>
-                <td class="up">+0.79%</td>
-                <td>44.7</td>
-              </tr><tr>
-                <td><b>TM</b><span>Telekom Malaysia Bhd.</span></td>
-                <td>7.86</td>
-                <td class="up">+1.16%</td>
-                <td>37.7</td>
-              </tr><tr>
-                <td><b>NOVATECH</b><span>NOVA Technology services berhad</span></td>
-                <td>0.040</td>
-                <td class="up">+14.29%</td>
-                <td>34.0</td>
-              </tr><tr>
-                <td><b>ASTRO</b><span>Astro Malaysia Holdings Bhd.</span></td>
-                <td>0.065</td>
-                <td class="up">+8.33%</td>
-                <td>33.7</td>
-              </tr><tr>
-                <td><b>REDTONE</b><span>REDtone Digital Berhad</span></td>
-                <td>0.315</td>
-                <td class="up">+1.61%</td>
-                <td>33.0</td>
-              </tr>
-          </tbody>
-        </table>
-      </div><div class="recommend-block">
-        <div class="recommend-head">
-          <div>
-            <b>FINANCIAL SERVICES</b>
-            <span>金融服务 · 25 counters</span>
-          </div>
-          <em class="up">+0.03%</em>
-        </div>
-        <table>
-          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
-          <tbody>
-          <tr>
-                <td><b>CIMB</b><span>CIMB Group Holdings Bhd</span></td>
-                <td>7.96</td>
-                <td class="up">+0.13%</td>
-                <td>45.0</td>
-              </tr><tr>
-                <td><b>HLBANK</b><span>Hong Leong Bank Bhd</span></td>
-                <td>22.96</td>
-                <td class="up">+0.26%</td>
-                <td>42.4</td>
-              </tr><tr>
-                <td><b>AMBANK</b><span>AMMB Holdings Bhd.</span></td>
-                <td>7.10</td>
-                <td class="up">0.00%</td>
-                <td>40.5</td>
-              </tr><tr>
-                <td><b>PJBUMI</b><span>PJBUMI BERHAD</span></td>
-                <td>3.89</td>
-                <td class="up">0.00%</td>
-                <td>39.7</td>
-              </tr><tr>
-                <td><b>RHBBANK</b><span>RHB Bank Bhd.</span></td>
-                <td>8.62</td>
-                <td class="up">+0.23%</td>
-                <td>38.1</td>
-              </tr>
-          </tbody>
-        </table>
-      </div><div class="recommend-block">
-        <div class="recommend-head">
-          <div>
-            <b>PROPERTY</b>
-            <span>产业/房地产 · 91 counters</span>
-          </div>
-          <em class="down">-0.13%</em>
-        </div>
-        <table>
-          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
-          <tbody>
-          <tr>
-                <td><b>MNRB</b><span>MNRB Holdings Bhd.</span></td>
-                <td>3.06</td>
-                <td class="up">+3.73%</td>
-                <td>49.2</td>
-              </tr><tr>
-                <td><b>L&amp;G</b><span>Land &amp; General Bhd.</span></td>
-                <td>0.185</td>
-                <td class="up">+2.78%</td>
-                <td>48.6</td>
-              </tr><tr>
-                <td><b>MAHSING</b><span>Mah Sing Group Bhd.</span></td>
-                <td>1.16</td>
-                <td class="down">-1.69%</td>
-                <td>43.2</td>
-              </tr><tr>
-                <td><b>LAGENDA</b><span>Lagenda Properties Bhd.</span></td>
-                <td>1.49</td>
-                <td class="up">0.00%</td>
-                <td>41.0</td>
-              </tr><tr>
-                <td><b>E&amp;O</b><span>Eastern &amp; Oriental Bhd.</span></td>
-                <td>0.790</td>
-                <td class="up">0.00%</td>
-                <td>38.3</td>
-              </tr>
-          </tbody>
-        </table>
-      </div><div class="recommend-block">
-        <div class="recommend-head">
-          <div>
-            <b>CONSUMER PRODUCTS &amp; SERVICES</b>
-            <span>消费产品与服务 · 149 counters</span>
-          </div>
-          <em class="down">-0.20%</em>
-        </div>
-        <table>
-          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
-          <tbody>
-          <tr>
-                <td><b>NIHSIN</b><span>Ni Hsin Group Bhd</span></td>
-                <td>0.145</td>
-                <td class="up">+20.83%</td>
-                <td>69.5</td>
-              </tr><tr>
-                <td><b>CME</b><span>CME Group Bhd.</span></td>
-                <td>0.010</td>
-                <td class="up">0.00%</td>
-                <td>54.9</td>
-              </tr><tr>
-                <td><b>GCB</b><span>Guan Chong Bhd.</span></td>
-                <td>1.28</td>
-                <td class="up">+3.23%</td>
-                <td>48.3</td>
-              </tr><tr>
-                <td><b>SUPREME</b><span>Supreme Consolidated Resources Bhd</span></td>
-                <td>0.220</td>
-                <td class="up">+7.32%</td>
-                <td>42.8</td>
-              </tr><tr>
-                <td><b>AHB</b><span>AHB Holdings Bhd.</span></td>
-                <td>0.045</td>
-                <td class="up">+12.50%</td>
-                <td>41.8</td>
-              </tr>
-          </tbody>
-        </table>
-      </div><div class="recommend-block">
-        <div class="recommend-head">
-          <div>
-            <b>CONSTRUCTION</b>
-            <span>建筑 · 79 counters</span>
-          </div>
-          <em class="down">-0.57%</em>
-        </div>
-        <table>
-          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
-          <tbody>
-          <tr>
-                <td><b>KEEMING</b><span>Kee Ming Group Berhad</span></td>
-                <td>2.46</td>
-                <td class="up">+0.41%</td>
-                <td>45.7</td>
-              </tr><tr>
-                <td><b>KERJAYA</b><span>Kerjaya Prospek Group Berhad</span></td>
-                <td>2.76</td>
-                <td class="up">+2.60%</td>
-                <td>44.8</td>
-              </tr><tr>
-                <td><b>TXCD</b><span>Txcd Bhd</span></td>
-                <td>0.155</td>
-                <td class="up">+6.90%</td>
-                <td>44.4</td>
-              </tr><tr>
-                <td><b>SUNCON</b><span>Sunway Construction Group Bhd.</span></td>
-                <td>8.08</td>
-                <td class="up">+2.28%</td>
-                <td>44.1</td>
-              </tr><tr>
-                <td><b>JAKS</b><span>JAKS Resources Bhd.</span></td>
-                <td>0.125</td>
-                <td class="up">0.00%</td>
-                <td>43.2</td>
-              </tr>
-          </tbody>
-        </table>
-      </div><div class="recommend-block">
         <div class="recommend-head">
           <div>
             <b>UTILITIES</b>
             <span>公用事业 · 16 counters</span>
           </div>
-          <em class="down">-0.95%</em>
+          <em class="up">+0.94%</em>
         </div>
         <table>
           <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
           <tbody>
           <tr>
-                <td><b>CBHB</b><span>CBH Engineering Holding Berhad</span></td>
-                <td>0.895</td>
-                <td class="up">+2.87%</td>
-                <td>46.9</td>
-              </tr><tr>
-                <td><b>NHB</b><span>NuEnergy Holdings Bhd</span></td>
-                <td>0.885</td>
-                <td class="up">+7.27%</td>
-                <td>46.6</td>
-              </tr><tr>
                 <td><b>YTL</b><span>YTL Corp Bhd.</span></td>
-                <td>2.42</td>
-                <td class="down">-2.81%</td>
-                <td>44.4</td>
+                <td>2.46</td>
+                <td class="up">+1.65%</td>
+                <td>48.6</td>
               </tr><tr>
                 <td><b>YTLPOWR</b><span>YTL Power International Bhd.</span></td>
-                <td>5.37</td>
-                <td class="down">-0.56%</td>
-                <td>42.7</td>
+                <td>5.48</td>
+                <td class="up">+2.05%</td>
+                <td>47.4</td>
               </tr><tr>
-                <td><b>PBA</b><span>PBA Holdings Bhd.</span></td>
-                <td>2.22</td>
-                <td class="up">+0.91%</td>
-                <td>36.7</td>
+                <td><b>CBHB</b><span>CBH Engineering Holding Berhad</span></td>
+                <td>0.920</td>
+                <td class="up">+2.79%</td>
+                <td>46.4</td>
+              </tr><tr>
+                <td><b>PETGAS</b><span>Petronas Gas Bhd.</span></td>
+                <td>17.72</td>
+                <td class="up">+0.68%</td>
+                <td>42.4</td>
+              </tr><tr>
+                <td><b>NHB</b><span>NuEnergy Holdings Bhd</span></td>
+                <td>0.900</td>
+                <td class="up">+1.69%</td>
+                <td>42.1</td>
+              </tr>
+          </tbody>
+        </table>
+      </div><div class="recommend-block">
+        <div class="recommend-head">
+          <div>
+            <b>HEALTH CARE</b>
+            <span>医疗保健 · 32 counters</span>
+          </div>
+          <em class="up">+0.91%</em>
+        </div>
+        <table>
+          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
+          <tbody>
+          <tr>
+                <td><b>CENGILD</b><span>Cengild Medical Bhd.</span></td>
+                <td>0.210</td>
+                <td class="up">+7.69%</td>
+                <td>43.1</td>
+              </tr><tr>
+                <td><b>DPHARMA</b><span>Duopharma Biotech Bhd.</span></td>
+                <td>1.30</td>
+                <td class="up">+2.36%</td>
+                <td>41.0</td>
+              </tr><tr>
+                <td><b>SUPERMX</b><span>Supermax Corp. Bhd.</span></td>
+                <td>0.315</td>
+                <td class="up">+1.61%</td>
+                <td>37.1</td>
+              </tr><tr>
+                <td><b>KOSSAN</b><span>Kossan Rubber Industries Bhd.</span></td>
+                <td>1.12</td>
+                <td class="up">+1.82%</td>
+                <td>36.8</td>
+              </tr><tr>
+                <td><b>NOVA</b><span>Nova Wellness Group Bhd.</span></td>
+                <td>0.355</td>
+                <td class="up">0.00%</td>
+                <td>36.2</td>
               </tr>
           </tbody>
         </table>
@@ -1304,75 +953,426 @@
             <b>TECHNOLOGY</b>
             <span>科技 · 110 counters</span>
           </div>
-          <em class="down">-1.18%</em>
+          <em class="up">+0.86%</em>
         </div>
         <table>
           <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
           <tbody>
           <tr>
-                <td><b>ICTZONE</b><span>ICT Zone Asia Bhd.</span></td>
-                <td>0.290</td>
-                <td class="up">+5.45%</td>
-                <td>53.4</td>
+                <td><b>NATGATE</b><span>Nationgate Holdings Berhad</span></td>
+                <td>1.71</td>
+                <td class="up">+14.77%</td>
+                <td>61.4</td>
               </tr><tr>
-                <td><b>G3</b><span>G3 Global Bhd</span></td>
-                <td>0.015</td>
-                <td class="up">+50.00%</td>
-                <td>51.6</td>
+                <td><b>DFX</b><span>Divfex Bhd</span></td>
+                <td>0.095</td>
+                <td class="up">+11.76%</td>
+                <td>52.0</td>
               </tr><tr>
                 <td><b>KEYASIC</b><span>Key ASIC Bhd.</span></td>
                 <td>0.070</td>
                 <td class="up">0.00%</td>
-                <td>50.6</td>
+                <td>51.5</td>
               </tr><tr>
-                <td><b>NATGATE</b><span>Nationgate Holdings Berhad</span></td>
-                <td>1.49</td>
-                <td class="up">+5.67%</td>
-                <td>46.6</td>
+                <td><b>DNONCE</b><span>D&#039;nonce Technology Bhd.</span></td>
+                <td>0.040</td>
+                <td class="up">+14.29%</td>
+                <td>48.4</td>
               </tr><tr>
-                <td><b>D&amp;O</b><span>D&amp;O Green Technologies Bhd.</span></td>
-                <td>0.425</td>
-                <td class="up">+13.33%</td>
-                <td>46.3</td>
+                <td><b>YGL</b><span>YGL Convergence Bhd.</span></td>
+                <td>0.120</td>
+                <td class="up">+4.35%</td>
+                <td>45.9</td>
               </tr>
           </tbody>
         </table>
       </div><div class="recommend-block">
         <div class="recommend-head">
           <div>
-            <b>HEALTH CARE</b>
-            <span>医疗保健 · 31 counters</span>
+            <b>TELECOMMUNICATIONS &amp; MEDIA</b>
+            <span>电讯与媒体 · 16 counters</span>
           </div>
-          <em class="down">-1.39%</em>
+          <em class="up">+0.55%</em>
         </div>
         <table>
           <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
           <tbody>
           <tr>
-                <td><b>SUPERMX</b><span>Supermax Corp. Bhd.</span></td>
-                <td>0.310</td>
-                <td class="up">+16.98%</td>
-                <td>49.1</td>
+                <td><b>MAXIS</b><span>Maxis Bhd.</span></td>
+                <td>3.89</td>
+                <td class="up">+2.10%</td>
+                <td>47.3</td>
               </tr><tr>
-                <td><b>NEXGRAM</b><span>Nexgram Holdings Berhad</span></td>
-                <td>0.055</td>
+                <td><b>REDTONE</b><span>REDtone Digital Berhad</span></td>
+                <td>0.330</td>
+                <td class="up">+4.76%</td>
+                <td>43.1</td>
+              </tr><tr>
+                <td><b>TIMECOM</b><span>TIME dotCom Bhd.</span></td>
+                <td>6.02</td>
+                <td class="up">+0.33%</td>
+                <td>37.1</td>
+              </tr><tr>
+                <td><b>TM</b><span>Telekom Malaysia Bhd.</span></td>
+                <td>7.77</td>
+                <td class="down">-1.15%</td>
+                <td>29.4</td>
+              </tr><tr>
+                <td><b>WILLOW</b><span>Willowglen MSC Bhd.</span></td>
+                <td>0.295</td>
+                <td class="up">+1.72%</td>
+                <td>28.0</td>
+              </tr>
+          </tbody>
+        </table>
+      </div><div class="recommend-block">
+        <div class="recommend-head">
+          <div>
+            <b>PROPERTY</b>
+            <span>产业/房地产 · 97 counters</span>
+          </div>
+          <em class="up">+0.52%</em>
+        </div>
+        <table>
+          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
+          <tbody>
+          <tr>
+                <td><b>SIMEPROP</b><span>Sime Darby Property Bhd.</span></td>
+                <td>1.40</td>
+                <td class="up">+6.06%</td>
+                <td>46.9</td>
+              </tr><tr>
+                <td><b>MNRB</b><span>MNRB Holdings Bhd.</span></td>
+                <td>3.07</td>
+                <td class="up">+0.33%</td>
+                <td>44.6</td>
+              </tr><tr>
+                <td><b>MAHSING</b><span>Mah Sing Group Bhd.</span></td>
+                <td>1.16</td>
                 <td class="up">0.00%</td>
-                <td>41.9</td>
+                <td>44.0</td>
               </tr><tr>
-                <td><b>SUNMED</b><span>Sunway Healthcare Holdings Berhad</span></td>
-                <td>2.15</td>
-                <td class="up">+1.90%</td>
-                <td>38.4</td>
+                <td><b>PLENITU</b><span>Plenitude Bhd.</span></td>
+                <td>1.62</td>
+                <td class="up">+7.28%</td>
+                <td>43.6</td>
               </tr><tr>
-                <td><b>TWL</b><span>TWL Holdings Bhd</span></td>
-                <td>0.025</td>
+                <td><b>MKH</b><span>MKH Berhad</span></td>
+                <td>1.99</td>
+                <td class="up">+0.51%</td>
+                <td>41.6</td>
+              </tr>
+          </tbody>
+        </table>
+      </div><div class="recommend-block">
+        <div class="recommend-head">
+          <div>
+            <b>CONSUMER PRODUCTS &amp; SERVICES</b>
+            <span>消费产品与服务 · 151 counters</span>
+          </div>
+          <em class="up">+0.43%</em>
+        </div>
+        <table>
+          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
+          <tbody>
+          <tr>
+                <td><b>NIHSIN</b><span>Ni Hsin Group Bhd</span></td>
+                <td>0.160</td>
+                <td class="up">+10.34%</td>
+                <td>70.7</td>
+              </tr><tr>
+                <td><b>CME</b><span>CME Group Bhd.</span></td>
+                <td>0.010</td>
                 <td class="up">0.00%</td>
+                <td>54.9</td>
+              </tr><tr>
+                <td><b>GCB</b><span>Guan Chong Bhd.</span></td>
+                <td>1.31</td>
+                <td class="up">+2.34%</td>
+                <td>51.4</td>
+              </tr><tr>
+                <td><b>EXSIMHB</b><span>Exsim Hospitality Bhd</span></td>
+                <td>0.485</td>
+                <td class="up">+3.19%</td>
+                <td>43.3</td>
+              </tr><tr>
+                <td><b>EG</b><span>EG Industries Bhd.</span></td>
+                <td>1.81</td>
+                <td class="up">+3.43%</td>
+                <td>41.4</td>
+              </tr>
+          </tbody>
+        </table>
+      </div><div class="recommend-block">
+        <div class="recommend-head">
+          <div>
+            <b>CONSTRUCTION</b>
+            <span>建筑 · 82 counters</span>
+          </div>
+          <em class="up">+0.40%</em>
+        </div>
+        <table>
+          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
+          <tbody>
+          <tr>
+                <td><b>KEEMING</b><span>Kee Ming Group Berhad</span></td>
+                <td>2.49</td>
+                <td class="up">+1.22%</td>
+                <td>47.9</td>
+              </tr><tr>
+                <td><b>JTGROUP</b><span>Jati Tinggi Group Bhd</span></td>
+                <td>0.975</td>
+                <td class="up">+5.41%</td>
+                <td>47.4</td>
+              </tr><tr>
+                <td><b>KERJAYA</b><span>Kerjaya Prospek Group Berhad</span></td>
+                <td>2.79</td>
+                <td class="up">+1.09%</td>
+                <td>43.6</td>
+              </tr><tr>
+                <td><b>MNHLDG</b><span>MN Holdings Bhd.</span></td>
+                <td>3.62</td>
+                <td class="down">-0.82%</td>
+                <td>42.5</td>
+              </tr><tr>
+                <td><b>CHB</b><span>Critical Holdings Bhd.</span></td>
+                <td>1.94</td>
+                <td class="up">+6.59%</td>
+                <td>42.2</td>
+              </tr>
+          </tbody>
+        </table>
+      </div><div class="recommend-block">
+        <div class="recommend-head">
+          <div>
+            <b>FINANCIAL SERVICES</b>
+            <span>金融服务 · 25 counters</span>
+          </div>
+          <em class="up">+0.31%</em>
+        </div>
+        <table>
+          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
+          <tbody>
+          <tr>
+                <td><b>CIMB</b><span>CIMB Group Holdings Bhd</span></td>
+                <td>8.02</td>
+                <td class="up">+0.75%</td>
+                <td>44.6</td>
+              </tr><tr>
+                <td><b>PBBANK</b><span>Public Bank Bhd</span></td>
+                <td>5.14</td>
+                <td class="up">+0.78%</td>
+                <td>41.7</td>
+              </tr><tr>
+                <td><b>PJBUMI</b><span>PJBUMI BERHAD</span></td>
+                <td>3.91</td>
+                <td class="up">+0.51%</td>
+                <td>41.1</td>
+              </tr><tr>
+                <td><b>HLBANK</b><span>Hong Leong Bank Bhd</span></td>
+                <td>22.84</td>
+                <td class="down">-0.52%</td>
+                <td>39.1</td>
+              </tr><tr>
+                <td><b>AMBANK</b><span>AMMB Holdings Bhd.</span></td>
+                <td>7.08</td>
+                <td class="down">-0.28%</td>
+                <td>38.1</td>
+              </tr>
+          </tbody>
+        </table>
+      </div><div class="recommend-block">
+        <div class="recommend-head">
+          <div>
+            <b>INDUSTRIAL PRODUCTS &amp; SERVICES</b>
+            <span>工业产品与服务 · 269 counters</span>
+          </div>
+          <em class="up">+0.23%</em>
+        </div>
+        <table>
+          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
+          <tbody>
+          <tr>
+                <td><b>AMBEST</b><span>Ambest Group Berhad</span></td>
+                <td>1.15</td>
+                <td class="up">0.00%</td>
+                <td>54.8</td>
+              </tr><tr>
+                <td><b>ASTEEL</b><span>ASTEEL Group Bhd</span></td>
+                <td>0.085</td>
+                <td class="up">+13.33%</td>
+                <td>53.3</td>
+              </tr><tr>
+                <td><b>AYS</b><span>AYS Ventures Bhd.</span></td>
+                <td>0.250</td>
+                <td class="up">+19.05%</td>
+                <td>51.5</td>
+              </tr><tr>
+                <td><b>CPETECH</b><span>CPE Technology Bhd</span></td>
+                <td>1.16</td>
+                <td class="up">+1.75%</td>
+                <td>48.5</td>
+              </tr><tr>
+                <td><b>HEGROUP</b><span>HE Group Bhd</span></td>
+                <td>0.865</td>
+                <td class="up">+1.76%</td>
+                <td>47.5</td>
+              </tr>
+          </tbody>
+        </table>
+      </div><div class="recommend-block">
+        <div class="recommend-head">
+          <div>
+            <b>ENERGY</b>
+            <span>能源 · 68 counters</span>
+          </div>
+          <em class="down">-0.17%</em>
+        </div>
+        <table>
+          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
+          <tbody>
+          <tr>
+                <td><b>AUMAS</b><span>Aumas Resources Bhd</span></td>
+                <td>0.420</td>
+                <td class="up">+3.70%</td>
+                <td>47.8</td>
+              </tr><tr>
+                <td><b>PA</b><span>P.A. Resources Berhad</span></td>
+                <td>0.230</td>
+                <td class="up">0.00%</td>
+                <td>44.4</td>
+              </tr><tr>
+                <td><b>HENGYUAN</b><span>Hengyuan Refining Company Bhd</span></td>
+                <td>1.93</td>
+                <td class="down">-3.50%</td>
+                <td>43.4</td>
+              </tr><tr>
+                <td><b>LIONIND</b><span>Lion Industries Corp. Bhd.</span></td>
+                <td>0.140</td>
+                <td class="up">+7.69%</td>
+                <td>42.1</td>
+              </tr><tr>
+                <td><b>SSTEEL</b><span>Southern Steel Bhd.</span></td>
+                <td>0.420</td>
+                <td class="up">+5.00%</td>
+                <td>41.8</td>
+              </tr>
+          </tbody>
+        </table>
+      </div><div class="recommend-block">
+        <div class="recommend-head">
+          <div>
+            <b>TRANSPORTATION &amp; LOGISTICS</b>
+            <span>交通与物流 · 35 counters</span>
+          </div>
+          <em class="down">-0.28%</em>
+        </div>
+        <table>
+          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
+          <tbody>
+          <tr>
+                <td><b>PBSB</b><span>PBS Bhd</span></td>
+                <td>0.130</td>
+                <td class="up">+8.33%</td>
+                <td>48.0</td>
+              </tr><tr>
+                <td><b>MISC</b><span>MISC Bhd</span></td>
+                <td>8.50</td>
+                <td class="down">-0.93%</td>
+                <td>42.6</td>
+              </tr><tr>
+                <td><b>FM</b><span>FM Global Logistics Holdings Bhd</span></td>
+                <td>0.600</td>
+                <td class="up">+0.84%</td>
+                <td>39.8</td>
+              </tr><tr>
+                <td><b>MTTSL</b><span>MTT Shipping &amp; Logistics Bhd.</span></td>
+                <td>1.37</td>
+                <td class="up">+1.48%</td>
                 <td>38.0</td>
               </tr><tr>
-                <td><b>DPHARMA</b><span>Duopharma Biotech Bhd.</span></td>
-                <td>1.27</td>
-                <td class="up">+2.42%</td>
-                <td>37.6</td>
+                <td><b>WPRTS</b><span>Westports Holdings Bhd.</span></td>
+                <td>7.03</td>
+                <td class="down">-0.28%</td>
+                <td>37.5</td>
+              </tr>
+          </tbody>
+        </table>
+      </div><div class="recommend-block">
+        <div class="recommend-head">
+          <div>
+            <b>PLANTATION</b>
+            <span>种植 · 59 counters</span>
+          </div>
+          <em class="down">-0.43%</em>
+        </div>
+        <table>
+          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
+          <tbody>
+          <tr>
+                <td><b>IOICORP</b><span>IOI Corporation Berhad</span></td>
+                <td>4.78</td>
+                <td class="down">-0.62%</td>
+                <td>42.4</td>
+              </tr><tr>
+                <td><b>SDG</b><span>SD Guthrie Bhd</span></td>
+                <td>6.70</td>
+                <td class="up">+0.75%</td>
+                <td>41.4</td>
+              </tr><tr>
+                <td><b>MKHOP</b><span>MKH Oil Palm (East Kalimantan) Bhd</span></td>
+                <td>0.660</td>
+                <td class="up">+0.76%</td>
+                <td>40.4</td>
+              </tr><tr>
+                <td><b>TAANN</b><span>Ta Ann Holdings Bhd.</span></td>
+                <td>6.14</td>
+                <td class="down">-2.38%</td>
+                <td>40.0</td>
+              </tr><tr>
+                <td><b>SWKPLNT</b><span>Sarawak Plantation Bhd.</span></td>
+                <td>4.74</td>
+                <td class="down">-1.66%</td>
+                <td>39.4</td>
+              </tr>
+          </tbody>
+        </table>
+      </div><div class="recommend-block">
+        <div class="recommend-head">
+          <div>
+            <b>REAL ESTATE INVESTMENT TRUSTS</b>
+            <span>REITs · 20 counters</span>
+          </div>
+          <em class="down">-0.70%</em>
+        </div>
+        <table>
+          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
+          <tbody>
+          <tr>
+                <td><b>IGBREIT</b><span>IGB Real Estate Investment Trust</span></td>
+                <td>2.81</td>
+                <td class="down">-2.09%</td>
+                <td>36.1</td>
+              </tr><tr>
+                <td><b>HEKTAR</b><span>Hektar Real Estate Investment Trust</span></td>
+                <td>0.485</td>
+                <td class="up">0.00%</td>
+                <td>35.8</td>
+              </tr><tr>
+                <td><b>ALSREIT</b><span>Al-Salam Real Estate Investment Trust</span></td>
+                <td>0.595</td>
+                <td class="up">+0.85%</td>
+                <td>35.2</td>
+              </tr><tr>
+                <td><b>KIPREIT</b><span>KIP Real Estate Investment Trust</span></td>
+                <td>0.855</td>
+                <td class="up">+0.59%</td>
+                <td>32.1</td>
+              </tr><tr>
+                <td><b>TWRREIT</b><span>Tower Real Estate Investment Trust</span></td>
+                <td>0.310</td>
+                <td class="up">0.00%</td>
+                <td>30.2</td>
               </tr>
           </tbody>
         </table>
@@ -1385,7 +1385,7 @@
   </main>
 
   <script>
-    const DATA = {"klciPrices":[{"date":"2026-08-24","open":1738.31005859375,"high":1739.469970703125,"low":1733.0699462890625,"close":1736.3299560546875,"change":-0.1500244140625,"pctChange":-0.00008639570611231695,"volume":157036700},{"date":"2026-08-21","open":1736.0799560546875,"high":1738.300048828125,"low":1733.1300048828125,"close":1736.47998046875,"change":-0.22998046875,"pctChange":-0.00013242307231649283,"volume":247093100},{"date":"2026-08-20","open":1732.1099853515625,"high":1739.1300048828125,"low":1732.1099853515625,"close":1736.7099609375,"change":5.3900146484375,"pctChange":0.0031132400802003925,"volume":305493900},{"date":"2026-08-19","open":1731.969970703125,"high":1733.43994140625,"low":1725.949951171875,"close":1731.3199462890625,"change":-2.0400390625,"pctChange":-0.0011769275163498346,"volume":179345200},{"date":"2026-08-18","open":1727.52001953125,"high":1734.530029296875,"low":1723.5999755859375,"close":1733.3599853515625,"change":7.469970703125,"pctChange":0.004328184669778409,"volume":195809400},{"date":"2026-08-17","open":1726.93994140625,"high":1731.449951171875,"low":1722.1600341796875,"close":1725.8900146484375,"change":-1.5,"pctChange":-0.0008683620880518309,"volume":203394100},{"date":"2026-08-14","open":1734.719970703125,"high":1734.719970703125,"low":1726.77001953125,"close":1727.3900146484375,"change":-7.3199462890625,"pctChange":-0.004219694619789083,"volume":192296600},{"date":"2026-08-13","open":1742.7900390625,"high":1742.7900390625,"low":1732.8299560546875,"close":1734.7099609375,"change":-6.9000244140625,"pctChange":-0.003961865441802492,"volume":213599500},{"date":"2026-08-12","open":1731.469970703125,"high":1741.6099853515625,"low":1728.6400146484375,"close":1741.6099853515625,"change":10.1500244140625,"pctChange":0.005862119045806155,"volume":261319500},{"date":"2026-08-11","open":1735.4100341796875,"high":1738.2099609375,"low":1725.47998046875,"close":1731.4599609375,"change":-3.9100341796875,"pctChange":-0.0022531415148868356,"volume":218536000},{"date":"2026-08-10","open":1735.8499755859375,"high":1738.969970703125,"low":1730.3499755859375,"close":1735.3699951171875,"change":-0.3800048828125,"pctChange":-0.00021892834959671612,"volume":146489400},{"date":"2026-08-07","open":1735.219970703125,"high":1739.1400146484375,"low":1729.3399658203125,"close":1735.75,"change":-1.4000244140625,"pctChange":-0.0008059317815884817,"volume":273603000},{"date":"2026-08-06","open":1749.6500244140625,"high":1749.6500244140625,"low":1733.3800048828125,"close":1737.1500244140625,"change":-11.02001953125,"pctChange":-0.0063037457765720275,"volume":194527100},{"date":"2026-08-05","open":1736.3599853515625,"high":1750.4100341796875,"low":1732.6800537109375,"close":1748.1700439453125,"change":15.510009765625,"pctChange":0.008951559717234476,"volume":230534900},{"date":"2026-08-04","open":1725.93994140625,"high":1732.6600341796875,"low":1722.780029296875,"close":1732.6600341796875,"change":6.9300537109375,"pctChange":0.004015723079143082,"volume":202130300},{"date":"2026-08-03","open":1725.260009765625,"high":1729.719970703125,"low":1719.469970703125,"close":1725.72998046875,"change":0.8299560546875,"pctChange":0.00048116183137595514,"volume":165737800},{"date":"2026-07-31","open":1721.22998046875,"high":1730.1199951171875,"low":1715.6700439453125,"close":1724.9000244140625,"change":4.5,"pctChange":0.0026156707371197694,"volume":259179700},{"date":"2026-07-30","open":1714.4200439453125,"high":1720.4000244140625,"low":1710.68994140625,"close":1720.4000244140625,"change":4.8399658203125,"pctChange":0.0028212161947159314,"volume":160367000},{"date":"2026-07-29","open":1714.3900146484375,"high":1720.5899658203125,"low":1710.7900390625,"close":1715.56005859375,"change":3.080078125,"pctChange":0.0017986067925634395,"volume":169118100},{"date":"2026-07-28","open":1711.949951171875,"high":1715.02001953125,"low":1703.8299560546875,"close":1712.47998046875,"change":-0.6099853515625,"pctChange":-0.00035607315653758367,"volume":179145100},{"date":"2026-07-27","open":1703.6500244140625,"high":1718.31005859375,"low":1702.3499755859375,"close":1713.0899658203125,"change":12.0699462890625,"pctChange":0.007095710897270106,"volume":147159100},{"date":"2026-07-24","open":1710.449951171875,"high":1710.800048828125,"low":1697.760009765625,"close":1701.02001953125,"change":-13.5699462890625,"pctChange":-0.007914397354221201,"volume":177175300},{"date":"2026-07-23","open":1714.3800048828125,"high":1716.4300537109375,"low":1709.050048828125,"close":1714.5899658203125,"change":3.219970703125,"pctChange":0.001881516394649954,"volume":145824600},{"date":"2026-07-22","open":1719.8399658203125,"high":1721.31005859375,"low":1709.1500244140625,"close":1711.3699951171875,"change":-9,"pctChange":-0.005231432788030543,"volume":164288900},{"date":"2026-07-21","open":1725.6199951171875,"high":1726.8800048828125,"low":1712.6600341796875,"close":1720.3699951171875,"change":-1.9200439453125,"pctChange":-0.0011148203274505635,"volume":137841400},{"date":"2026-07-20","open":1732.6500244140625,"high":1733.760009765625,"low":1720.050048828125,"close":1722.2900390625,"change":-9.159912109375,"pctChange":-0.005290312956014359,"volume":128070000},{"date":"2026-07-17","open":1719.8599853515625,"high":1735.6700439453125,"low":1719.56005859375,"close":1731.449951171875,"change":9.260009765625,"pctChange":0.005376880646546897,"volume":217428700},{"date":"2026-07-16","open":1716.760009765625,"high":1726.75,"low":1716.760009765625,"close":1722.18994140625,"change":8.429931640625,"pctChange":0.0049189685793741235,"volume":195577300},{"date":"2026-07-15","open":1720.6600341796875,"high":1724.8299560546875,"low":1712.8800048828125,"close":1713.760009765625,"change":-6.179931640625,"pctChange":-0.00359310897540538,"volume":175219300},{"date":"2026-07-14","open":1699.68994140625,"high":1719.93994140625,"low":1698.2099609375,"close":1719.93994140625,"change":21.5,"pctChange":0.012658675456135787,"volume":202644700}],"intradayCandles":[{"time":"8am","open":1738.31005859375,"high":1739.469970703125,"low":1738.1180578613282,"close":1738.31005859375},{"time":"9am","open":1738.31005859375,"high":1738.5980596923828,"low":1736.870053100586,"close":1737.1580541992187},{"time":"10am","open":1737.1580541992187,"high":1737.5420556640624,"low":1735.750048828125,"close":1736.1340502929688},{"time":"11am","open":1736.1340502929688,"high":1736.7100524902344,"low":1735.942049560547,"close":1736.5180517578126},{"time":"12pm","open":1736.5180517578126,"high":1736.8060528564454,"low":1734.9500457763672,"close":1735.238046875},{"time":"1pm","open":1735.238046875,"high":1736.0060498046876,"low":1734.8540454101562,"close":1735.6220483398438},{"time":"2pm","open":1735.6220483398438,"high":1735.8140490722656,"low":1734.1500427246094,"close":1734.3420434570312},{"time":"3pm","open":1734.3420434570312,"high":1734.630044555664,"low":1733.0699462890625,"close":1733.0699462890625},{"time":"4pm","open":1733.0699462890625,"high":1734.2219506835938,"low":1733.0699462890625,"close":1733.83794921875},{"time":"5pm","open":1733.83794921875,"high":1736.5219567871093,"low":1733.6459484863283,"close":1736.3299560546875}],"marketSummary":[{"date":"2026-08-24","gainers":267,"losers":348,"unchanged":336,"untraded":0,"total":951,"bullRatio":0.43414634146341463,"indexClose":1736.3299560546875,"indexChange":-0.1500244140625,"indexPctChange":-0.00008639570611231695,"source":"TradingView breadth","breadthAvailable":true,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-21","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1736.47998046875,"indexChange":-0.22998046875,"indexPctChange":-0.00013242307231649283,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-20","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1736.7099609375,"indexChange":5.3900146484375,"indexPctChange":0.0031132400802003925,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-19","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1731.3199462890625,"indexChange":-2.0400390625,"indexPctChange":-0.0011769275163498346,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-18","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1733.3599853515625,"indexChange":7.469970703125,"indexPctChange":0.004328184669778409,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-17","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1725.8900146484375,"indexChange":-1.5,"indexPctChange":-0.0008683620880518309,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-14","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1727.3900146484375,"indexChange":-7.3199462890625,"indexPctChange":-0.004219694619789083,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-13","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1734.7099609375,"indexChange":-6.9000244140625,"indexPctChange":-0.003961865441802492,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-12","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1741.6099853515625,"indexChange":10.1500244140625,"indexPctChange":0.005862119045806155,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-11","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1731.4599609375,"indexChange":-3.9100341796875,"indexPctChange":-0.0022531415148868356,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-10","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1735.3699951171875,"indexChange":-0.3800048828125,"indexPctChange":-0.00021892834959671612,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-07","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1735.75,"indexChange":-1.4000244140625,"indexPctChange":-0.0008059317815884817,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-06","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1737.1500244140625,"indexChange":-11.02001953125,"indexPctChange":-0.0063037457765720275,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-05","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1748.1700439453125,"indexChange":15.510009765625,"indexPctChange":0.008951559717234476,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-04","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1732.6600341796875,"indexChange":6.9300537109375,"indexPctChange":0.004015723079143082,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-03","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1725.72998046875,"indexChange":0.8299560546875,"indexPctChange":0.00048116183137595514,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-07-31","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1724.9000244140625,"indexChange":4.5,"indexPctChange":0.0026156707371197694,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-07-30","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1720.4000244140625,"indexChange":4.8399658203125,"indexPctChange":0.0028212161947159314,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-07-29","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1715.56005859375,"indexChange":3.080078125,"indexPctChange":0.0017986067925634395,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-07-28","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1712.47998046875,"indexChange":-0.6099853515625,"indexPctChange":-0.00035607315653758367,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-07-27","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1713.0899658203125,"indexChange":12.0699462890625,"indexPctChange":0.007095710897270106,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-07-24","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1701.02001953125,"indexChange":-13.5699462890625,"indexPctChange":-0.007914397354221201,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-07-23","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1714.5899658203125,"indexChange":3.219970703125,"indexPctChange":0.001881516394649954,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-07-22","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1711.3699951171875,"indexChange":-9,"indexPctChange":-0.005231432788030543,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-07-21","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1720.3699951171875,"indexChange":-1.9200439453125,"indexPctChange":-0.0011148203274505635,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-07-20","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1722.2900390625,"indexChange":-9.159912109375,"indexPctChange":-0.005290312956014359,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-07-17","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1731.449951171875,"indexChange":9.260009765625,"indexPctChange":0.005376880646546897,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-07-16","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1722.18994140625,"indexChange":8.429931640625,"indexPctChange":0.0049189685793741235,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-07-15","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1713.760009765625,"indexChange":-6.179931640625,"indexPctChange":-0.00359310897540538,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-07-14","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1719.93994140625,"indexChange":21.5,"indexPctChange":0.012658675456135787,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false}],"sectors":[{"sector":"Transportation & Logistics","sectorZh":"交通与物流","spark":[0,0.08,0.51,0.64,0.95,1.44,1.4,1.78,1.79,1.79,1.76,1.55,1.47,1.27,1.19,1.2,1.25,2.1],"weightedChange":2.095949711789433},{"sector":"Energy","sectorZh":"能源","spark":[0,0.32,0.14,0.05,-0.01,-0.01,-0.08,-0.06,0.06,0.03,0.17,0.3,0.42,0.53,0.81,0.74,0.98,0.75],"weightedChange":0.7489345234798499},{"sector":"Plantation","sectorZh":"种植","spark":[0,-0.07,-0.07,-0.13,-0.18,-0.13,0.06,0.17,0.09,0.41,0.52,0.67,0.74,0.75,0.85,1.07,1.11,0.72],"weightedChange":0.7210573724305273},{"sector":"Industrial Products & Services","sectorZh":"工业产品与服务","spark":[0,0.22,0.43,0.23,0.37,0.4,0.33,0.16,0.32,-0.03,0.05,0.01,-0.21,-0.28,-0.07,-0.14,0.08,0.23],"weightedChange":0.22936199468588586},{"sector":"Real Estate Investment Trusts","sectorZh":"REITs","spark":[0,-0.06,-0.1,-0.34,-0.18,-0.38,-0.32,-0.07,-0.12,0.13,0.19,0.25,0.46,0.4,0.58,0.44,0.46,0.22],"weightedChange":0.21785698820158553}],"generatedLabel":"Wed, Aug 26, 2026, 08:45 AM GMT+8","generatedShortLabel":"2026-08-26 08:45 GMT+8"};
+    const DATA = {"klciPrices":[{"date":"2026-08-26","open":1739.4000244140625,"high":1745.6099853515625,"low":1735.699951171875,"close":1743.3199462890625,"change":0,"pctChange":0,"volume":0},{"date":"2026-08-24","open":1738.31005859375,"high":1739.469970703125,"low":1733.0699462890625,"close":1736.3299560546875,"change":-0.1500244140625,"pctChange":-0.00008639570611231695,"volume":157036700},{"date":"2026-08-21","open":1736.0799560546875,"high":1738.300048828125,"low":1733.1300048828125,"close":1736.47998046875,"change":-0.22998046875,"pctChange":-0.00013242307231649283,"volume":247093100},{"date":"2026-08-20","open":1732.1099853515625,"high":1739.1300048828125,"low":1732.1099853515625,"close":1736.7099609375,"change":5.3900146484375,"pctChange":0.0031132400802003925,"volume":305493900},{"date":"2026-08-19","open":1731.969970703125,"high":1733.43994140625,"low":1725.949951171875,"close":1731.3199462890625,"change":-2.0400390625,"pctChange":-0.0011769275163498346,"volume":179345200},{"date":"2026-08-18","open":1727.52001953125,"high":1734.530029296875,"low":1723.5999755859375,"close":1733.3599853515625,"change":7.469970703125,"pctChange":0.004328184669778409,"volume":195809400},{"date":"2026-08-17","open":1726.93994140625,"high":1731.449951171875,"low":1722.1600341796875,"close":1725.8900146484375,"change":-1.5,"pctChange":-0.0008683620880518309,"volume":203394100},{"date":"2026-08-14","open":1734.719970703125,"high":1734.719970703125,"low":1726.77001953125,"close":1727.3900146484375,"change":-7.3199462890625,"pctChange":-0.004219694619789083,"volume":192296600},{"date":"2026-08-13","open":1742.7900390625,"high":1742.7900390625,"low":1732.8299560546875,"close":1734.7099609375,"change":-6.9000244140625,"pctChange":-0.003961865441802492,"volume":213599500},{"date":"2026-08-12","open":1731.469970703125,"high":1741.6099853515625,"low":1728.6400146484375,"close":1741.6099853515625,"change":10.1500244140625,"pctChange":0.005862119045806155,"volume":261319500},{"date":"2026-08-11","open":1735.4100341796875,"high":1738.2099609375,"low":1725.47998046875,"close":1731.4599609375,"change":-3.9100341796875,"pctChange":-0.0022531415148868356,"volume":218536000},{"date":"2026-08-10","open":1735.8499755859375,"high":1738.969970703125,"low":1730.3499755859375,"close":1735.3699951171875,"change":-0.3800048828125,"pctChange":-0.00021892834959671612,"volume":146489400},{"date":"2026-08-07","open":1735.219970703125,"high":1739.1400146484375,"low":1729.3399658203125,"close":1735.75,"change":-1.4000244140625,"pctChange":-0.0008059317815884817,"volume":273603000},{"date":"2026-08-06","open":1749.6500244140625,"high":1749.6500244140625,"low":1733.3800048828125,"close":1737.1500244140625,"change":-11.02001953125,"pctChange":-0.0063037457765720275,"volume":194527100},{"date":"2026-08-05","open":1736.3599853515625,"high":1750.4100341796875,"low":1732.6800537109375,"close":1748.1700439453125,"change":15.510009765625,"pctChange":0.008951559717234476,"volume":230534900},{"date":"2026-08-04","open":1725.93994140625,"high":1732.6600341796875,"low":1722.780029296875,"close":1732.6600341796875,"change":6.9300537109375,"pctChange":0.004015723079143082,"volume":202130300},{"date":"2026-08-03","open":1725.260009765625,"high":1729.719970703125,"low":1719.469970703125,"close":1725.72998046875,"change":0.8299560546875,"pctChange":0.00048116183137595514,"volume":165737800},{"date":"2026-07-31","open":1721.22998046875,"high":1730.1199951171875,"low":1715.6700439453125,"close":1724.9000244140625,"change":4.5,"pctChange":0.0026156707371197694,"volume":259179700},{"date":"2026-07-30","open":1714.4200439453125,"high":1720.4000244140625,"low":1710.68994140625,"close":1720.4000244140625,"change":4.8399658203125,"pctChange":0.0028212161947159314,"volume":160367000},{"date":"2026-07-29","open":1714.3900146484375,"high":1720.5899658203125,"low":1710.7900390625,"close":1715.56005859375,"change":3.080078125,"pctChange":0.0017986067925634395,"volume":169118100},{"date":"2026-07-28","open":1711.949951171875,"high":1715.02001953125,"low":1703.8299560546875,"close":1712.47998046875,"change":-0.6099853515625,"pctChange":-0.00035607315653758367,"volume":179145100},{"date":"2026-07-27","open":1703.6500244140625,"high":1718.31005859375,"low":1702.3499755859375,"close":1713.0899658203125,"change":12.0699462890625,"pctChange":0.007095710897270106,"volume":147159100},{"date":"2026-07-24","open":1710.449951171875,"high":1710.800048828125,"low":1697.760009765625,"close":1701.02001953125,"change":-13.5699462890625,"pctChange":-0.007914397354221201,"volume":177175300},{"date":"2026-07-23","open":1714.3800048828125,"high":1716.4300537109375,"low":1709.050048828125,"close":1714.5899658203125,"change":3.219970703125,"pctChange":0.001881516394649954,"volume":145824600},{"date":"2026-07-22","open":1719.8399658203125,"high":1721.31005859375,"low":1709.1500244140625,"close":1711.3699951171875,"change":-9,"pctChange":-0.005231432788030543,"volume":164288900},{"date":"2026-07-21","open":1725.6199951171875,"high":1726.8800048828125,"low":1712.6600341796875,"close":1720.3699951171875,"change":-1.9200439453125,"pctChange":-0.0011148203274505635,"volume":137841400},{"date":"2026-07-20","open":1732.6500244140625,"high":1733.760009765625,"low":1720.050048828125,"close":1722.2900390625,"change":-9.159912109375,"pctChange":-0.005290312956014359,"volume":128070000},{"date":"2026-07-17","open":1719.8599853515625,"high":1735.6700439453125,"low":1719.56005859375,"close":1731.449951171875,"change":9.260009765625,"pctChange":0.005376880646546897,"volume":217428700},{"date":"2026-07-16","open":1716.760009765625,"high":1726.75,"low":1716.760009765625,"close":1722.18994140625,"change":8.429931640625,"pctChange":0.0049189685793741235,"volume":195577300},{"date":"2026-07-15","open":1720.6600341796875,"high":1724.8299560546875,"low":1712.8800048828125,"close":1713.760009765625,"change":-6.179931640625,"pctChange":-0.00359310897540538,"volume":175219300}],"intradayCandles":[{"time":"8am","open":1739.4000244140625,"high":1745.6099853515625,"low":1739.1027233886718,"close":1739.4000244140625},{"time":"9am","open":1739.4000244140625,"high":1739.8459759521484,"low":1737.170266723633,"close":1737.6162182617188},{"time":"10am","open":1737.6162182617188,"high":1738.2108203125001,"low":1735.699951171875,"close":1736.0306127929687},{"time":"11am","open":1736.0306127929687,"high":1736.9225158691406,"low":1735.733311767578,"close":1736.62521484375},{"time":"12pm","open":1736.62521484375,"high":1737.0711663818358,"low":1735.699951171875,"close":1735.699951171875},{"time":"1pm","open":1735.699951171875,"high":1736.2945532226563,"low":1735.699951171875,"close":1735.699951171875},{"time":"2pm","open":1735.699951171875,"high":1735.9972521972657,"low":1735.699951171875,"close":1735.699951171875},{"time":"3pm","open":1735.699951171875,"high":1736.1459027099609,"low":1735.699951171875,"close":1735.699951171875},{"time":"4pm","open":1735.699951171875,"high":1737.483757324219,"low":1735.699951171875,"close":1736.8891552734376},{"time":"5pm","open":1736.8891552734376,"high":1743.6172473144532,"low":1736.591854248047,"close":1743.3199462890625}],"marketSummary":[{"date":"2026-08-26","gainers":333,"losers":252,"unchanged":395,"untraded":0,"total":980,"bullRatio":0.5692307692307692,"indexClose":1743.3199462890625,"indexChange":0,"indexPctChange":0,"source":"TradingView breadth","breadthAvailable":true,"volumeAvailable":false,"isDelayed":false},{"date":"2026-08-24","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1736.3299560546875,"indexChange":-0.1500244140625,"indexPctChange":-0.00008639570611231695,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-21","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1736.47998046875,"indexChange":-0.22998046875,"indexPctChange":-0.00013242307231649283,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-20","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1736.7099609375,"indexChange":5.3900146484375,"indexPctChange":0.0031132400802003925,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-19","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1731.3199462890625,"indexChange":-2.0400390625,"indexPctChange":-0.0011769275163498346,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-18","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1733.3599853515625,"indexChange":7.469970703125,"indexPctChange":0.004328184669778409,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-17","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1725.8900146484375,"indexChange":-1.5,"indexPctChange":-0.0008683620880518309,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-14","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1727.3900146484375,"indexChange":-7.3199462890625,"indexPctChange":-0.004219694619789083,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-13","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1734.7099609375,"indexChange":-6.9000244140625,"indexPctChange":-0.003961865441802492,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-12","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1741.6099853515625,"indexChange":10.1500244140625,"indexPctChange":0.005862119045806155,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-11","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1731.4599609375,"indexChange":-3.9100341796875,"indexPctChange":-0.0022531415148868356,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-10","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1735.3699951171875,"indexChange":-0.3800048828125,"indexPctChange":-0.00021892834959671612,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-07","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1735.75,"indexChange":-1.4000244140625,"indexPctChange":-0.0008059317815884817,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-06","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1737.1500244140625,"indexChange":-11.02001953125,"indexPctChange":-0.0063037457765720275,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-05","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1748.1700439453125,"indexChange":15.510009765625,"indexPctChange":0.008951559717234476,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-04","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1732.6600341796875,"indexChange":6.9300537109375,"indexPctChange":0.004015723079143082,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-03","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1725.72998046875,"indexChange":0.8299560546875,"indexPctChange":0.00048116183137595514,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-07-31","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1724.9000244140625,"indexChange":4.5,"indexPctChange":0.0026156707371197694,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-07-30","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1720.4000244140625,"indexChange":4.8399658203125,"indexPctChange":0.0028212161947159314,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-07-29","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1715.56005859375,"indexChange":3.080078125,"indexPctChange":0.0017986067925634395,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-07-28","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1712.47998046875,"indexChange":-0.6099853515625,"indexPctChange":-0.00035607315653758367,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-07-27","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1713.0899658203125,"indexChange":12.0699462890625,"indexPctChange":0.007095710897270106,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-07-24","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1701.02001953125,"indexChange":-13.5699462890625,"indexPctChange":-0.007914397354221201,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-07-23","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1714.5899658203125,"indexChange":3.219970703125,"indexPctChange":0.001881516394649954,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-07-22","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1711.3699951171875,"indexChange":-9,"indexPctChange":-0.005231432788030543,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-07-21","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1720.3699951171875,"indexChange":-1.9200439453125,"indexPctChange":-0.0011148203274505635,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-07-20","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1722.2900390625,"indexChange":-9.159912109375,"indexPctChange":-0.005290312956014359,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-07-17","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1731.449951171875,"indexChange":9.260009765625,"indexPctChange":0.005376880646546897,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-07-16","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1722.18994140625,"indexChange":8.429931640625,"indexPctChange":0.0049189685793741235,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-07-15","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1713.760009765625,"indexChange":-6.179931640625,"indexPctChange":-0.00359310897540538,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false}],"sectors":[{"sector":"Utilities","sectorZh":"公用事业","spark":[0,0.03,0.09,0.19,0.31,0.44,0.62,0.63,0.74,0.92,0.86,0.83,0.64,0.64,0.74,0.67,0.47,0.94],"weightedChange":0.9362181873216384},{"sector":"Health Care","sectorZh":"医疗保健","spark":[0,0.28,0.36,0.41,0.62,0.5,0.71,0.53,0.61,0.51,0.4,0.49,0.31,0.41,0.35,0.36,0.5,0.91],"weightedChange":0.912190386077972},{"sector":"Technology","sectorZh":"科技","spark":[0,-0.32,-0.2,-0.13,-0.19,-0.12,0.16,0.11,0.32,0.61,0.74,0.78,0.79,1.02,0.94,1.09,1.09,0.86],"weightedChange":0.8642823794536048},{"sector":"Telecommunications & Media","sectorZh":"电讯与媒体","spark":[0,0.39,0.32,0.39,0.27,0.21,0.06,-0.05,0.03,0.09,-0.08,-0.02,0.01,0.13,0.25,0.51,0.64,0.55],"weightedChange":0.549669591319305},{"sector":"Property","sectorZh":"产业/房地产","spark":[0,0.3,0.36,0.36,0.2,0.11,0.09,0.18,0.1,-0.12,-0.09,0.05,-0.09,0.07,0.28,0.31,0.53,0.52],"weightedChange":0.5162056583503061}],"generatedLabel":"Wed, Aug 26, 2026, 10:19 AM GMT+8","generatedShortLabel":"2026-08-26 10:19 GMT+8"};
 
     function css(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
     function drawLine(canvas, values, opts = {}) {
