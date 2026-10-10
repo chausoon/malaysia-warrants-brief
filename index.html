@@ -239,11 +239,11 @@
 <body>
   <div class="topbar">
     <div class="nav"><b class="active">Dashboard</b><a href="warrants_filtered.html">Warrants</a><b>News</b><b>Screener</b><b>Charts</b><b>Maps</b></div>
-    <div class="toolbar"><span>Fri, Oct 09, 2026, 07:02 PM GMT+8</span><span class="pill">Theme</span><b>Malaysia</b></div>
+    <div class="toolbar"><span>Sat, Oct 10, 2026, 01:08 PM GMT+8</span><span class="pill">Theme</span><b>Malaysia</b></div>
   </div>
   <main>
     <section class="headline">
-      <div><span class="yellow">✦</span> Today, 07:02 PM <b>FBM KLCI 走高 7.44 点至 1,608.45</b>，市场焦点：手套股、AI/芯片、油价与权重股获利回吐。</div>
+      <div><span class="yellow">✦</span> Today, 01:08 PM <b>FBM KLCI 走高 7.44 点至 1,608.45</b>，市场焦点：手套股、AI/芯片、油价与权重股获利回吐。</div>
       <span><b class="up">+0.46%</b></span>
     </section>
 
@@ -251,31 +251,31 @@
       <button type="button" id="refreshPageBtn">更新页面</button>
       <button type="button" id="exportPngBtn">导出截图 PNG</button>
       <button type="button" id="exportReportBtn">导出报告 HTML</button>
-      <span class="export-status" id="exportStatus">资料生成：Fri, Oct 09, 2026, 07:02 PM GMT+8。若当前是 file:/// 本地页面，按钮只会重载本机 HTML，不会触发 15 分钟自动抓数。</span>
+      <span class="export-status" id="exportStatus">资料生成：Sat, Oct 10, 2026, 01:08 PM GMT+8。若当前是 file:/// 本地页面，按钮只会重载本机 HTML，不会触发 15 分钟自动抓数。</span>
     </section>
 
     <section class="grid4">
       <article class="market-card">
-        <div class="market-title"><h2>FBM KLCI</h2><span>30D daily OHLC · 2026-10-09 · 更新 2026-10-09 19:02 GMT+8</span><strong class="up">1,608.45 +0.46%</strong></div>
+        <div class="market-title"><h2>FBM KLCI</h2><span>30D daily OHLC · 2026-10-09 · 更新 2026-10-10 13:08 GMT+8</span><strong class="up">1,608.45 +0.46%</strong></div>
         <canvas class="klci-chart" id="klciChart"></canvas>
       </article>
       <article class="market-card">
-        <div class="market-title"><h2>Daily Candle</h2><span>8am-5pm · 更新 2026-10-09 19:02 GMT+8</span><strong>1,602.94 / 1,608.45</strong></div>
+        <div class="market-title"><h2>Daily Candle</h2><span>8am-5pm · 更新 2026-10-10 13:08 GMT+8</span><strong>1,602.94 / 1,608.45</strong></div>
         <canvas class="klci-chart" id="dailyCandleChart"></canvas>
       </article>
       <article class="market-card">
-        <div class="market-title"><h2>Volume</h2><span>30 trading days · latest missing · 更新 2026-10-09 19:02 GMT+8</span><strong>n/a</strong></div>
+        <div class="market-title"><h2>Volume</h2><span>30 trading days · 更新 2026-10-10 13:08 GMT+8</span><strong>219.22M</strong></div>
         <canvas class="klci-chart" id="volumeChart"></canvas>
       </article>
       <article class="market-card">
-        <div class="market-title"><h2>Sentiment</h2><span>TradingView latest breadth · 更新 2026-10-09 19:02 GMT+8</span><strong class="up">62.2% Bull</strong></div>
+        <div class="market-title"><h2>Sentiment</h2><span>TradingView latest breadth · 更新 2026-10-10 13:08 GMT+8</span><strong class="up">62.8% Bull</strong></div>
         <div class="sentiment-fallback">
           <div class="sentiment-meter">
-            <div class="sentiment-meter-fill" style="width:62.2%"></div>
+            <div class="sentiment-meter-fill" style="width:62.8%"></div>
           </div>
           <div class="sentiment-facts">
-            <div><small>上涨</small><b class="up">384</b></div>
-            <div><small>下跌</small><b class="down">233</b></div>
+            <div><small>上涨</small><b class="up">381</b></div>
+            <div><small>下跌</small><b class="down">226</b></div>
             <div><small>状态</small><b class="up">偏多</b></div>
           </div>
           <p>目前只有最新 breadth 快照，没有足够历史点可画趋势。</p>
@@ -286,48 +286,48 @@
     <section class="data-notes">
       
       <div class="data-note"><b>自动更新说明：</b>线上 GitHub Pages 由 GitHub Actions 在交易时段约每 15 分钟重新生成一次；若当前地址是 file:/// 本地页面，浏览器只会读取本机这份 index.html，不会自动同步线上更新。页面各区块旁的“更新”时间就是这份 HTML 的生成时间。</div>
-      <div class="data-note"><b>Volume 数据说明：</b>Volume 图为 Yahoo Finance `^KLSE` 最近 30 个交易日量能，周六、周日不包含在图内。 缺失日期：2026-10-09 Fri source missing。 若最新一日显示缺失或 0，通常表示指数成交量字段未更新或该源未提供。</div>
+      <div class="data-note"><b>Volume 数据说明：</b>Volume 图为 Yahoo Finance `^KLSE` 最近 30 个交易日量能；周六、周日不包含在图内。若最新一日显示 0，通常表示指数成交量字段未更新或该源未提供。</div>
       <div class="data-note"><b>Sector 1D 数据说明：</b>Sector 分组使用 Bursa Malaysia sector classification 大类名称；右上角数字是该板块成分股按市值加权后的当天涨跌幅。小线图是用成分股涨跌、成交额与市场宽度生成的 1D 快速走势视图，不是逐笔/逐分钟行情。</div>
     </section>
 
     <section class="market-context">
       <div class="panel">
-        <div class="section-title"><h2>FBM KLCI 大市走势与交易解读</h2><small class="section-time" title="页面生成：Fri, Oct 09, 2026, 07:02 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-09 19:02 GMT+8</small></div>
-        <ul><li>FBM KLCI 最新收在 1,608.45，日变动 7.44 点（+0.46%），近 30 个交易日累计 -7.65%。</li><li>区间高低为 1,752.81 / 1,597.94；当前低于 20 日均线 1,654.39，短线趋势仍需观察量能能否配合。</li><li>市场宽度偏正面，涨股 384 多于跌股 233；成交活跃集中在 建筑，显示资金在主题股与权重股之间轮动。</li><li>新闻面显示：区域 AI 风险偏好提供支撑，但油价、地缘政治与权重股获利回吐压抑尾盘，整体情绪属于“指数偏弱、题材仍活跃”。</li></ul>
+        <div class="section-title"><h2>FBM KLCI 大市走势与交易解读</h2><small class="section-time" title="页面生成：Sat, Oct 10, 2026, 01:08 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-10 13:08 GMT+8</small></div>
+        <ul><li>FBM KLCI 最新收在 1,608.45，日变动 7.44 点（+0.46%），近 30 个交易日累计 -7.65%。</li><li>区间高低为 1,752.81 / 1,597.94；当前低于 20 日均线 1,654.39，短线趋势仍需观察量能能否配合。</li><li>市场宽度偏正面，涨股 381 多于跌股 226；成交活跃集中在 建筑，显示资金在主题股与权重股之间轮动。</li><li>新闻面显示：区域 AI 风险偏好提供支撑，但油价、地缘政治与权重股获利回吐压抑尾盘，整体情绪属于“指数偏弱、题材仍活跃”。</li></ul>
       </div>
       <div class="panel">
-        <div class="section-title"><h2>大市新闻与情绪</h2><small class="section-time" title="页面生成：Fri, Oct 09, 2026, 07:02 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-09 19:02 GMT+8</small></div>
+        <div class="section-title"><h2>大市新闻与情绪</h2><small class="section-time" title="页面生成：Sat, Oct 10, 2026, 01:08 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-10 13:08 GMT+8</small></div>
         <div class="news-lines"><article class="news-line">
-        <div><b>Bursa Malaysia</b><time>2026-10-09</time></div>
+        <div><b>Bursa Malaysia</b><time>2026-10-10</time></div>
         <h3><a href="https://news.google.com/rss/articles/CBMieEFVX3lxTE10anl6ZUlWa1ZTVnAzM1ZnV3J0WU41M3IyYXliMXRsa1JFZW5sMU8wM0Vvc0JYUVZ0T1pSSjMxejFEM05kVW9YWllqand2VGNjcjJEQU9BVFlIekFSUDNPMmgxU3Y2Tm9nTHYzdFJUZ2w0OEtvaV9sTw?oc=5" target="_blank" rel="noopener">Market Data Overview - Bursa Malaysia - Bursa Malaysia</a></h3>
         <p>Bursa Malaysia 最新 Bursa / FBM KLCI 相关新闻，作为当天大市情绪参考。</p>
       </article><article class="news-line">
-        <div><b>Batam News Asia</b><time>2026-10-09</time></div>
-        <h3><a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxOT0llTkNTRFYxNV94QVlaX2t4RVlpM3BNXzhuYkk5S0plQkJ0Y2JCSVNKT2VyU1FEemZYbTlVblpodFFPMmw5TVpETFMwaVc5YW1YaW9yTWVDTjJ0VVFsdVZHNnN5SnhVMUZSbHBZLTJtc2xHdnpRZ1EwalVRLUdIU3h6WU5pM3lJOFIxTWlmbGxWWFZiWmdRQnBoVjBIdkNWTF9zWnlZWjlGSHR3Q2ZVTERpRjVnUQ?oc=5" target="_blank" rel="noopener">Malaysia Stock Market: Bursa Retreats as US Treasury Yields Pressure Sentiment - Batam News Asia</a></h3>
-        <p>Batam News Asia 最新 Bursa / FBM KLCI 相关新闻，作为当天大市情绪参考。</p>
+        <div><b>The Malaysian Reserve</b><time>2026-10-09</time></div>
+        <h3><a href="https://news.google.com/rss/articles/CBMi0gFBVV95cUxOSVFEYjYxLVRCVWZiMGtfSjBELV9aV0xvUy1aS0NfUlh1N0lWeENCMVdWRWhYMkRjOFh5XzBoYUJUT3ZSNWdNMUdTYmNYMkpveDlueUVZdTZmcjJjeUc1Ql9QYlBtTmo2Tm5tZThDQjlNMkJNbXdkTjA1MXp4SUJ2VUtLdXBMTExmcTZrclpBZGJ0MlNpYi0zckJTcW1qY215VEZTRzJjM2cycHpuYTY0UVEzTVUyUzNiQjZldE80SDRnVDlyazlMY1JvOWx1dGhNNEE?oc=5" target="_blank" rel="noopener">MOF: SC, Bursa Malaysia undertake 13 measures to boost capital market liquidity, efficiency - The Malaysian Reserve</a></h3>
+        <p>The Malaysian Reserve 最新 Bursa / FBM KLCI 相关新闻，作为当天大市情绪参考。</p>
       </article><article class="news-line">
-        <div><b>KLSE Screener</b><time>2026-10-09</time></div>
-        <h3><a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxQV0t1TzRyTXFWUmpLMHN2OUpzVHRicVN2RHVCZXZUcDlvQ002SDRHQ19ONDlueUVQZHlaakdpa2ViQ3U5aXYtTnBmZHJCS3NLeDRDTGo0dndaZkhsRzhldG9MZGNTOVZ5RUtQV20xOGljdHJlQzVwbVRtQ2FSbVczaTJubFFvNkc3SV9sTjgya1FPZVk2U2xZZE9JdEJ6SEM4SmZ6MUc5ZDRfb1E3bUFpeWZSeExIeHJvdlA1NWFR?oc=5" target="_blank" rel="noopener">FBM KLCI fails to rebound as oil prices surge, traders await Budget 2027 - KLSE Screener</a></h3>
-        <p>KLSE Screener 最新 Bursa / FBM KLCI 相关新闻，作为当天大市情绪参考。</p>
+        <div><b>BusinessToday Malaysia</b><time>2026-10-09</time></div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxOY1N1Wkl4S29KXzJROVJDOWY1QmItS01tanpiOTV2OFR4Zk0xWHh1LW9fY2IxWXd4cERsZk9Ca0RzNVRYZGFQVTBlT0U4SGdpN0Z1bkJwbER4TnFGcWVDUVoya0x2cGtkTXRmQWVlb29KRDkxTHc0UXVWWk94cGQzbFVYeFREYlNqaTg2VVhUOHJtdzB4dUhGb2J1RXkxQUJWeF9N?oc=5" target="_blank" rel="noopener">Bursa Malaysia Rises 0.47% As Budget 2027 Lifts Sentiment - BusinessToday Malaysia</a></h3>
+        <p>BusinessToday Malaysia 最新 Bursa / FBM KLCI 相关新闻，作为当天大市情绪参考。</p>
       </article><article class="news-line">
-        <div><b>The Star</b><time>2026-10-09</time></div>
-        <h3><a href="https://news.google.com/rss/articles/CBMizAFBVV95cUxNeHhqTDlOUFJBX3JOaThBV2I3Umw0S3VJajNaUVMtSThOX09lRG1IQ1htejVqN3llQ3ZQTl9tMjFiS2FoUGpsd1FYV0hJdXdCa25PS2RxTlp6VEx6bVl6QkozV2dZZmdDd0xkX3BjQ0d3dG5pcXAtdjJhU2RlZ2RUZVdLQmlfaGdueF9GTW14Q2NQaHpKTHpZamxNa1VWems0aUNsUmFNUllROWd1MWZjd1J6Qkk4cTBMYUw2eXgzVXhkLWNlLXFUVHhnd1I?oc=5" target="_blank" rel="noopener">FBM KLCI fails to rebound as oil prices surge, traders await Budget 2027 - The Star</a></h3>
-        <p>The Star 最新 Bursa / FBM KLCI 相关新闻，作为当天大市情绪参考。</p>
+        <div><b>BusinessToday Malaysia</b><time>2026-10-09</time></div>
+        <h3><a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxQWDlfWXI0MXpzd3V3UVptaTVNZFdpV0l0NWxsZUx4bXA0ZHFxNU41WkpPZ25QbnMyRS1YejhNLXFmS01tN25POUZYeHJjYnE4dkh5TWptOC1YTVB5eWdFd01OWHJ3TXJNYUVZM3prd0s3SG1IN19neXdvYkdQTW9sZjVpRksxOWJ5ZzNEaHFlMlcwZ0JBeHRhZ3RUSjh4SXNFRlFqVVhZeXo4Wl9BYzRRekFZNlE?oc=5" target="_blank" rel="noopener">Bursa Malaysia Up Marginally At Midday As Investors Await Budget 2027 - BusinessToday Malaysia</a></h3>
+        <p>盘中新闻更新 FBM KLCI 与市场宽度，可用来判断当天资金是否继续追价或转向观望。</p>
       </article></div>
       </div>
     </section>
 
     <section class="breadth-row">
-      <div class="breadth-card"><small>Advancing / Declining <span class="inline-update" title="页面生成：Fri, Oct 09, 2026, 07:02 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-09 19:02 GMT+8</span></small><b><span class="up">384</span><span class="down">233</span></b><div class="bar"><i style="width:40.63492063492063%"></i><i style="width:24.656084656084655%"></i></div></div>
-      <div class="breadth-card"><small>30D KLCI <span class="inline-update" title="页面生成：Fri, Oct 09, 2026, 07:02 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-09 19:02 GMT+8</span></small><b><span class="down">-7.65%</span><span>1,741.72</span></b><div class="bar"><i style="width:19.393468118195955%"></i><i style="width:80.60653188180405%"></i></div></div>
-      <div class="breadth-card"><small>Top Sector Turnover <span class="inline-update" title="页面生成：Fri, Oct 09, 2026, 07:02 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-09 19:02 GMT+8</span></small><b><span>建筑</span><span>RM 336.56M</span></b><div class="bar"><i style="width:64%"></i><i style="width:36%"></i></div></div>
-      <div class="breadth-card"><small>Active Counters <span class="inline-update" title="页面生成：Fri, Oct 09, 2026, 07:02 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-09 19:02 GMT+8</span></small><b><span>945</span><span>stocks</span></b><div class="bar"><i style="width:58%"></i><i style="width:42%"></i></div></div>
-      <div class="breadth-card"><small>News Tone <span class="inline-update" title="页面生成：Fri, Oct 09, 2026, 07:02 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-09 19:02 GMT+8</span></small><b><span class="yellow">Mixed</span><span>rotation</span></b><div class="bar"><i style="width:52%"></i><i style="width:48%"></i></div></div>
+      <div class="breadth-card"><small>Advancing / Declining <span class="inline-update" title="页面生成：Sat, Oct 10, 2026, 01:08 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-10 13:08 GMT+8</span></small><b><span class="up">381</span><span class="down">226</span></b><div class="bar"><i style="width:41.10032362459547%"></i><i style="width:24.379719525350595%"></i></div></div>
+      <div class="breadth-card"><small>30D KLCI <span class="inline-update" title="页面生成：Sat, Oct 10, 2026, 01:08 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-10 13:08 GMT+8</span></small><b><span class="down">-7.65%</span><span>1,741.72</span></b><div class="bar"><i style="width:19.393468118195955%"></i><i style="width:80.60653188180405%"></i></div></div>
+      <div class="breadth-card"><small>Top Sector Turnover <span class="inline-update" title="页面生成：Sat, Oct 10, 2026, 01:08 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-10 13:08 GMT+8</span></small><b><span>建筑</span><span>RM 336.54M</span></b><div class="bar"><i style="width:64%"></i><i style="width:36%"></i></div></div>
+      <div class="breadth-card"><small>Active Counters <span class="inline-update" title="页面生成：Sat, Oct 10, 2026, 01:08 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-10 13:08 GMT+8</span></small><b><span>927</span><span>stocks</span></b><div class="bar"><i style="width:58%"></i><i style="width:42%"></i></div></div>
+      <div class="breadth-card"><small>News Tone <span class="inline-update" title="页面生成：Sat, Oct 10, 2026, 01:08 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-10 13:08 GMT+8</span></small><b><span class="yellow">Mixed</span><span>rotation</span></b><div class="bar"><i style="width:52%"></i><i style="width:48%"></i></div></div>
     </section>
 
     <section class="content-grid">
       <div class="tables-grid">
-        <div class="ticker-table"><div class="table-head"><span>Top Volume <small class="section-time" title="页面生成：Fri, Oct 09, 2026, 07:02 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-09 19:02 GMT+8</small></span><span>Daily</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>Volume</th></tr></thead><tbody><tr>
+        <div class="ticker-table"><div class="table-head"><span>Top Volume <small class="section-time" title="页面生成：Sat, Oct 10, 2026, 01:08 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-10 13:08 GMT+8</small></span><span>Daily</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>Volume</th></tr></thead><tbody><tr>
         <td><b>ZETRIX</b><span>Zetrix AI Bhd</span></td>
         <td>0.085</td>
         <td class="up">+13.33%</td>
@@ -378,7 +378,7 @@
         <td class="down">-12.50%</td>
         <td>27.02M</td>
       </tr></tbody></table></div>
-        <div class="ticker-table"><div class="table-head"><span>Top Turnover <small class="section-time" title="页面生成：Fri, Oct 09, 2026, 07:02 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-09 19:02 GMT+8</small></span><span>Daily</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>Value</th></tr></thead><tbody><tr>
+        <div class="ticker-table"><div class="table-head"><span>Top Turnover <small class="section-time" title="页面生成：Sat, Oct 10, 2026, 01:08 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-10 13:08 GMT+8</small></span><span>Daily</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>Value</th></tr></thead><tbody><tr>
         <td><b>MAYBANK</b><span>Malayan Banking Bhd.</span></td>
         <td>9.81</td>
         <td class="up">+0.10%</td>
@@ -429,7 +429,7 @@
         <td class="flat">0.00%</td>
         <td>RM63.70M</td>
       </tr></tbody></table></div>
-        <div class="ticker-table"><div class="table-head"><span>Top Gainers <small class="section-time" title="页面生成：Fri, Oct 09, 2026, 07:02 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-09 19:02 GMT+8</small></span><span>Value</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>RM</th></tr></thead><tbody><tr>
+        <div class="ticker-table"><div class="table-head"><span>Top Gainers <small class="section-time" title="页面生成：Sat, Oct 10, 2026, 01:08 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-10 13:08 GMT+8</small></span><span>Value</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>RM</th></tr></thead><tbody><tr>
         <td><b>NESTLE</b><span>Nestle (Malaysia) Bhd.</span></td>
         <td>90.16</td>
         <td class="up">+0.81%</td>
@@ -480,7 +480,7 @@
         <td class="up">+3.69%</td>
         <td>0.160</td>
       </tr></tbody></table></div>
-        <div class="ticker-table"><div class="table-head"><span>Top Losers <small class="section-time" title="页面生成：Fri, Oct 09, 2026, 07:02 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-09 19:02 GMT+8</small></span><span>Value</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>RM</th></tr></thead><tbody><tr>
+        <div class="ticker-table"><div class="table-head"><span>Top Losers <small class="section-time" title="页面生成：Sat, Oct 10, 2026, 01:08 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-10 13:08 GMT+8</small></span><span>Value</span></div><table><thead><tr><th>Ticker</th><th>Last</th><th>Change</th><th>RM</th></tr></thead><tbody><tr>
         <td><b>PETGAS</b><span>Petronas Gas Bhd.</span></td>
         <td>17.12</td>
         <td class="down">-3.82%</td>
@@ -521,23 +521,23 @@
         <td class="down">-3.70%</td>
         <td>-0.100</td>
       </tr><tr>
-        <td><b>SUNMOW</b><span>Sunmow Holding Bhd</span></td>
-        <td>0.900</td>
-        <td class="down">-8.16%</td>
+        <td><b>SCICOM</b><span>Scicom (MSC) Bhd.</span></td>
+        <td>2.20</td>
+        <td class="down">-3.51%</td>
         <td>-0.080</td>
       </tr><tr>
-        <td><b>SHH</b><span>SHH Resources Holdings Bhd.</span></td>
-        <td>1.10</td>
-        <td class="down">-6.78%</td>
-        <td>-0.080</td>
+        <td><b>LSH</b><span>Lim Seong Hai Capital Bhd</span></td>
+        <td>1.73</td>
+        <td class="down">-3.89%</td>
+        <td>-0.070</td>
       </tr></tbody></table></div>
       </div>
       <div class="right-stack">
         <div class="panel">
-        <div class="section-title"><h2>Sector Heat Map</h2><small class="section-time" title="页面生成：Fri, Oct 09, 2026, 07:02 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-09 19:02 GMT+8</small></div>
+        <div class="section-title"><h2>Sector Heat Map</h2><small class="section-time" title="页面生成：Sat, Oct 10, 2026, 01:08 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-10 13:08 GMT+8</small></div>
           <div class="heatmap"><section class="heat-sector">
-        <header><b>CONSTRUCTION</b><span class="up">+1.88%</span></header>
-        <div class="heat-sub">建筑 · 87 counters · RM 336.56M</div>
+        <header><b>CONSTRUCTION</b><span class="up">+1.90%</span></header>
+        <div class="heat-sub">建筑 · 85 counters · RM 336.54M</div>
         <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:47.83943153757127%;background:hsl(145 72% 34.36363636363635%);" title="Gamuda Bhd. · Construction">
             <b>GAMUDA</b><span>+2.83%</span>
           </div><div class="heat-tile" style="flex-basis:46.66747969415485%;background:hsl(145 72% 33.6654676258993%);" title="IJM Corporation Berhad · Construction">
@@ -557,7 +557,7 @@
           </div></div>
       </section><section class="heat-sector">
         <header><b>TECHNOLOGY</b><span class="up">+1.51%</span></header>
-        <div class="heat-sub">科技 · 105 counters · RM 551.19M</div>
+        <div class="heat-sub">科技 · 104 counters · RM 551.16M</div>
         <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:47.84967691906985%;background:hsl(145 72% 45.219387755102034%);" title="Nationgate Holdings Berhad · Technology">
             <b>NATGATE</b><span>+7.65%</span>
           </div><div class="heat-tile" style="flex-basis:47.0300847005858%;background:hsl(145 72% 46%);" title="Mi Technovation Bhd. · Technology">
@@ -576,8 +576,8 @@
             <b>OPPSTAR</b><span>+5.71%</span>
           </div></div>
       </section><section class="heat-sector">
-        <header><b>PROPERTY</b><span class="up">+1.39%</span></header>
-        <div class="heat-sub">产业/房地产 · 89 counters · RM 97.03M</div>
+        <header><b>PROPERTY</b><span class="up">+1.40%</span></header>
+        <div class="heat-sub">产业/房地产 · 87 counters · RM 96.97M</div>
         <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:45.26845360354406%;background:hsl(145 72% 32.69837587006965%);" title="Sunway Bhd. · Property">
             <b>SUNWAY</b><span>+2.09%</span>
           </div><div class="heat-tile" style="flex-basis:45.15764898231335%;background:hsl(145 72% 29.300578034682083%);" title="Central Global Bhd · Property">
@@ -596,8 +596,8 @@
             <b>OSK</b><span>+3.73%</span>
           </div></div>
       </section><section class="heat-sector">
-        <header><b>CONSUMER PRODUCTS &amp; SERVICES</b><span class="up">+1.09%</span></header>
-        <div class="heat-sub">消费产品与服务 · 142 counters · RM 132.12M</div>
+        <header><b>CONSUMER PRODUCTS &amp; SERVICES</b><span class="up">+1.11%</span></header>
+        <div class="heat-sub">消费产品与服务 · 136 counters · RM 132.04M</div>
         <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:45.98983713426108%;background:hsl(145 72% 35.9326923076923%);" title="99 Speed Mart Retail Holdings Bhd · Consumer Products &amp; Services">
             <b>99SMART</b><span>+3.53%</span>
           </div><div class="heat-tile" style="flex-basis:44.465321855840514%;background:#3f4959;" title="Ni Hsin Group Bhd · Consumer Products &amp; Services">
@@ -614,6 +614,26 @@
             <b>KOPI</b><span>+3.37%</span>
           </div><div class="heat-tile" style="flex-basis:43.52277092697662%;background:hsl(145 72% 29.81127012522361%);" title="Nestle (Malaysia) Bhd. · Consumer Products &amp; Services">
             <b>NESTLE</b><span>+0.81%</span>
+          </div></div>
+      </section><section class="heat-sector">
+        <header><b>TRANSPORTATION &amp; LOGISTICS</b><span class="up">+0.90%</span></header>
+        <div class="heat-sub">交通与物流 · 34 counters · RM 56.20M</div>
+        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:44.97280491981917%;background:hsl(145 72% 30.030075187969913%);" title="Westports Holdings Bhd. · Transportation &amp; Logistics">
+            <b>WPRTS</b><span>+0.90%</span>
+          </div><div class="heat-tile" style="flex-basis:44.7762700967093%;background:hsl(145 72% 29.492042440318297%);" title="MISC Bhd · Transportation &amp; Logistics">
+            <b>MISC</b><span>+0.66%</span>
+          </div><div class="heat-tile" style="flex-basis:44.36093804485911%;background:hsl(145 72% 43.51724137931036%);" title="MTT Shipping &amp; Logistics Bhd. · Transportation &amp; Logistics">
+            <b>MTTSL</b><span>+6.90%</span>
+          </div><div class="heat-tile" style="flex-basis:44.30094383815295%;background:#3f4959;" title="AirAsia Group Bhd. · Transportation &amp; Logistics">
+            <b>AAGB</b><span>0.00%</span>
+          </div><div class="heat-tile" style="flex-basis:42.68012758148491%;background:hsl(145 72% 33.11363636363637%);" title="Capital A Berhad · Transportation &amp; Logistics">
+            <b>CAPITALA</b><span>+2.27%</span>
+          </div><div class="heat-tile" style="flex-basis:42.05206865351684%;background:#3f4959;" title="Avangaad Bhd · Transportation &amp; Logistics">
+            <b>AVANGAAD</b><span>0.00%</span>
+          </div><div class="heat-tile" style="flex-basis:41.118780757128704%;background:hsl(356 68% 31.750000000000004%);" title="Hi Mobility Bhd. · Transportation &amp; Logistics">
+            <b>HI</b><span>-1.67%</span>
+          </div><div class="heat-tile" style="flex-basis:40.715104765960476%;background:#3f4959;" title="GTA Holdings Berhad · Transportation &amp; Logistics">
+            <b>GTA</b><span>0.00%</span>
           </div></div>
       </section><section class="heat-sector">
         <header><b>REAL ESTATE INVESTMENT TRUSTS</b><span class="up">+0.89%</span></header>
@@ -636,28 +656,8 @@
             <b>IGBCR</b><span>-1.61%</span>
           </div></div>
       </section><section class="heat-sector">
-        <header><b>TRANSPORTATION &amp; LOGISTICS</b><span class="up">+0.89%</span></header>
-        <div class="heat-sub">交通与物流 · 35 counters · RM 56.22M</div>
-        <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:44.97280491981917%;background:hsl(145 72% 30.030075187969913%);" title="Westports Holdings Bhd. · Transportation &amp; Logistics">
-            <b>WPRTS</b><span>+0.90%</span>
-          </div><div class="heat-tile" style="flex-basis:44.7762700967093%;background:hsl(145 72% 29.492042440318297%);" title="MISC Bhd · Transportation &amp; Logistics">
-            <b>MISC</b><span>+0.66%</span>
-          </div><div class="heat-tile" style="flex-basis:44.36093804485911%;background:hsl(145 72% 43.51724137931036%);" title="MTT Shipping &amp; Logistics Bhd. · Transportation &amp; Logistics">
-            <b>MTTSL</b><span>+6.90%</span>
-          </div><div class="heat-tile" style="flex-basis:44.30094383815295%;background:#3f4959;" title="AirAsia Group Bhd. · Transportation &amp; Logistics">
-            <b>AAGB</b><span>0.00%</span>
-          </div><div class="heat-tile" style="flex-basis:42.68012758148491%;background:hsl(145 72% 33.11363636363637%);" title="Capital A Berhad · Transportation &amp; Logistics">
-            <b>CAPITALA</b><span>+2.27%</span>
-          </div><div class="heat-tile" style="flex-basis:42.05206865351684%;background:#3f4959;" title="Avangaad Bhd · Transportation &amp; Logistics">
-            <b>AVANGAAD</b><span>0.00%</span>
-          </div><div class="heat-tile" style="flex-basis:41.118780757128704%;background:hsl(356 68% 31.750000000000004%);" title="Hi Mobility Bhd. · Transportation &amp; Logistics">
-            <b>HI</b><span>-1.67%</span>
-          </div><div class="heat-tile" style="flex-basis:40.715104765960476%;background:#3f4959;" title="GTA Holdings Berhad · Transportation &amp; Logistics">
-            <b>GTA</b><span>0.00%</span>
-          </div></div>
-      </section><section class="heat-sector">
-        <header><b>INDUSTRIAL PRODUCTS &amp; SERVICES</b><span class="up">+0.64%</span></header>
-        <div class="heat-sub">工业产品与服务 · 264 counters · RM 355.25M</div>
+        <header><b>INDUSTRIAL PRODUCTS &amp; SERVICES</b><span class="up">+0.63%</span></header>
+        <div class="heat-sub">工业产品与服务 · 261 counters · RM 355.22M</div>
         <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:46.45283384899518%;background:hsl(145 72% 31.476123595505626%);" title="Press Metal Aluminium Holdings Berhad · Industrial Products &amp; Services">
             <b>PMETAL</b><span>+1.54%</span>
           </div><div class="heat-tile" style="flex-basis:45.66962952298603%;background:hsl(145 72% 28.90725806451615%);" title="Sime Darby Bhd. · Industrial Products &amp; Services">
@@ -677,7 +677,7 @@
           </div></div>
       </section><section class="heat-sector">
         <header><b>TELECOMMUNICATIONS &amp; MEDIA</b><span class="up">+0.47%</span></header>
-        <div class="heat-sub">电讯与媒体 · 16 counters · RM 72.01M</div>
+        <div class="heat-sub">电讯与媒体 · 15 counters · RM 71.99M</div>
         <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:46.17069713770792%;background:hsl(145 72% 28.285895806861493%);" title="Telekom Malaysia Bhd. · Telecommunications &amp; Media">
             <b>TM</b><span>+0.13%</span>
           </div><div class="heat-tile" style="flex-basis:44.61301813765073%;background:hsl(145 72% 30.732793522267187%);" title="CelcomDigi Berhad · Telecommunications &amp; Media">
@@ -777,7 +777,7 @@
           </div></div>
       </section><section class="heat-sector">
         <header><b>ENERGY</b><span class="down">-0.24%</span></header>
-        <div class="heat-sub">能源 · 57 counters · RM 56.94M</div>
+        <div class="heat-sub">能源 · 55 counters · RM 56.94M</div>
         <div class="heat-sector-body"><div class="heat-tile" style="flex-basis:45.408070141522245%;background:hsl(356 68% 34.564986737400524%);" title="Hengyuan Refining Company Bhd · Energy">
             <b>HENGYUAN</b><span>-2.92%</span>
           </div><div class="heat-tile" style="flex-basis:44.341622008698465%;background:hsl(356 68% 37.31034482758621%);" title="Dayang Enterprise Holdings Bhd. · Energy">
@@ -810,56 +810,56 @@
 
     <section>
       <div class="panel">
-        <div class="section-title"><h2>Top 5 Bursa Sector · 1D 走势</h2><small class="section-time" title="页面生成：Fri, Oct 09, 2026, 07:02 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-09 19:02 GMT+8</small></div>
+        <div class="section-title"><h2>Top 5 Bursa Sector · 1D 走势</h2><small class="section-time" title="页面生成：Sat, Oct 10, 2026, 01:08 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-10 13:08 GMT+8</small></div>
         <div class="sector-grid"><article class="sector-card">
         <div class="sector-title">
-          <div><b>1. CONSTRUCTION</b><span>建筑 · 87 counters</span></div>
-          <strong class="up"><small>加权涨跌</small>+1.88%</strong>
+          <div><b>1. CONSTRUCTION</b><span>建筑 · 85 counters</span></div>
+          <strong class="up"><small>加权涨跌</small>+1.90%</strong>
         </div>
-        <canvas class="spark" data-series="[0,0.71,0.85,0.88,0.67,0.55,0.52,0.65,0.54,0.27,0.34,0.59,0.48,0.79,1.2,1.36,1.8,1.88]"></canvas>
+        <canvas class="spark" data-series="[0,0.72,0.86,0.89,0.68,0.56,0.53,0.65,0.55,0.27,0.35,0.59,0.49,0.8,1.21,1.38,1.82,1.9]"></canvas>
         <div class="sector-meta">
-          <span>Turnover RM 336.56M</span>
-          <span>40 Adv / 18 Dec</span>
+          <span>Turnover RM 336.54M</span>
+          <span>40 Adv / 17 Dec</span>
         </div>
       </article><article class="sector-card">
         <div class="sector-title">
-          <div><b>2. TECHNOLOGY</b><span>科技 · 105 counters</span></div>
+          <div><b>2. TECHNOLOGY</b><span>科技 · 104 counters</span></div>
           <strong class="up"><small>加权涨跌</small>+1.51%</strong>
         </div>
-        <canvas class="spark" data-series="[0,-0.61,-0.2,-0.15,0.23,0.32,0.78,0.93,1.19,1.4,1.4,1.45,1.7,1.58,1.69,1.57,1.42,1.51]"></canvas>
+        <canvas class="spark" data-series="[0,-0.62,-0.2,-0.15,0.23,0.32,0.78,0.93,1.2,1.4,1.4,1.45,1.71,1.58,1.69,1.58,1.42,1.51]"></canvas>
         <div class="sector-meta">
-          <span>Turnover RM 551.19M</span>
+          <span>Turnover RM 551.16M</span>
           <span>42 Adv / 23 Dec</span>
         </div>
       </article><article class="sector-card">
         <div class="sector-title">
-          <div><b>3. PROPERTY</b><span>产业/房地产 · 89 counters</span></div>
-          <strong class="up"><small>加权涨跌</small>+1.39%</strong>
+          <div><b>3. PROPERTY</b><span>产业/房地产 · 87 counters</span></div>
+          <strong class="up"><small>加权涨跌</small>+1.40%</strong>
         </div>
-        <canvas class="spark" data-series="[0,-0.2,0.15,0.27,0.41,0.68,0.91,1.02,1.1,1.26,1.35,1.14,1.19,1.06,1,1.04,1.08,1.39]"></canvas>
+        <canvas class="spark" data-series="[0,-0.2,0.15,0.27,0.41,0.68,0.91,1.03,1.11,1.26,1.35,1.15,1.19,1.07,1.01,1.04,1.08,1.4]"></canvas>
         <div class="sector-meta">
-          <span>Turnover RM 97.03M</span>
-          <span>40 Adv / 18 Dec</span>
+          <span>Turnover RM 96.97M</span>
+          <span>40 Adv / 17 Dec</span>
         </div>
       </article><article class="sector-card">
         <div class="sector-title">
-          <div><b>4. CONSUMER PRODUCTS &amp; SERVICES</b><span>消费产品与服务 · 142 counters</span></div>
-          <strong class="up"><small>加权涨跌</small>+1.09%</strong>
+          <div><b>4. CONSUMER PRODUCTS &amp; SERVICES</b><span>消费产品与服务 · 136 counters</span></div>
+          <strong class="up"><small>加权涨跌</small>+1.11%</strong>
         </div>
-        <canvas class="spark" data-series="[0,-0.22,-0.52,-0.03,0.2,0.57,0.54,0.55,0.84,1.11,0.7,0.81,1.04,0.85,1.51,1.36,0.73,1.09]"></canvas>
+        <canvas class="spark" data-series="[0,-0.23,-0.52,-0.04,0.2,0.58,0.55,0.57,0.86,1.13,0.73,0.83,1.06,0.88,1.54,1.39,0.75,1.11]"></canvas>
         <div class="sector-meta">
-          <span>Turnover RM 132.12M</span>
-          <span>59 Adv / 34 Dec</span>
+          <span>Turnover RM 132.04M</span>
+          <span>57 Adv / 30 Dec</span>
         </div>
       </article><article class="sector-card">
         <div class="sector-title">
-          <div><b>5. REAL ESTATE INVESTMENT TRUSTS</b><span>REITs · 20 counters</span></div>
-          <strong class="up"><small>加权涨跌</small>+0.89%</strong>
+          <div><b>5. TRANSPORTATION &amp; LOGISTICS</b><span>交通与物流 · 34 counters</span></div>
+          <strong class="up"><small>加权涨跌</small>+0.90%</strong>
         </div>
-        <canvas class="spark" data-series="[0,-0.02,-0.03,-0.22,-0.02,-0.18,-0.08,0.21,0.2,0.49,0.59,0.69,0.94,0.91,1.14,1.03,1.1,0.89]"></canvas>
+        <canvas class="spark" data-series="[0,-0.03,0.13,0.16,0.25,0.58,0.57,0.69,0.75,0.74,0.87,0.7,0.67,0.57,0.57,0.57,0.49,0.9]"></canvas>
         <div class="sector-meta">
-          <span>Turnover RM 20.40M</span>
-          <span>11 Adv / 4 Dec</span>
+          <span>Turnover RM 56.20M</span>
+          <span>11 Adv / 6 Dec</span>
         </div>
       </article></div>
         <p class="source-line">此处 Top 5 sector 按 Bursa Malaysia sector classification 大类归并后，以市值加权涨跌幅由强到弱排序；右上角百分比 = 市值加权 sector 当天涨跌幅；底部 Adv / Dec = 该板块上涨/下跌家数；Turnover = 板块成分股成交额合计。</p>
@@ -868,14 +868,14 @@
 
     <section>
       <div class="panel">
-        <div class="section-title"><h2>各 Bursa Sector 量化候选股与股价</h2><small class="section-time" title="页面生成：Fri, Oct 09, 2026, 07:02 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-09 19:02 GMT+8</small></div>
+        <div class="section-title"><h2>各 Bursa Sector 量化候选股与股价</h2><small class="section-time" title="页面生成：Sat, Oct 10, 2026, 01:08 PM GMT+8；主要行情日：2026-10-09">更新：2026-10-10 13:08 GMT+8</small></div>
         <div class="recommendations"><div class="recommend-block">
         <div class="recommend-head">
           <div>
             <b>CONSTRUCTION</b>
-            <span>建筑 · 87 counters</span>
+            <span>建筑 · 85 counters</span>
           </div>
-          <em class="up">+1.88%</em>
+          <em class="up">+1.90%</em>
         </div>
         <table>
           <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
@@ -912,7 +912,7 @@
         <div class="recommend-head">
           <div>
             <b>TECHNOLOGY</b>
-            <span>科技 · 105 counters</span>
+            <span>科技 · 104 counters</span>
           </div>
           <em class="up">+1.51%</em>
         </div>
@@ -951,9 +951,9 @@
         <div class="recommend-head">
           <div>
             <b>PROPERTY</b>
-            <span>产业/房地产 · 89 counters</span>
+            <span>产业/房地产 · 87 counters</span>
           </div>
-          <em class="up">+1.39%</em>
+          <em class="up">+1.40%</em>
         </div>
         <table>
           <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
@@ -990,9 +990,9 @@
         <div class="recommend-head">
           <div>
             <b>CONSUMER PRODUCTS &amp; SERVICES</b>
-            <span>消费产品与服务 · 142 counters</span>
+            <span>消费产品与服务 · 136 counters</span>
           </div>
-          <em class="up">+1.09%</em>
+          <em class="up">+1.11%</em>
         </div>
         <table>
           <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
@@ -1022,6 +1022,45 @@
                 <td>0.055</td>
                 <td class="up">+37.50%</td>
                 <td>51.2</td>
+              </tr>
+          </tbody>
+        </table>
+      </div><div class="recommend-block">
+        <div class="recommend-head">
+          <div>
+            <b>TRANSPORTATION &amp; LOGISTICS</b>
+            <span>交通与物流 · 34 counters</span>
+          </div>
+          <em class="up">+0.90%</em>
+        </div>
+        <table>
+          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
+          <tbody>
+          <tr>
+                <td><b>MTTSL</b><span>MTT Shipping &amp; Logistics Bhd.</span></td>
+                <td>1.24</td>
+                <td class="up">+6.90%</td>
+                <td>44.3</td>
+              </tr><tr>
+                <td><b>MAYBULK</b><span>Maybulk Bhd</span></td>
+                <td>0.375</td>
+                <td class="up">+1.35%</td>
+                <td>32.3</td>
+              </tr><tr>
+                <td><b>WPRTS</b><span>Westports Holdings Bhd.</span></td>
+                <td>6.71</td>
+                <td class="up">+0.90%</td>
+                <td>31.9</td>
+              </tr><tr>
+                <td><b>AGX</b><span>AGX Group Bhd.</span></td>
+                <td>0.430</td>
+                <td class="up">+7.50%</td>
+                <td>28.4</td>
+              </tr><tr>
+                <td><b>PBSB</b><span>PBS Bhd</span></td>
+                <td>0.110</td>
+                <td class="up">+4.76%</td>
+                <td>27.6</td>
               </tr>
           </tbody>
         </table>
@@ -1067,49 +1106,10 @@
       </div><div class="recommend-block">
         <div class="recommend-head">
           <div>
-            <b>TRANSPORTATION &amp; LOGISTICS</b>
-            <span>交通与物流 · 35 counters</span>
-          </div>
-          <em class="up">+0.89%</em>
-        </div>
-        <table>
-          <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
-          <tbody>
-          <tr>
-                <td><b>MTTSL</b><span>MTT Shipping &amp; Logistics Bhd.</span></td>
-                <td>1.24</td>
-                <td class="up">+6.90%</td>
-                <td>44.3</td>
-              </tr><tr>
-                <td><b>MAYBULK</b><span>Maybulk Bhd</span></td>
-                <td>0.375</td>
-                <td class="up">+1.35%</td>
-                <td>32.3</td>
-              </tr><tr>
-                <td><b>WPRTS</b><span>Westports Holdings Bhd.</span></td>
-                <td>6.71</td>
-                <td class="up">+0.90%</td>
-                <td>31.9</td>
-              </tr><tr>
-                <td><b>AGX</b><span>AGX Group Bhd.</span></td>
-                <td>0.430</td>
-                <td class="up">+7.50%</td>
-                <td>28.4</td>
-              </tr><tr>
-                <td><b>PBSB</b><span>PBS Bhd</span></td>
-                <td>0.110</td>
-                <td class="up">+4.76%</td>
-                <td>27.6</td>
-              </tr>
-          </tbody>
-        </table>
-      </div><div class="recommend-block">
-        <div class="recommend-head">
-          <div>
             <b>INDUSTRIAL PRODUCTS &amp; SERVICES</b>
-            <span>工业产品与服务 · 264 counters</span>
+            <span>工业产品与服务 · 261 counters</span>
           </div>
-          <em class="up">+0.64%</em>
+          <em class="up">+0.63%</em>
         </div>
         <table>
           <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
@@ -1146,7 +1146,7 @@
         <div class="recommend-head">
           <div>
             <b>TELECOMMUNICATIONS &amp; MEDIA</b>
-            <span>电讯与媒体 · 16 counters</span>
+            <span>电讯与媒体 · 15 counters</span>
           </div>
           <em class="up">+0.47%</em>
         </div>
@@ -1154,11 +1154,6 @@
           <thead><tr><th>股票</th><th>股价</th><th>涨跌</th><th>评分</th></tr></thead>
           <tbody>
           <tr>
-                <td><b>WILLOW</b><span>Willowglen MSC Bhd.</span></td>
-                <td>0.305</td>
-                <td class="up">0.00%</td>
-                <td>34.0</td>
-              </tr><tr>
                 <td><b>BINACOM</b><span>Binasat Communications Bhd.</span></td>
                 <td>0.080</td>
                 <td class="up">+6.67%</td>
@@ -1178,6 +1173,11 @@
                 <td>2.50</td>
                 <td class="up">+1.21%</td>
                 <td>25.3</td>
+              </tr><tr>
+                <td><b>MAXIS</b><span>Maxis Bhd.</span></td>
+                <td>3.50</td>
+                <td class="down">-0.28%</td>
+                <td>24.9</td>
               </tr>
           </tbody>
         </table>
@@ -1341,7 +1341,7 @@
         <div class="recommend-head">
           <div>
             <b>ENERGY</b>
-            <span>能源 · 57 counters</span>
+            <span>能源 · 55 counters</span>
           </div>
           <em class="down">-0.24%</em>
         </div>
@@ -1385,7 +1385,7 @@
   </main>
 
   <script>
-    const DATA = {"klciPrices":[{"date":"2026-10-09","open":1602.93994140625,"high":1609.93994140625,"low":1600.550048828125,"close":1608.449951171875,"change":7.43994140625,"pctChange":0.0046470299129105054,"volume":0},{"date":"2026-10-08","open":1613.449951171875,"high":1613.449951171875,"low":1597.93994140625,"close":1601.010009765625,"change":-10.77001953125,"pctChange":-0.006682065378331017,"volume":258087400},{"date":"2026-10-07","open":1633.5400390625,"high":1633.5400390625,"low":1610.550048828125,"close":1611.780029296875,"change":-21.5699462890625,"pctChange":-0.013205955007483706,"volume":226450100},{"date":"2026-10-06","open":1636.3800048828125,"high":1641.199951171875,"low":1632.77001953125,"close":1633.3499755859375,"change":1.5999755859375,"pctChange":0.0009805274006051785,"volume":154685200},{"date":"2026-10-05","open":1633.4200439453125,"high":1640.4599609375,"low":1630.949951171875,"close":1631.75,"change":0.8800048828125,"pctChange":0.0005395922945711357,"volume":169554300},{"date":"2026-10-02","open":1633.8699951171875,"high":1640.780029296875,"low":1630.6300048828125,"close":1630.8699951171875,"change":0.510009765625,"pctChange":0.0003128203404201092,"volume":161844900},{"date":"2026-10-01","open":1649.8699951171875,"high":1649.8699951171875,"low":1630.0999755859375,"close":1630.3599853515625,"change":-20.81005859375,"pctChange":-0.012603219559401866,"volume":227090200},{"date":"2026-09-30","open":1646.489990234375,"high":1657.4100341796875,"low":1645.030029296875,"close":1651.1700439453125,"change":7.2100830078125,"pctChange":0.004385802074948839,"volume":323505200},{"date":"2026-09-29","open":1664.1099853515625,"high":1665.3199462890625,"low":1643.3599853515625,"close":1643.9599609375,"change":-26.06005859375,"pctChange":-0.015604638440840172,"volume":206047200},{"date":"2026-09-28","open":1672.550048828125,"high":1674.1099853515625,"low":1668.6099853515625,"close":1670.02001953125,"change":-1.5999755859375,"pctChange":-0.00095714073211079,"volume":141231900},{"date":"2026-09-25","open":1674.8699951171875,"high":1675.469970703125,"low":1666.989990234375,"close":1671.6199951171875,"change":-0.6900634765625,"pctChange":-0.00041264086944664807,"volume":174864300},{"date":"2026-09-24","open":1674.449951171875,"high":1679.469970703125,"low":1671.47998046875,"close":1672.31005859375,"change":-4.1199951171875,"pctChange":-0.0024576003681558312,"volume":230817500},{"date":"2026-09-23","open":1682.18994140625,"high":1685.3699951171875,"low":1675.1500244140625,"close":1676.4300537109375,"change":-7.0699462890625,"pctChange":-0.00419955229525542,"volume":233555500},{"date":"2026-09-22","open":1669.739990234375,"high":1684.3399658203125,"low":1665.22998046875,"close":1683.5,"change":16.56005859375,"pctChange":0.009934406262879359,"volume":250225500},{"date":"2026-09-21","open":1664.199951171875,"high":1674.739990234375,"low":1661.219970703125,"close":1666.93994140625,"change":1.3798828125,"pctChange":0.0008284797689403345,"volume":185319800},{"date":"2026-09-18","open":1676.719970703125,"high":1677.8299560546875,"low":1661.7900390625,"close":1665.56005859375,"change":-9.179931640625,"pctChange":-0.005481407080594221,"volume":408080600},{"date":"2026-09-17","open":1677.5,"high":1684.9200439453125,"low":1670.75,"close":1674.739990234375,"change":-4.469970703125,"pctChange":-0.0026619486586593514,"volume":252843400},{"date":"2026-09-15","open":1694.9100341796875,"high":1694.9100341796875,"low":1678.06005859375,"close":1679.2099609375,"change":-18.800048828125,"pctChange":-0.011071812721952066,"volume":249030900},{"date":"2026-09-14","open":1686.6500244140625,"high":1698.010009765625,"low":1682.489990234375,"close":1698.010009765625,"change":11.27001953125,"pctChange":0.006681539298587457,"volume":187856300},{"date":"2026-09-11","open":1705.2900390625,"high":1705.68994140625,"low":1682.56005859375,"close":1686.739990234375,"change":-18.780029296875,"pctChange":-0.01101132152177056,"volume":215995700},{"date":"2026-09-10","open":1712.699951171875,"high":1713.0799560546875,"low":1701.6800537109375,"close":1705.52001953125,"change":-8.8199462890625,"pctChange":-0.005144805852345717,"volume":230008400},{"date":"2026-09-09","open":1715.4599609375,"high":1718.52001953125,"low":1710.3599853515625,"close":1714.3399658203125,"change":-0.06005859375,"pctChange":-0.0000350318437323439,"volume":273403100},{"date":"2026-09-08","open":1713.1400146484375,"high":1714.5,"low":1710.43994140625,"close":1714.4000244140625,"change":-0.3900146484375,"pctChange":-0.00022744163399195306,"volume":195511200},{"date":"2026-09-07","open":1709.699951171875,"high":1715.2900390625,"low":1708.260009765625,"close":1714.7900390625,"change":6.6900634765625,"pctChange":0.003916669733730062,"volume":141165000},{"date":"2026-09-04","open":1713.739990234375,"high":1715.199951171875,"low":1704.8599853515625,"close":1708.0999755859375,"change":-7.030029296875,"pctChange":-0.004098831736871942,"volume":171258000},{"date":"2026-09-03","open":1711.1600341796875,"high":1716.22998046875,"low":1708.469970703125,"close":1715.1300048828125,"change":6.3900146484375,"pctChange":0.0037396061922569212,"volume":233790100},{"date":"2026-09-02","open":1700.9599609375,"high":1709.7099609375,"low":1695.8900146484375,"close":1708.739990234375,"change":8.199951171875,"pctChange":0.004821968894302304,"volume":222213900},{"date":"2026-09-01","open":1727.489990234375,"high":1729.1700439453125,"low":1697.8299560546875,"close":1700.5400390625,"change":-25.3399658203125,"pctChange":-0.014682345092718707,"volume":319729100},{"date":"2026-08-28","open":1743.699951171875,"high":1745.06005859375,"low":1715.9100341796875,"close":1725.8800048828125,"change":-15.8399658203125,"pctChange":-0.009094438880389006,"volume":499594000},{"date":"2026-08-27","open":1752.6600341796875,"high":1752.81005859375,"low":1739.760009765625,"close":1741.719970703125,"change":-6.820068359375,"pctChange":-0.0039004359105392055,"volume":230943400}],"intradayCandles":[{"time":"8am","open":1602.93994140625,"high":1609.93994140625,"low":1602.6582446289062,"close":1602.93994140625},{"time":"9am","open":1602.93994140625,"high":1603.3624865722657,"low":1600.8272155761717,"close":1601.2497607421874},{"time":"10am","open":1601.2497607421874,"high":1601.813154296875,"low":1600.550048828125,"close":1600.550048828125},{"time":"11am","open":1600.550048828125,"high":1600.8317456054688,"low":1600.550048828125,"close":1600.550048828125},{"time":"12pm","open":1600.550048828125,"high":1600.9725939941407,"low":1600.550048828125,"close":1600.550048828125},{"time":"1pm","open":1600.550048828125,"high":1601.1134423828125,"low":1600.550048828125,"close":1600.550048828125},{"time":"2pm","open":1600.550048828125,"high":1600.8317456054688,"low":1600.550048828125,"close":1600.550048828125},{"time":"3pm","open":1600.550048828125,"high":1600.9725939941407,"low":1600.550048828125,"close":1600.550048828125},{"time":"4pm","open":1600.550048828125,"high":1602.2402294921876,"low":1600.550048828125,"close":1601.6768359375},{"time":"5pm","open":1601.6768359375,"high":1608.7316479492188,"low":1601.3951391601563,"close":1608.449951171875}],"marketSummary":[{"date":"2026-10-09","gainers":384,"losers":233,"unchanged":328,"untraded":0,"total":945,"bullRatio":0.6223662884927067,"indexClose":1608.449951171875,"indexChange":7.43994140625,"indexPctChange":0.0046470299129105054,"source":"TradingView breadth","breadthAvailable":true,"volumeAvailable":false,"isDelayed":false},{"date":"2026-10-08","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1601.010009765625,"indexChange":-10.77001953125,"indexPctChange":-0.006682065378331017,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-10-07","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1611.780029296875,"indexChange":-21.5699462890625,"indexPctChange":-0.013205955007483706,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-10-06","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1633.3499755859375,"indexChange":1.5999755859375,"indexPctChange":0.0009805274006051785,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-10-05","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1631.75,"indexChange":0.8800048828125,"indexPctChange":0.0005395922945711357,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-10-02","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1630.8699951171875,"indexChange":0.510009765625,"indexPctChange":0.0003128203404201092,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-10-01","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1630.3599853515625,"indexChange":-20.81005859375,"indexPctChange":-0.012603219559401866,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-30","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1651.1700439453125,"indexChange":7.2100830078125,"indexPctChange":0.004385802074948839,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-29","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1643.9599609375,"indexChange":-26.06005859375,"indexPctChange":-0.015604638440840172,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-28","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1670.02001953125,"indexChange":-1.5999755859375,"indexPctChange":-0.00095714073211079,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-25","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1671.6199951171875,"indexChange":-0.6900634765625,"indexPctChange":-0.00041264086944664807,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-24","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1672.31005859375,"indexChange":-4.1199951171875,"indexPctChange":-0.0024576003681558312,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-23","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1676.4300537109375,"indexChange":-7.0699462890625,"indexPctChange":-0.00419955229525542,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-22","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1683.5,"indexChange":16.56005859375,"indexPctChange":0.009934406262879359,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-21","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1666.93994140625,"indexChange":1.3798828125,"indexPctChange":0.0008284797689403345,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-18","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1665.56005859375,"indexChange":-9.179931640625,"indexPctChange":-0.005481407080594221,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-17","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1674.739990234375,"indexChange":-4.469970703125,"indexPctChange":-0.0026619486586593514,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-15","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1679.2099609375,"indexChange":-18.800048828125,"indexPctChange":-0.011071812721952066,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-14","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1698.010009765625,"indexChange":11.27001953125,"indexPctChange":0.006681539298587457,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-11","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1686.739990234375,"indexChange":-18.780029296875,"indexPctChange":-0.01101132152177056,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-10","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1705.52001953125,"indexChange":-8.8199462890625,"indexPctChange":-0.005144805852345717,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-09","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1714.3399658203125,"indexChange":-0.06005859375,"indexPctChange":-0.0000350318437323439,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-08","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1714.4000244140625,"indexChange":-0.3900146484375,"indexPctChange":-0.00022744163399195306,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-07","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1714.7900390625,"indexChange":6.6900634765625,"indexPctChange":0.003916669733730062,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-04","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1708.0999755859375,"indexChange":-7.030029296875,"indexPctChange":-0.004098831736871942,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-03","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1715.1300048828125,"indexChange":6.3900146484375,"indexPctChange":0.0037396061922569212,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-02","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1708.739990234375,"indexChange":8.199951171875,"indexPctChange":0.004821968894302304,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-01","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1700.5400390625,"indexChange":-25.3399658203125,"indexPctChange":-0.014682345092718707,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-28","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1725.8800048828125,"indexChange":-15.8399658203125,"indexPctChange":-0.009094438880389006,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-27","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1741.719970703125,"indexChange":-6.820068359375,"indexPctChange":-0.0039004359105392055,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false}],"sectors":[{"sector":"Construction","sectorZh":"建筑","spark":[0,0.71,0.85,0.88,0.67,0.55,0.52,0.65,0.54,0.27,0.34,0.59,0.48,0.79,1.2,1.36,1.8,1.88],"weightedChange":1.8803571970645576},{"sector":"Technology","sectorZh":"科技","spark":[0,-0.61,-0.2,-0.15,0.23,0.32,0.78,0.93,1.19,1.4,1.4,1.45,1.7,1.58,1.69,1.57,1.42,1.51],"weightedChange":1.5050949736250396},{"sector":"Property","sectorZh":"产业/房地产","spark":[0,-0.2,0.15,0.27,0.41,0.68,0.91,1.02,1.1,1.26,1.35,1.14,1.19,1.06,1,1.04,1.08,1.39],"weightedChange":1.3926650284762443},{"sector":"Consumer Products & Services","sectorZh":"消费产品与服务","spark":[0,-0.22,-0.52,-0.03,0.2,0.57,0.54,0.55,0.84,1.11,0.7,0.81,1.04,0.85,1.51,1.36,0.73,1.09],"weightedChange":1.0887612833591804},{"sector":"Real Estate Investment Trusts","sectorZh":"REITs","spark":[0,-0.02,-0.03,-0.22,-0.02,-0.18,-0.08,0.21,0.2,0.49,0.59,0.69,0.94,0.91,1.14,1.03,1.1,0.89],"weightedChange":0.8937883018503524}],"generatedLabel":"Fri, Oct 09, 2026, 07:02 PM GMT+8","generatedShortLabel":"2026-10-09 19:02 GMT+8"};
+    const DATA = {"klciPrices":[{"date":"2026-10-09","open":1602.93994140625,"high":1609.93994140625,"low":1600.550048828125,"close":1608.449951171875,"change":7.43994140625,"pctChange":0.0046470299129105054,"volume":219220000},{"date":"2026-10-08","open":1613.449951171875,"high":1613.449951171875,"low":1597.93994140625,"close":1601.010009765625,"change":-10.77001953125,"pctChange":-0.006682065378331017,"volume":258087400},{"date":"2026-10-07","open":1633.5400390625,"high":1633.5400390625,"low":1610.550048828125,"close":1611.780029296875,"change":-21.5699462890625,"pctChange":-0.013205955007483706,"volume":226450100},{"date":"2026-10-06","open":1636.3800048828125,"high":1641.199951171875,"low":1632.77001953125,"close":1633.3499755859375,"change":1.5999755859375,"pctChange":0.0009805274006051785,"volume":154685200},{"date":"2026-10-05","open":1633.4200439453125,"high":1640.4599609375,"low":1630.949951171875,"close":1631.75,"change":0.8800048828125,"pctChange":0.0005395922945711357,"volume":169554300},{"date":"2026-10-02","open":1633.8699951171875,"high":1640.780029296875,"low":1630.6300048828125,"close":1630.8699951171875,"change":0.510009765625,"pctChange":0.0003128203404201092,"volume":161844900},{"date":"2026-10-01","open":1649.8699951171875,"high":1649.8699951171875,"low":1630.0999755859375,"close":1630.3599853515625,"change":-20.81005859375,"pctChange":-0.012603219559401866,"volume":227090200},{"date":"2026-09-30","open":1646.489990234375,"high":1657.4100341796875,"low":1645.030029296875,"close":1651.1700439453125,"change":7.2100830078125,"pctChange":0.004385802074948839,"volume":323505200},{"date":"2026-09-29","open":1664.1099853515625,"high":1665.3199462890625,"low":1643.3599853515625,"close":1643.9599609375,"change":-26.06005859375,"pctChange":-0.015604638440840172,"volume":206047200},{"date":"2026-09-28","open":1672.550048828125,"high":1674.1099853515625,"low":1668.6099853515625,"close":1670.02001953125,"change":-1.5999755859375,"pctChange":-0.00095714073211079,"volume":141231900},{"date":"2026-09-25","open":1674.8699951171875,"high":1675.469970703125,"low":1666.989990234375,"close":1671.6199951171875,"change":-0.6900634765625,"pctChange":-0.00041264086944664807,"volume":174864300},{"date":"2026-09-24","open":1674.449951171875,"high":1679.469970703125,"low":1671.47998046875,"close":1672.31005859375,"change":-4.1199951171875,"pctChange":-0.0024576003681558312,"volume":230817500},{"date":"2026-09-23","open":1682.18994140625,"high":1685.3699951171875,"low":1675.1500244140625,"close":1676.4300537109375,"change":-7.0699462890625,"pctChange":-0.00419955229525542,"volume":233555500},{"date":"2026-09-22","open":1669.739990234375,"high":1684.3399658203125,"low":1665.22998046875,"close":1683.5,"change":16.56005859375,"pctChange":0.009934406262879359,"volume":250225500},{"date":"2026-09-21","open":1664.199951171875,"high":1674.739990234375,"low":1661.219970703125,"close":1666.93994140625,"change":1.3798828125,"pctChange":0.0008284797689403345,"volume":185319800},{"date":"2026-09-18","open":1676.719970703125,"high":1677.8299560546875,"low":1661.7900390625,"close":1665.56005859375,"change":-9.179931640625,"pctChange":-0.005481407080594221,"volume":408080600},{"date":"2026-09-17","open":1677.5,"high":1684.9200439453125,"low":1670.75,"close":1674.739990234375,"change":-4.469970703125,"pctChange":-0.0026619486586593514,"volume":252843400},{"date":"2026-09-15","open":1694.9100341796875,"high":1694.9100341796875,"low":1678.06005859375,"close":1679.2099609375,"change":-18.800048828125,"pctChange":-0.011071812721952066,"volume":249030900},{"date":"2026-09-14","open":1686.6500244140625,"high":1698.010009765625,"low":1682.489990234375,"close":1698.010009765625,"change":11.27001953125,"pctChange":0.006681539298587457,"volume":187856300},{"date":"2026-09-11","open":1705.2900390625,"high":1705.68994140625,"low":1682.56005859375,"close":1686.739990234375,"change":-18.780029296875,"pctChange":-0.01101132152177056,"volume":215995700},{"date":"2026-09-10","open":1712.699951171875,"high":1713.0799560546875,"low":1701.6800537109375,"close":1705.52001953125,"change":-8.8199462890625,"pctChange":-0.005144805852345717,"volume":230008400},{"date":"2026-09-09","open":1715.4599609375,"high":1718.52001953125,"low":1710.3599853515625,"close":1714.3399658203125,"change":-0.06005859375,"pctChange":-0.0000350318437323439,"volume":273403100},{"date":"2026-09-08","open":1713.1400146484375,"high":1714.5,"low":1710.43994140625,"close":1714.4000244140625,"change":-0.3900146484375,"pctChange":-0.00022744163399195306,"volume":195511200},{"date":"2026-09-07","open":1709.699951171875,"high":1715.2900390625,"low":1708.260009765625,"close":1714.7900390625,"change":6.6900634765625,"pctChange":0.003916669733730062,"volume":141165000},{"date":"2026-09-04","open":1713.739990234375,"high":1715.199951171875,"low":1704.8599853515625,"close":1708.0999755859375,"change":-7.030029296875,"pctChange":-0.004098831736871942,"volume":171258000},{"date":"2026-09-03","open":1711.1600341796875,"high":1716.22998046875,"low":1708.469970703125,"close":1715.1300048828125,"change":6.3900146484375,"pctChange":0.0037396061922569212,"volume":233790100},{"date":"2026-09-02","open":1700.9599609375,"high":1709.7099609375,"low":1695.8900146484375,"close":1708.739990234375,"change":8.199951171875,"pctChange":0.004821968894302304,"volume":222213900},{"date":"2026-09-01","open":1727.489990234375,"high":1729.1700439453125,"low":1697.8299560546875,"close":1700.5400390625,"change":-25.3399658203125,"pctChange":-0.014682345092718707,"volume":319729100},{"date":"2026-08-28","open":1743.699951171875,"high":1745.06005859375,"low":1715.9100341796875,"close":1725.8800048828125,"change":-15.8399658203125,"pctChange":-0.009094438880389006,"volume":499594000},{"date":"2026-08-27","open":1752.6600341796875,"high":1752.81005859375,"low":1739.760009765625,"close":1741.719970703125,"change":-6.820068359375,"pctChange":-0.0039004359105392055,"volume":230943400}],"intradayCandles":[{"time":"8am","open":1602.93994140625,"high":1609.93994140625,"low":1602.6582446289062,"close":1602.93994140625},{"time":"9am","open":1602.93994140625,"high":1603.3624865722657,"low":1600.8272155761717,"close":1601.2497607421874},{"time":"10am","open":1601.2497607421874,"high":1601.813154296875,"low":1600.550048828125,"close":1600.550048828125},{"time":"11am","open":1600.550048828125,"high":1600.8317456054688,"low":1600.550048828125,"close":1600.550048828125},{"time":"12pm","open":1600.550048828125,"high":1600.9725939941407,"low":1600.550048828125,"close":1600.550048828125},{"time":"1pm","open":1600.550048828125,"high":1601.1134423828125,"low":1600.550048828125,"close":1600.550048828125},{"time":"2pm","open":1600.550048828125,"high":1600.8317456054688,"low":1600.550048828125,"close":1600.550048828125},{"time":"3pm","open":1600.550048828125,"high":1600.9725939941407,"low":1600.550048828125,"close":1600.550048828125},{"time":"4pm","open":1600.550048828125,"high":1602.2402294921876,"low":1600.550048828125,"close":1601.6768359375},{"time":"5pm","open":1601.6768359375,"high":1608.7316479492188,"low":1601.3951391601563,"close":1608.449951171875}],"marketSummary":[{"date":"2026-10-09","gainers":381,"losers":226,"unchanged":320,"untraded":0,"total":927,"bullRatio":0.627677100494234,"indexClose":1608.449951171875,"indexChange":7.43994140625,"indexPctChange":0.0046470299129105054,"source":"TradingView breadth","breadthAvailable":true,"volumeAvailable":true,"isDelayed":false},{"date":"2026-10-08","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1601.010009765625,"indexChange":-10.77001953125,"indexPctChange":-0.006682065378331017,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-10-07","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1611.780029296875,"indexChange":-21.5699462890625,"indexPctChange":-0.013205955007483706,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-10-06","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1633.3499755859375,"indexChange":1.5999755859375,"indexPctChange":0.0009805274006051785,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-10-05","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1631.75,"indexChange":0.8800048828125,"indexPctChange":0.0005395922945711357,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-10-02","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1630.8699951171875,"indexChange":0.510009765625,"indexPctChange":0.0003128203404201092,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-10-01","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1630.3599853515625,"indexChange":-20.81005859375,"indexPctChange":-0.012603219559401866,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-30","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1651.1700439453125,"indexChange":7.2100830078125,"indexPctChange":0.004385802074948839,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-29","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1643.9599609375,"indexChange":-26.06005859375,"indexPctChange":-0.015604638440840172,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-28","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1670.02001953125,"indexChange":-1.5999755859375,"indexPctChange":-0.00095714073211079,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-25","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1671.6199951171875,"indexChange":-0.6900634765625,"indexPctChange":-0.00041264086944664807,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-24","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1672.31005859375,"indexChange":-4.1199951171875,"indexPctChange":-0.0024576003681558312,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-23","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1676.4300537109375,"indexChange":-7.0699462890625,"indexPctChange":-0.00419955229525542,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-22","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1683.5,"indexChange":16.56005859375,"indexPctChange":0.009934406262879359,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-21","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1666.93994140625,"indexChange":1.3798828125,"indexPctChange":0.0008284797689403345,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-18","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1665.56005859375,"indexChange":-9.179931640625,"indexPctChange":-0.005481407080594221,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-17","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1674.739990234375,"indexChange":-4.469970703125,"indexPctChange":-0.0026619486586593514,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-15","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1679.2099609375,"indexChange":-18.800048828125,"indexPctChange":-0.011071812721952066,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-14","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1698.010009765625,"indexChange":11.27001953125,"indexPctChange":0.006681539298587457,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-11","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1686.739990234375,"indexChange":-18.780029296875,"indexPctChange":-0.01101132152177056,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-10","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1705.52001953125,"indexChange":-8.8199462890625,"indexPctChange":-0.005144805852345717,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-09","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1714.3399658203125,"indexChange":-0.06005859375,"indexPctChange":-0.0000350318437323439,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-08","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1714.4000244140625,"indexChange":-0.3900146484375,"indexPctChange":-0.00022744163399195306,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-07","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1714.7900390625,"indexChange":6.6900634765625,"indexPctChange":0.003916669733730062,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-04","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1708.0999755859375,"indexChange":-7.030029296875,"indexPctChange":-0.004098831736871942,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-03","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1715.1300048828125,"indexChange":6.3900146484375,"indexPctChange":0.0037396061922569212,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-02","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1708.739990234375,"indexChange":8.199951171875,"indexPctChange":0.004821968894302304,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-09-01","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1700.5400390625,"indexChange":-25.3399658203125,"indexPctChange":-0.014682345092718707,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-28","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1725.8800048828125,"indexChange":-15.8399658203125,"indexPctChange":-0.009094438880389006,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false},{"date":"2026-08-27","gainers":0,"losers":0,"unchanged":0,"untraded":0,"total":0,"bullRatio":0.5,"indexClose":1741.719970703125,"indexChange":-6.820068359375,"indexPctChange":-0.0039004359105392055,"source":"placeholder","breadthAvailable":false,"volumeAvailable":true,"isDelayed":false}],"sectors":[{"sector":"Construction","sectorZh":"建筑","spark":[0,0.72,0.86,0.89,0.68,0.56,0.53,0.65,0.55,0.27,0.35,0.59,0.49,0.8,1.21,1.38,1.82,1.9],"weightedChange":1.9016024731582972},{"sector":"Technology","sectorZh":"科技","spark":[0,-0.62,-0.2,-0.15,0.23,0.32,0.78,0.93,1.2,1.4,1.4,1.45,1.71,1.58,1.69,1.58,1.42,1.51],"weightedChange":1.508554596620643},{"sector":"Property","sectorZh":"产业/房地产","spark":[0,-0.2,0.15,0.27,0.41,0.68,0.91,1.03,1.11,1.26,1.35,1.15,1.19,1.07,1.01,1.04,1.08,1.4],"weightedChange":1.396058000411703},{"sector":"Consumer Products & Services","sectorZh":"消费产品与服务","spark":[0,-0.23,-0.52,-0.04,0.2,0.58,0.55,0.57,0.86,1.13,0.73,0.83,1.06,0.88,1.54,1.39,0.75,1.11],"weightedChange":1.1147399967827127},{"sector":"Transportation & Logistics","sectorZh":"交通与物流","spark":[0,-0.03,0.13,0.16,0.25,0.58,0.57,0.69,0.75,0.74,0.87,0.7,0.67,0.57,0.57,0.57,0.49,0.9],"weightedChange":0.8955095326390203}],"generatedLabel":"Sat, Oct 10, 2026, 01:08 PM GMT+8","generatedShortLabel":"2026-10-10 13:08 GMT+8"};
 
     function css(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
     function drawLine(canvas, values, opts = {}) {
